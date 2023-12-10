@@ -7,6 +7,8 @@
 
 #include <QMessageBox>
 
+QSqlQuery boolq;
+
 LoginPage::LoginPage(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::LoginPage)
@@ -59,9 +61,12 @@ void LoginPage::on_ContinueBtn_clicked()
      phoneNumber = ui->PhoneNumberLineEdit->text();
      moneyAmount = ui->MoneyLineEdit->text();
 
+
      if (username.isEmpty() && password.isEmpty() && email.isEmpty() && phoneNumber.isEmpty() && moneyAmount.isEmpty())
      {
          QMessageBox::warning(this, "Error", "Pleas complete all informations.");
+       //  boolq.prepare("INSERT INTO boolean(bool) VALUES(:bool) ");
+        // boolq.bindValue(":bool", 0);
          return;
      }
 
@@ -100,6 +105,13 @@ void LoginPage::on_ContinueBtn_clicked()
          QMessageBox::warning(this, "Error", "Wrong phone number!");
      }
 
+
+        if (count == numManager)
+        {
+            QMessageBox::warning(this, "Error", "Adding managers completed!");
+            return;
+        }
+
      QSqlQuery q;
 
      q.prepare("SELECT username FROM account WHERE username=:username");
@@ -112,7 +124,8 @@ void LoginPage::on_ContinueBtn_clicked()
      }
      else
      {
-         q.prepare("INSERT INTO Principle(username, password, email, phone, moneyAmount) VALUES(:username, :password, :email, :phone, :moneyAmount)");
+         q.prepare("INSERT INTO Principle(username, password, email, phone, moneyAmount) "
+                   "VALUES(:username, :password, :email, :phone, :moneyAmount)");
 
          q.bindValue(":username",username);
          q.bindValue(":password",password);
@@ -122,15 +135,23 @@ void LoginPage::on_ContinueBtn_clicked()
 
          q.exec();
          QMessageBox::information(this,"Welcome", "The manager has signed up successfully.");
+
+         ui->UsernameLineEdit->clear();
+         ui->PasswordLineEdit->clear();
+         ui->EmailLineEdit->clear();
+         ui->PhoneNumberLineEdit->clear();
+         ui->MoneyLineEdit->clear();
+
          count++;
      }
+
 }
 
 void LoginPage::on_ConfirmBtn_clicked()
 {
-    int num;
-    num = ui->NumberOfMaganersSpinBox->value();
-    if(num != 0)
+
+    numManager = ui->NumberOfMaganersSpinBox->value();
+    if(numManager != 0)
     {
         ui->LoginPageGroupBox->show();
         ui->label->hide();
@@ -138,4 +159,3 @@ void LoginPage::on_ConfirmBtn_clicked()
         ui->ConfirmBtn->hide();
     }
 }
-

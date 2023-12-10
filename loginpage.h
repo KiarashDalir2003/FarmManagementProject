@@ -25,5 +25,6 @@ private slots:
 private:
     Ui::LoginPage *ui;
     int count = 0;
+    int numManager ;
 };
 #endif // LOGINPAGE_H
