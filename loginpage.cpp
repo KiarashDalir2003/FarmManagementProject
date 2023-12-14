@@ -99,6 +99,15 @@ void LoginPage::on_ContinueBtn_clicked()
                  QUrl::fromLocalFile("C:\\Users\\Microsoft\\Desktop"
                              "\\FarmManegementProject\\sounds\\PositiveSound.mp3"));
 
+     if (count == numManager)
+     {
+         PositiveSound->play();
+         QMessageBox::information(this, "Completed!", "Adding managers completed!");
+         G.show();
+         this->hide();
+         return;
+     }
+
      username = ui->UsernameLineEdit->text();
      password = ui->PasswordLineEdit->text();
      email = ui->EmailLineEdit->text();
@@ -187,14 +196,7 @@ void LoginPage::on_ContinueBtn_clicked()
          ui->captchaLineEdit->clear();
      }
 
-        if (count == numManager)
-        {
-            PositiveSound->play();
-            QMessageBox::information(this, "Completed!", "Adding managers completed!");
-            this->close();
-            G.show();
-            return;
-        }
+
 
      QSqlQuery q; 
      q.prepare("SELECT username FROM account WHERE username=:username");

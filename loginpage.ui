@@ -6,15 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>826</width>
-    <height>636</height>
+    <width>800</width>
+    <height>800</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>LoginPage</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-image: url(:/Farmbackground/images/Farm.jpg);</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label">
@@ -41,10 +41,10 @@
    <widget class="QGroupBox" name="LoginPageGroupBox">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>120</y>
-      <width>561</width>
-      <height>411</height>
+      <x>80</x>
+      <y>110</y>
+      <width>621</width>
+      <height>451</height>
      </rect>
     </property>
     <property name="font">
@@ -55,17 +55,26 @@
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">#LoginPageGroupBox {
+background-image:
+ url(:/Farm/images/Farm.jpg);
+}</string>
+    </property>
     <property name="title">
      <string>LoginPage</string>
     </property>
     <widget class="QPushButton" name="EyeBtn">
      <property name="geometry">
       <rect>
-       <x>80</x>
+       <x>110</x>
        <y>90</y>
        <width>41</width>
        <height>25</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
       <string/>
@@ -80,6 +89,10 @@
        <height>24</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);</string>
+     </property>
      <property name="placeholderText">
       <string>Password...</string>
      </property>
@@ -92,6 +105,10 @@
        <width>191</width>
        <height>24</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);</string>
      </property>
      <property name="placeholderText">
       <string>Username...</string>
@@ -106,6 +123,10 @@
        <height>24</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);</string>
+     </property>
      <property name="placeholderText">
       <string>Email...</string>
      </property>
@@ -118,6 +139,10 @@
        <width>191</width>
        <height>24</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);</string>
      </property>
      <property name="maxLength">
       <number>10</number>
@@ -134,6 +159,9 @@
        <width>141</width>
        <height>24</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
      </property>
     </widget>
     <widget class="QPushButton" name="RefreshBtn">
@@ -161,6 +189,10 @@
        <height>25</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);</string>
+     </property>
      <property name="text">
       <string>continue</string>
      </property>
@@ -174,6 +206,10 @@
        <height>24</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);</string>
+     </property>
      <property name="placeholderText">
       <string>Money amount...</string>
      </property>
@@ -182,10 +218,14 @@
      <property name="geometry">
       <rect>
        <x>200</x>
-       <y>300</y>
+       <y>310</y>
        <width>150</width>
        <height>25</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);</string>
      </property>
      <property name="placeholderText">
       <string>Captcha...</string>
@@ -199,6 +239,9 @@
        <width>150</width>
        <height>50</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::Box</enum>
@@ -237,7 +280,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>826</width>
+     <width>800</width>
      <height>25</height>
     </rect>
    </property>

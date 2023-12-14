@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/Farmbackground">
+    <qresource prefix="/Farm">
         <file>images/Farm.jpg</file>
     </qresource>
 </RCC>
