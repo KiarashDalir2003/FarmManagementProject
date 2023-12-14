@@ -6,12 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>826</width>
+    <height>636</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>LoginPage</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-image: url(:/Farmbackground/images/Farm.jpg);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label">
@@ -40,7 +43,7 @@
      <rect>
       <x>110</x>
       <y>120</y>
-      <width>511</width>
+      <width>561</width>
       <height>411</height>
      </rect>
     </property>
@@ -234,7 +237,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>826</width>
      <height>25</height>
     </rect>
    </property>
