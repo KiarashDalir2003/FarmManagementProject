@@ -27,6 +27,8 @@ private slots:
 
     void on_RefreshBtn_clicked();
 
+    void on_CountryComboBox_currentIndexChanged(int index);
+
 private:
     Ui::LoginPage *ui;
     QString generateRandomTxt(int);

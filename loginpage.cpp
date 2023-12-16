@@ -1,6 +1,10 @@
 #include "loginpage.h"
 #include "ui_loginpage.h"
+
 #include "gamepage.h"
+#include "ui_gamepage.h"
+
+#include "captcha.h"
 
 #include <QSqlDatabase>
 #include <QSqlDriver>
@@ -20,22 +24,22 @@ LoginPage::LoginPage(QWidget *parent)
 {
     ui->setupUi(this);
     ui->LoginPageGroupBox->hide();
+    ui->countryCodeLBL->hide();
 
 
-    ui->EyeBtn->setIcon(QIcon("d:\\eye-icons\\eye-close.png"));
+    ui->EyeBtn->setIcon(QIcon("C:\\Users\\Sajjad\\Desktop\\FarmManegementProject-FirstFaze\\images\\eye-close.png"));
     ui->PasswordLineEdit->setEchoMode(QLineEdit::Password);
-    ui->RefreshBtn->setIcon(QIcon("C:\\Users\\Microsoft\\Desktop\\FarmManegementProject\\images\\refresh.png"));
+    ui->RefreshBtn->setIcon(QIcon("C:\\Users\\Sajjad\\Desktop\\FarmManegementProject-FirstFaze\\images\\refresh.png"));
 
     QMediaPlayer *NagativeSound = new QMediaPlayer;
     NagativeSound->setMedia(
-                QUrl::fromLocalFile("C:\\Users\\Microsoft\\Desktop"
-                                                "\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
+                QUrl::fromLocalFile("C:\\Users\\Sajjad\\Desktop\\FarmManegementProject-FirstFaze\\sounds\\NegativeSound.mp3"));
 
 
 
     QSqlDatabase mydatabase;
     mydatabase = QSqlDatabase :: addDatabase("QSQLITE");
-    mydatabase.setDatabaseName("C:\\Users\\Microsoft\\Desktop\\FarmManegementProject\\ProjectDatebase.db");
+    mydatabase.setDatabaseName("C:\\Users\\Sajjad\\Desktop\\FarmManegementProject-FirstFaze\\ProjectDatebase.db");
     mydatabase.open();
     if (!mydatabase.open())
     {
@@ -45,14 +49,14 @@ LoginPage::LoginPage(QWidget *parent)
 
 
 
-    const QPixmap China("C:\\Users\\Microsoft\\Desktop\\FarmManegementProject\\images\\china.png");
-    const QPixmap Germany("C:\\Users\\Microsoft\\Desktop\\FarmManegementProject\\images\\germany.png");
-    const QPixmap Iran("C:\\Users\\Microsoft\\Desktop\\FarmManegementProject\\images\\iran.png");
-    const QPixmap Iraq("C:\\Users\\Microsoft\\Desktop\\FarmManegementProject\\images\\iraq.png");
-    const QPixmap Russia("C:\\Users\\Microsoft\\Desktop\\FarmManegementProject\\images\\russia.png");
-    const QPixmap UnitedStates("C:\\Users\\Microsoft\\Desktop\\FarmManegementProject\\images\\united_states.png");
+    const QPixmap China("C:\\Users\\Sajjad\\Desktop\\FarmManegementProject-FirstFaze\\images\\china.png");
+    const QPixmap Germany("C:\\Users\\Sajjad\\Desktop\\FarmManegementProject-FirstFaze\\images\\germany.png");
+    const QPixmap Iran("C:\\Users\\Sajjad\\Desktop\\FarmManegementProject-FirstFaze\\images\\iran.png");
+    const QPixmap Iraq("C:\\Users\\Sajjad\\Desktop\\FarmManegementProject-FirstFaze\\images\\iraq.png");
+    const QPixmap Russia("C:\\Users\\Sajjad\\Desktop\\FarmManegementProject-FirstFaze\\images\\russia.png");
+    const QPixmap UnitedStates("C:\\Users\\Sajjad\\Desktop\\FarmManegementProject-FirstFaze\\images\\united_states.png");
 
-    QStringList countries = {"choose country", "China    +86", "Germany    +49", "Iran    +98", "Iraq    +964", "Russia    +7095", "United States    +1"};
+    QStringList countries = {"choose country", "China", "Germany", "Iran", "Iraq", "Russia", "United States"};
     ui->CountryComboBox->addItems(countries);
 
     ui->CountryComboBox->setItemIcon(1,QIcon(China));
@@ -73,12 +77,12 @@ void LoginPage::on_EyeBtn_clicked()
 {
     if (ui->PasswordLineEdit->echoMode() == QLineEdit::Password)
     {
-        ui->EyeBtn->setIcon(QIcon("d:\\eye-icons\\eye.png"));
+        ui->EyeBtn->setIcon(QIcon("C:\\Users\\Sajjad\\Desktop\\FarmManegementProject-FirstFaze\\images\\eye.png"));
         ui->PasswordLineEdit->setEchoMode(QLineEdit::Normal);
     }
     else
     {
-        ui->EyeBtn->setIcon(QIcon("d:\\eye-icons\\eye-close.png"));
+        ui->EyeBtn->setIcon(QIcon("C:\\Users\\Sajjad\\Desktop\\FarmManegementProject-FirstFaze\\images\\eye-close.png"));
         ui->PasswordLineEdit->setEchoMode(QLineEdit::Password);
     }
 }
@@ -91,13 +95,11 @@ void LoginPage::on_ContinueBtn_clicked()
      GamePage G;
      QMediaPlayer *NagativeSound = new QMediaPlayer;
      NagativeSound->setMedia(
-                 QUrl::fromLocalFile("C:\\Users\\Microsoft\\Desktop"
-                             "\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
+                 QUrl::fromLocalFile("C:\\Users\\Sajjad\\Desktop\\FarmManegementProject-FirstFaze\\sounds\\NegativeSound.mp3"));
 
      QMediaPlayer *PositiveSound = new QMediaPlayer;
      PositiveSound->setMedia(
-                 QUrl::fromLocalFile("C:\\Users\\Microsoft\\Desktop"
-                             "\\FarmManegementProject\\sounds\\PositiveSound.mp3"));
+                 QUrl::fromLocalFile("C:\\Users\\Sajjad\\Desktop\\FarmManegementProject-FirstFaze\\sounds\\PositiveSound.mp3"));
 
      if (count == numManager)
      {
@@ -281,7 +283,52 @@ QPixmap LoginPage::generateCaptchaImg(const QString &text)
 
 void LoginPage::on_RefreshBtn_clicked()
 {
-    captchaCode = generateRandomTxt(4);
-    QPixmap captchaimage = generateCaptchaImg(captchaCode);
-    ui->showCaptcha->setPixmap(captchaimage);
+    Captcha cp;
+    cp.randomize();
+    cp.setDifficulty(1);
+    cp.generateText(4, true, false, true);
+    captchaCode = cp.captchaText();
+    ui->showCaptcha->setPixmap(QPixmap::fromImage(cp.captchaImage()));
 }
+
+void LoginPage::on_CountryComboBox_currentIndexChanged(int index)
+{
+    switch(index)
+    {
+    case 0:
+        ui->countryCodeLBL->hide();
+        break;
+
+    case 1:
+        if(ui->countryCodeLBL->isHidden())  ui->countryCodeLBL->show();
+        ui->countryCodeLBL->setText("+86");
+        break;
+
+    case 2:
+        if(ui->countryCodeLBL->isHidden())  ui->countryCodeLBL->show();
+        ui->countryCodeLBL->setText("+49");
+        break;
+
+    case 3:
+        if(ui->countryCodeLBL->isHidden())  ui->countryCodeLBL->show();
+        ui->countryCodeLBL->setText("+98");
+        break;
+
+    case 4:
+        if(ui->countryCodeLBL->isHidden())  ui->countryCodeLBL->show();
+        ui->countryCodeLBL->setText("+964");
+        break;
+
+    case 5:
+        if(ui->countryCodeLBL->isHidden())  ui->countryCodeLBL->show();
+        ui->countryCodeLBL->setText("+7095");
+        break;
+
+    case 6:
+        if(ui->countryCodeLBL->isHidden())  ui->countryCodeLBL->show();
+        ui->countryCodeLBL->setText("+1");
+        break;
+    }
+}
+
+
