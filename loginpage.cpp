@@ -27,19 +27,19 @@ LoginPage::LoginPage(QWidget *parent)
     ui->countryCodeLBL->hide();
 
 
-    ui->EyeBtn->setIcon(QIcon("C:\\Users\\Sajjad\\Desktop\\FarmManegementProject-FirstFaze\\images\\eye-close.png"));
+    ui->EyeBtn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\eye-close.png"));
     ui->PasswordLineEdit->setEchoMode(QLineEdit::Password);
-    ui->RefreshBtn->setIcon(QIcon("C:\\Users\\Sajjad\\Desktop\\FarmManegementProject-FirstFaze\\images\\refresh.png"));
+    ui->RefreshBtn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\refresh.png"));
 
     QMediaPlayer *NagativeSound = new QMediaPlayer;
     NagativeSound->setMedia(
-                QUrl::fromLocalFile("C:\\Users\\Sajjad\\Desktop\\FarmManegementProject-FirstFaze\\sounds\\NegativeSound.mp3"));
+                QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
 
 
 
     QSqlDatabase mydatabase;
     mydatabase = QSqlDatabase :: addDatabase("QSQLITE");
-    mydatabase.setDatabaseName("C:\\Users\\Sajjad\\Desktop\\FarmManegementProject-FirstFaze\\ProjectDatebase.db");
+    mydatabase.setDatabaseName("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\ProjectDatebase.db");
     mydatabase.open();
     if (!mydatabase.open())
     {
@@ -49,12 +49,12 @@ LoginPage::LoginPage(QWidget *parent)
 
 
 
-    const QPixmap China("C:\\Users\\Sajjad\\Desktop\\FarmManegementProject-FirstFaze\\images\\china.png");
-    const QPixmap Germany("C:\\Users\\Sajjad\\Desktop\\FarmManegementProject-FirstFaze\\images\\germany.png");
-    const QPixmap Iran("C:\\Users\\Sajjad\\Desktop\\FarmManegementProject-FirstFaze\\images\\iran.png");
-    const QPixmap Iraq("C:\\Users\\Sajjad\\Desktop\\FarmManegementProject-FirstFaze\\images\\iraq.png");
-    const QPixmap Russia("C:\\Users\\Sajjad\\Desktop\\FarmManegementProject-FirstFaze\\images\\russia.png");
-    const QPixmap UnitedStates("C:\\Users\\Sajjad\\Desktop\\FarmManegementProject-FirstFaze\\images\\united_states.png");
+    const QPixmap China("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\china.png");
+    const QPixmap Germany("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\germany.png");
+    const QPixmap Iran("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\iran.png");
+    const QPixmap Iraq("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\iraq.png");
+    const QPixmap Russia("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\russia.png");
+    const QPixmap UnitedStates("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\united_states.png");
 
     QStringList countries = {"choose country", "China", "Germany", "Iran", "Iraq", "Russia", "United States"};
     ui->CountryComboBox->addItems(countries);
@@ -77,12 +77,12 @@ void LoginPage::on_EyeBtn_clicked()
 {
     if (ui->PasswordLineEdit->echoMode() == QLineEdit::Password)
     {
-        ui->EyeBtn->setIcon(QIcon("C:\\Users\\Sajjad\\Desktop\\FarmManegementProject-FirstFaze\\images\\eye.png"));
+        ui->EyeBtn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\eye.png"));
         ui->PasswordLineEdit->setEchoMode(QLineEdit::Normal);
     }
     else
     {
-        ui->EyeBtn->setIcon(QIcon("C:\\Users\\Sajjad\\Desktop\\FarmManegementProject-FirstFaze\\images\\eye-close.png"));
+        ui->EyeBtn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\eye-close.png"));
         ui->PasswordLineEdit->setEchoMode(QLineEdit::Password);
     }
 }
@@ -95,11 +95,11 @@ void LoginPage::on_ContinueBtn_clicked()
      GamePage G;
      QMediaPlayer *NagativeSound = new QMediaPlayer;
      NagativeSound->setMedia(
-                 QUrl::fromLocalFile("C:\\Users\\Sajjad\\Desktop\\FarmManegementProject-FirstFaze\\sounds\\NegativeSound.mp3"));
+                 QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
 
      QMediaPlayer *PositiveSound = new QMediaPlayer;
      PositiveSound->setMedia(
-                 QUrl::fromLocalFile("C:\\Users\\Sajjad\\Desktop\\FarmManegementProject-FirstFaze\\sounds\\PositiveSound.mp3"));
+                 QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\PositiveSound.mp3"));
 
      if (count == numManager)
      {
