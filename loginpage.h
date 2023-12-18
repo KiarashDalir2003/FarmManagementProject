@@ -35,6 +35,8 @@ private slots:
 
     void on_PhoneNumberLineEdit_textChanged(const QString &);
 
+    void on_MoneyLineEdit_textChanged(const QString &);
+
 private:
     Ui::LoginPage *ui;
     QString captchaCode;

@@ -70,9 +70,9 @@ background-image:
     <widget class="QPushButton" name="EyeBtn">
      <property name="geometry">
       <rect>
-       <x>118</x>
+       <x>115</x>
        <y>120</y>
-       <width>41</width>
+       <width>40</width>
        <height>30</height>
       </rect>
      </property>
@@ -96,6 +96,9 @@ background-image:
       <string notr="true">color: rgb(0, 0, 0);
 background-color: rgb(255, 255, 255);</string>
      </property>
+     <property name="frame">
+      <bool>false</bool>
+     </property>
      <property name="placeholderText">
       <string>Password...</string>
      </property>
@@ -112,6 +115,9 @@ background-color: rgb(255, 255, 255);</string>
      <property name="styleSheet">
       <string notr="true">background-color: rgb(255, 255, 255);
 color: rgb(0, 0, 0);</string>
+     </property>
+     <property name="frame">
+      <bool>false</bool>
      </property>
      <property name="placeholderText">
       <string>Username...</string>
@@ -130,6 +136,9 @@ color: rgb(0, 0, 0);</string>
       <string notr="true">color: rgb(0, 0, 0);
 background-color: rgb(255, 255, 255);</string>
      </property>
+     <property name="frame">
+      <bool>false</bool>
+     </property>
      <property name="placeholderText">
       <string>Email...</string>
      </property>
@@ -137,7 +146,7 @@ background-color: rgb(255, 255, 255);</string>
     <widget class="QLineEdit" name="PhoneNumberLineEdit">
      <property name="geometry">
       <rect>
-       <x>205</x>
+       <x>210</x>
        <y>170</y>
        <width>145</width>
        <height>30</height>
@@ -149,6 +158,9 @@ background-color: rgb(255, 255, 255);</string>
      </property>
      <property name="maxLength">
       <number>10</number>
+     </property>
+     <property name="frame">
+      <bool>false</bool>
      </property>
      <property name="placeholderText">
       <string>Phone Number...</string>
@@ -213,6 +225,9 @@ color: rgb(0, 0, 0);</string>
       <string notr="true">color: rgb(0, 0, 0);
 background-color: rgb(255, 255, 255);</string>
      </property>
+     <property name="frame">
+      <bool>false</bool>
+     </property>
      <property name="placeholderText">
       <string>Money amount...</string>
      </property>
@@ -256,10 +271,10 @@ background-color: rgb(255, 255, 255);</string>
     <widget class="QLabel" name="countryCodeLBL">
      <property name="geometry">
       <rect>
-       <x>160</x>
-       <y>171</y>
+       <x>165</x>
+       <y>170</y>
        <width>45</width>
-       <height>28</height>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -270,6 +285,86 @@ background-color: rgb(255, 255, 255);</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="isUsernameCorrect">
+     <property name="geometry">
+      <rect>
+       <x>155</x>
+       <y>40</y>
+       <width>5</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="isEmailCorrect">
+     <property name="geometry">
+      <rect>
+       <x>155</x>
+       <y>80</y>
+       <width>5</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="isPassCorrect">
+     <property name="geometry">
+      <rect>
+       <x>155</x>
+       <y>120</y>
+       <width>5</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="isPhoneNumCorrect">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>170</y>
+       <width>5</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="isMoneyCorrect">
+     <property name="geometry">
+      <rect>
+       <x>155</x>
+       <y>210</y>
+       <width>5</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </widget>

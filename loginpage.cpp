@@ -36,6 +36,7 @@ LoginPage::LoginPage(QWidget *parent)
     ui->setupUi(this);
     ui->LoginPageGroupBox->hide();
     ui->countryCodeLBL->hide();
+    ui->isPhoneNumCorrect->hide();
 
     ui->EyeBtn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\eye-close.png"));
     ui->PasswordLineEdit->setEchoMode(QLineEdit::Password);
@@ -376,52 +377,63 @@ void LoginPage::on_CountryComboBox_currentIndexChanged(int index)
     {
     case 0:
         ui->countryCodeLBL->hide();
+        ui->isPhoneNumCorrect->hide();
         break;
 
     case 1:
         if(ui->countryCodeLBL->isHidden())  ui->countryCodeLBL->show();
-        ui->countryCodeLBL->setText("+93");
+        if(ui->isPhoneNumCorrect->isHidden())   ui->isPhoneNumCorrect->show();
+        ui->countryCodeLBL->setText("+93 ");
         break;
 
     case 2:
         if(ui->countryCodeLBL->isHidden())  ui->countryCodeLBL->show();
-        ui->countryCodeLBL->setText("+55");
+        if(ui->isPhoneNumCorrect->isHidden())   ui->isPhoneNumCorrect->show();
+        ui->countryCodeLBL->setText("+55 ");
         break;
 
     case 3:
         if(ui->countryCodeLBL->isHidden())  ui->countryCodeLBL->show();
-        ui->countryCodeLBL->setText("+1");
+        if(ui->isPhoneNumCorrect->isHidden())   ui->isPhoneNumCorrect->show();
+        ui->countryCodeLBL->setText("+1 ");
         break;
 
     case 4:
         if(ui->countryCodeLBL->isHidden())  ui->countryCodeLBL->show();
-        ui->countryCodeLBL->setText("+86");
+        if(ui->isPhoneNumCorrect->isHidden())   ui->isPhoneNumCorrect->show();
+        ui->countryCodeLBL->setText("+86 ");
         break;
 
     case 5:
         if(ui->countryCodeLBL->isHidden())  ui->countryCodeLBL->show();
-        ui->countryCodeLBL->setText("+49");
+        if(ui->isPhoneNumCorrect->isHidden())   ui->isPhoneNumCorrect->show();
+        ui->countryCodeLBL->setText("+49 ");
         break;
 
     case 6:
         if(ui->countryCodeLBL->isHidden())  ui->countryCodeLBL->show();
-        ui->countryCodeLBL->setText("+98");
+        if(ui->isPhoneNumCorrect->isHidden())   ui->isPhoneNumCorrect->show();
+        ui->countryCodeLBL->setText("+98 ");
         break;
     case 7:
         if(ui->countryCodeLBL->isHidden())  ui->countryCodeLBL->show();
-        ui->countryCodeLBL->setText("+964");
+        if(ui->isPhoneNumCorrect->isHidden())   ui->isPhoneNumCorrect->show();
+        ui->countryCodeLBL->setText("+964 ");
         break;
     case 8:
         if(ui->countryCodeLBL->isHidden())  ui->countryCodeLBL->show();
-        ui->countryCodeLBL->setText("+7095");
+        if(ui->isPhoneNumCorrect->isHidden())   ui->isPhoneNumCorrect->show();
+        ui->countryCodeLBL->setText("+7095 ");
         break;
     case 9:
         if(ui->countryCodeLBL->isHidden())  ui->countryCodeLBL->show();
-        ui->countryCodeLBL->setText("+34");
+        if(ui->isPhoneNumCorrect->isHidden())   ui->isPhoneNumCorrect->show();
+        ui->countryCodeLBL->setText("+34 ");
         break;
     case 10:
         if(ui->countryCodeLBL->isHidden())  ui->countryCodeLBL->show();
-        ui->countryCodeLBL->setText("+1");
+        if(ui->isPhoneNumCorrect->isHidden())   ui->isPhoneNumCorrect->show();
+        ui->countryCodeLBL->setText("+1 ");
         break;
     }
 }
@@ -494,28 +506,13 @@ void LoginPage::on_UsernameLineEdit_textChanged(const QString &text)
     QString text_tmp = text;
 
     if (username_regex_val.validate(text_tmp, pos) == QValidator::Acceptable)
-    {
-        ui->UsernameLineEdit->setStyleSheet("border-left-color: #8bc34a;\
-                                             border-left-style: solid;\
-                                             border-left-width: 5px;\
-                                             padding-left:3px;");
-    }
+        ui->isUsernameCorrect->setStyleSheet("background-color: rgb(0, 255, 127);");
 
     else if (text_tmp.isEmpty())
-    {
-        ui->UsernameLineEdit->setStyleSheet("border-left-color: #fff;\
-                                             border-left-style: solid;\
-                                             border-left-width: 5px;\
-                                             padding-left:3px;");
-    }
+        ui->isUsernameCorrect->setStyleSheet("background-color: rgb(255, 255, 255);");
 
     else
-    {
-        ui->UsernameLineEdit->setStyleSheet("border-left-color: #f44336;\
-                                             border-left-style: solid;\
-                                             border-left-width: 5px;\
-                                             padding-left:3px;");
-    }
+        ui->isUsernameCorrect->setStyleSheet("background-color: rgb(255, 56, 56);");
 }
 
 void LoginPage::on_EmailLineEdit_textChanged(const QString &text)
@@ -524,28 +521,13 @@ void LoginPage::on_EmailLineEdit_textChanged(const QString &text)
     QString text_tmp = text;
 
     if (email_regex_val.validate(text_tmp, pos) == QValidator::Acceptable)
-    {
-        ui->EmailLineEdit->setStyleSheet("border-left-color: #8bc34a;\
-                                             border-left-style: solid;\
-                                             border-left-width: 5px;\
-                                             padding-left:3px;");
-    }
+        ui->isEmailCorrect->setStyleSheet("background-color: rgb(0, 255, 127);");
 
     else if (text_tmp.isEmpty())
-    {
-        ui->EmailLineEdit->setStyleSheet("border-left-color: #fff;\
-                                             border-left-style: solid;\
-                                             border-left-width: 5px;\
-                                             padding-left:3px;");
-    }
+        ui->isEmailCorrect->setStyleSheet("background-color: rgb(255, 255, 255);");
 
     else
-    {
-        ui->EmailLineEdit->setStyleSheet("border-left-color: #f44336;\
-                                             border-left-style: solid;\
-                                             border-left-width: 5px;\
-                                             padding-left:3px;");
-    }
+        ui->isEmailCorrect->setStyleSheet("background-color: rgb(255, 56, 56);");
 }
 
 
@@ -555,28 +537,13 @@ void LoginPage::on_PasswordLineEdit_textChanged(const QString &text)
     QString text_tmp = text;
 
     if (password_regex_val.validate(text_tmp, pos) == QValidator::Acceptable)
-    {
-        ui->PasswordLineEdit->setStyleSheet("border-left-color: #8bc34a;\
-                                             border-left-style: solid;\
-                                             border-left-width: 5px;\
-                                             padding-left:3px;");
-    }
+        ui->isPassCorrect->setStyleSheet("background-color: rgb(0, 255, 127);");
 
     else if (text_tmp.isEmpty())
-    {
-        ui->PasswordLineEdit->setStyleSheet("border-left-color: #fff;\
-                                             border-left-style: solid;\
-                                             border-left-width: 5px;\
-                                             padding-left:3px;");
-    }
+        ui->isPassCorrect->setStyleSheet("background-color: rgb(255, 255, 255);");
 
     else
-    {
-        ui->PasswordLineEdit->setStyleSheet("border-left-color: #f44336;\
-                                             border-left-style: solid;\
-                                             border-left-width: 5px;\
-                                             padding-left:3px;");
-    }
+        ui->isPassCorrect->setStyleSheet("background-color: rgb(255, 56, 56);");
 }
 
 
@@ -585,28 +552,29 @@ void LoginPage::on_PhoneNumberLineEdit_textChanged(const QString &text)
     int pos = 0;
     QString text_tmp = text;
 
-    if (phoneNum_regex_val.validate(text_tmp, pos) == QValidator::Acceptable)
-    {
-        ui->PhoneNumberLineEdit->setStyleSheet("border-left-color: #8bc34a;\
-                                             border-left-style: solid;\
-                                             border-left-width: 5px;\
-                                             padding-left:3px;");
-    }
+    if (phoneNum_regex_val.validate(text_tmp, pos) == QValidator::Acceptable && text.size() == 10)
+        ui->isPhoneNumCorrect->setStyleSheet("background-color: rgb(0, 255, 127);");
 
     else if (text_tmp.isEmpty())
-    {
-        ui->PhoneNumberLineEdit->setStyleSheet("border-left-color: #fff;\
-                                             border-left-style: solid;\
-                                             border-left-width: 5px;\
-                                             padding-left:3px;");
-    }
+        ui->isPhoneNumCorrect->setStyleSheet("background-color: rgb(255, 255, 255);");
 
     else
-    {
-        ui->PhoneNumberLineEdit->setStyleSheet("border-left-color: #f44336;\
-                                             border-left-style: solid;\
-                                             border-left-width: 5px;\
-                                             padding-left:3px;");
-    }
+        ui->isPhoneNumCorrect->setStyleSheet("background-color: rgb(255, 56, 56);");
+}
+
+
+void LoginPage::on_MoneyLineEdit_textChanged(const QString &text)
+{
+    int pos = 0;
+    QString text_tmp = text;
+
+    if (money_regex_val.validate(text_tmp, pos) == QValidator::Acceptable)
+        ui->isMoneyCorrect->setStyleSheet("background-color: rgb(0, 255, 127);");
+
+    else if (text_tmp.isEmpty())
+        ui->isMoneyCorrect->setStyleSheet("background-color: rgb(255, 255, 255);");
+
+    else
+        ui->isMoneyCorrect->setStyleSheet("background-color: rgb(255, 56, 56);");
 }
 
