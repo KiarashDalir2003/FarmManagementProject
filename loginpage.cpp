@@ -38,24 +38,24 @@ LoginPage::LoginPage(QWidget *parent)
     ui->countryCodeLBL->hide();
     ui->isPhoneNumCorrect->hide();
 
-    ui->EyeBtn->setIcon(QIcon("C:\\Users\\Microsoft\\Desktop\\FarmManegementProject\\images\\eye-close.png"));
+    ui->EyeBtn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\eye-close.png"));
     ui->PasswordLineEdit->setEchoMode(QLineEdit::Password);
-    ui->RefreshBtn->setIcon(QIcon("C:\\Users\\Microsoft\\Desktop\\FarmManegementProject\\images\\refresh.png"));
+    ui->RefreshBtn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\refresh.png"));
 
     QMediaPlayer *StartSound = new QMediaPlayer;
     StartSound->setMedia(
-                QUrl::fromLocalFile("C:\\Users\\Microsoft\\Desktop\\FarmManegementProject\\sounds\\StartSound.mp3"));
+                QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\StartSound.mp3"));
     StartSound->play();
 
     QMediaPlayer *NagativeSound = new QMediaPlayer;
     NagativeSound->setMedia(
-                QUrl::fromLocalFile("C:\\Users\\Microsoft\\Desktop\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
+                QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
 
 
 
     QSqlDatabase mydatabase;
     mydatabase = QSqlDatabase :: addDatabase("QSQLITE");
-    mydatabase.setDatabaseName("C:\\Users\\Microsoft\\Desktop\\FarmManegementProject\\ProjectDatabase.db");
+    mydatabase.setDatabaseName("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\ProjectDatabase.db");
     mydatabase.open();
     if (!mydatabase.open())
     {
@@ -64,16 +64,16 @@ LoginPage::LoginPage(QWidget *parent)
     }
 
 
-    const QPixmap Afghanistan("C:\\Users\\Microsoft\\Desktop\\FarmManegementProject\\images\\CountryFlags\\afghanistan.png");
-    const QPixmap Brazil("C:\\Users\\Microsoft\\Desktop\\FarmManegementProject\\images\\CountryFlags\\brazil.png");
-    const QPixmap Canada("C:\\Users\\Microsoft\\Desktop\\FarmManegementProject\\images\\CountryFlags\\canada.png");
-    const QPixmap China("C:\\Users\\Microsoft\\Desktop\\FarmManegementProject\\images\\CountryFlags\\china.png");
-    const QPixmap Germany("C:\\Users\\Microsoft\\Desktop\\FarmManegementProject\\images\\CountryFlags\\germany.png");
-    const QPixmap Iran("C:\\Users\\Microsoft\\Desktop\\FarmManegementProject\\images\\CountryFlags\\iran.png");
-    const QPixmap Iraq("C:\\Users\\Microsoft\\Desktop\\FarmManegementProject\\images\\CountryFlags\\iraq.png");
-    const QPixmap Spain("C:\\Users\\Microsoft\\Desktop\\FarmManegementProject\\images\\CountryFlags\\spain.png");
-    const QPixmap Russia("C:\\Users\\Microsoft\\Desktop\\FarmManegementProject\\images\\CountryFlags\\russia.png");
-    const QPixmap UnitedStates("C:\\Users\\Microsoft\\Desktop\\FarmManegementProject\\images\\CountryFlags\\united_states.png");
+    const QPixmap Afghanistan("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\CountryFlags\\afghanistan.png");
+    const QPixmap Brazil("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\CountryFlags\\brazil.png");
+    const QPixmap Canada("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\CountryFlags\\canada.png");
+    const QPixmap China("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\CountryFlags\\china.png");
+    const QPixmap Germany("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\CountryFlags\\germany.png");
+    const QPixmap Iran("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\CountryFlags\\iran.png");
+    const QPixmap Iraq("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\CountryFlags\\iraq.png");
+    const QPixmap Spain("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\CountryFlags\\spain.png");
+    const QPixmap Russia("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\CountryFlags\\russia.png");
+    const QPixmap UnitedStates("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\CountryFlags\\united_states.png");
 
     QStringList countries = {"choose country", "Afghanistan", "Brazil", "Canada", "China", "Germany", "Iran", "Iraq", "Russia", "Spain", "United States"};
     ui->CountryComboBox->addItems(countries);
@@ -100,12 +100,12 @@ void LoginPage::on_EyeBtn_clicked()
 {
     if (ui->PasswordLineEdit->echoMode() == QLineEdit::Password)
     {
-        ui->EyeBtn->setIcon(QIcon("C:\\Users\\Microsoft\\Desktop\\FarmManegementProject\\images\\eye.png"));
+        ui->EyeBtn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\eye.png"));
         ui->PasswordLineEdit->setEchoMode(QLineEdit::Normal);
     }
     else
     {
-        ui->EyeBtn->setIcon(QIcon("C:\\Users\\Microsoft\\Desktop\\FarmManegementProject\\images\\eye-close.png"));
+        ui->EyeBtn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\eye-close.png"));
         ui->PasswordLineEdit->setEchoMode(QLineEdit::Password);
     }
 }
@@ -117,15 +117,15 @@ void LoginPage::on_ContinueBtn_clicked()
      QString username, password, email, phoneNumber, moneyAmount, captchatext;
      QMediaPlayer *NagativeSound = new QMediaPlayer;
      NagativeSound->setMedia(
-                 QUrl::fromLocalFile("C:\\Users\\Microsoft\\Desktop\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
+                 QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
 
      QMediaPlayer *PositiveSound = new QMediaPlayer;
      PositiveSound->setMedia(
-                 QUrl::fromLocalFile("C:\\Users\\Microsoft\\Desktop\\FarmManegementProject\\sounds\\PositiveSound.mp3"));
+                 QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\PositiveSound.mp3"));
 
      QMediaPlayer *CompletedSound = new QMediaPlayer;
      CompletedSound->setMedia(
-                 QUrl::fromLocalFile("C:\\Users\\Microsoft\\Desktop\\FarmManegementProject\\sounds\\CompletedSound.mp3"));
+                 QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\CompletedSound.mp3"));
 
      username    =  ui->UsernameLineEdit->text();
      password    =  ui->PasswordLineEdit->text();
@@ -385,57 +385,57 @@ void LoginPage::on_CountryComboBox_currentIndexChanged(int index)
     case 1:
         if(ui->countryCodeLBL->isHidden())  ui->countryCodeLBL->show();
         if(ui->isPhoneNumCorrect->isHidden())   ui->isPhoneNumCorrect->show();
-        ui->countryCodeLBL->setText("+93 ");
+        ui->countryCodeLBL->setText("+93");
         break;
 
     case 2:
         if(ui->countryCodeLBL->isHidden())  ui->countryCodeLBL->show();
         if(ui->isPhoneNumCorrect->isHidden())   ui->isPhoneNumCorrect->show();
-        ui->countryCodeLBL->setText("+55 ");
+        ui->countryCodeLBL->setText("+55");
         break;
 
     case 3:
         if(ui->countryCodeLBL->isHidden())  ui->countryCodeLBL->show();
         if(ui->isPhoneNumCorrect->isHidden())   ui->isPhoneNumCorrect->show();
-        ui->countryCodeLBL->setText("+1 ");
+        ui->countryCodeLBL->setText("+1");
         break;
 
     case 4:
         if(ui->countryCodeLBL->isHidden())  ui->countryCodeLBL->show();
         if(ui->isPhoneNumCorrect->isHidden())   ui->isPhoneNumCorrect->show();
-        ui->countryCodeLBL->setText("+86 ");
+        ui->countryCodeLBL->setText("+86");
         break;
 
     case 5:
         if(ui->countryCodeLBL->isHidden())  ui->countryCodeLBL->show();
         if(ui->isPhoneNumCorrect->isHidden())   ui->isPhoneNumCorrect->show();
-        ui->countryCodeLBL->setText("+49 ");
+        ui->countryCodeLBL->setText("+49");
         break;
 
     case 6:
         if(ui->countryCodeLBL->isHidden())  ui->countryCodeLBL->show();
         if(ui->isPhoneNumCorrect->isHidden())   ui->isPhoneNumCorrect->show();
-        ui->countryCodeLBL->setText("+98 ");
+        ui->countryCodeLBL->setText("+98");
         break;
     case 7:
         if(ui->countryCodeLBL->isHidden())  ui->countryCodeLBL->show();
         if(ui->isPhoneNumCorrect->isHidden())   ui->isPhoneNumCorrect->show();
-        ui->countryCodeLBL->setText("+964 ");
+        ui->countryCodeLBL->setText("+964");
         break;
     case 8:
         if(ui->countryCodeLBL->isHidden())  ui->countryCodeLBL->show();
         if(ui->isPhoneNumCorrect->isHidden())   ui->isPhoneNumCorrect->show();
-        ui->countryCodeLBL->setText("+7095 ");
+        ui->countryCodeLBL->setText("+7095");
         break;
     case 9:
         if(ui->countryCodeLBL->isHidden())  ui->countryCodeLBL->show();
         if(ui->isPhoneNumCorrect->isHidden())   ui->isPhoneNumCorrect->show();
-        ui->countryCodeLBL->setText("+34 ");
+        ui->countryCodeLBL->setText("+34");
         break;
     case 10:
         if(ui->countryCodeLBL->isHidden())  ui->countryCodeLBL->show();
         if(ui->isPhoneNumCorrect->isHidden())   ui->isPhoneNumCorrect->show();
-        ui->countryCodeLBL->setText("+1 ");
+        ui->countryCodeLBL->setText("+1");
         break;
     }
 }

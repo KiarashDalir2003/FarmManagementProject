@@ -16,8 +16,7 @@ int main(int argc, char *argv[])
     QMediaPlayer *StartSound = new QMediaPlayer;
 
     StartSound->setMedia(
-                QUrl::fromLocalFile("C:\\Users\\Microsoft\\Desktop\\FarmManegementProject"
-                                    "\\sounds\\StartSound.mp3"));
+                QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\StartSound.mp3"));
 
 
     QSettings settings("MyApp", "MyAppSettings");
@@ -27,7 +26,7 @@ int main(int argc, char *argv[])
     if (settings.value("firstRun", true).toBool())
     {
         w.show();
-       // StartSound->play();
+        //StartSound->play();
         settings.setValue("firstRun", false);
     }
     else
