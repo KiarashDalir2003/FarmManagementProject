@@ -315,10 +315,10 @@ void LoginPage::on_ContinueBtn_clicked()
          q.prepare("INSERT INTO Principle(username, password, email, phone, moneyAmount) "
                    "VALUES(:username, :password, :email, :phone, :moneyAmount)");
 
-         q.bindValue(":username",username);
-         q.bindValue(":password",password);
-         q.bindValue(":email",email);
-         q.bindValue(":phone",tempPhone);
+         q.bindValue(":username", username);
+         q.bindValue(":password", password);
+         q.bindValue(":email", email);
+         q.bindValue(":phone", tempPhone);
          q.bindValue(":moneyAmount", moneyAmount);
 
          q.exec();
@@ -330,6 +330,8 @@ void LoginPage::on_ContinueBtn_clicked()
          ui->EmailLineEdit->clear();
          ui->PhoneNumberLineEdit->clear();
          ui->MoneyLineEdit->clear();
+         ui->CountryComboBox->setCurrentIndex(0);
+         on_EyeBtn_clicked();
 
          on_RefreshBtn_clicked();
          ui->captchaLineEdit->clear();
