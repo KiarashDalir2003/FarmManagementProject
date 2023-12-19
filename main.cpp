@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
     if (settings.value("firstRun", true).toBool())
     {
         w.show();
-        StartSound->play();
+       // StartSound->play();
         settings.setValue("firstRun", false);
     }
     else
