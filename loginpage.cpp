@@ -296,7 +296,7 @@ void LoginPage::on_ContinueBtn_clicked()
      tempPhone = ui->countryCodeLBL->text() + ui->PhoneNumberLineEdit->text();
 
      QSqlQuery q;
-     q.prepare("SELECT username FROM account WHERE username=:username");
+     q.prepare("SELECT username FROM Principle WHERE username=:username");
      q.bindValue(":username", username);
      q.exec();
 
