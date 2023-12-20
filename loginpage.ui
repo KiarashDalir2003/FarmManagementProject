@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>800</height>
+    <width>620</width>
+    <height>605</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,10 +20,10 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>125</x>
+      <x>5</x>
       <y>35</y>
-      <width>201</width>
-      <height>31</height>
+      <width>200</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="font">
@@ -41,10 +41,10 @@
    <widget class="QGroupBox" name="LoginPageGroupBox">
     <property name="geometry">
      <rect>
-      <x>80</x>
+      <x>0</x>
       <y>120</y>
-      <width>621</width>
-      <height>431</height>
+      <width>620</width>
+      <height>430</height>
      </rect>
     </property>
     <property name="font">
@@ -148,7 +148,7 @@ background-color: rgb(255, 255, 255);</string>
       <rect>
        <x>210</x>
        <y>170</y>
-       <width>145</width>
+       <width>140</width>
        <height>30</height>
       </rect>
      </property>
@@ -371,10 +371,10 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="ConfirmBtn">
     <property name="geometry">
      <rect>
-      <x>430</x>
+      <x>305</x>
       <y>40</y>
       <width>81</width>
-      <height>31</height>
+      <height>30</height>
      </rect>
     </property>
     <property name="text">
@@ -384,10 +384,10 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QSpinBox" name="NumberOfMaganersSpinBox">
     <property name="geometry">
      <rect>
-      <x>340</x>
+      <x>215</x>
       <y>40</y>
-      <width>81</width>
-      <height>31</height>
+      <width>80</width>
+      <height>30</height>
      </rect>
     </property>
    </widget>
@@ -397,7 +397,7 @@ background-color: rgb(255, 255, 255);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>620</width>
      <height>26</height>
     </rect>
    </property>

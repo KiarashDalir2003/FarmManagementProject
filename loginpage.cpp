@@ -186,7 +186,10 @@ void LoginPage::on_ContinueBtn_clicked()
           ui->captchaLineEdit->clear();
           NagativeSound->play();
 
-          QMessageBox::warning(this, "Error", "Incorrect Email");
+          QMessageBox::warning(this, "Error", "Incorrect Email.\nThe correct email format is given below:\n"
+                                              "-----@gmail.com\n"
+                                              "-----@email.com\n"
+                                              "-----@mail.um.ac");
           return;
       }
 
@@ -265,7 +268,7 @@ void LoginPage::on_ContinueBtn_clicked()
          ui->captchaLineEdit->clear();
          NagativeSound->play();
 
-         QMessageBox::warning(this, "Error", "please enter a number for money amount of manager!");
+         QMessageBox::warning(this, "Error", "please enter a non-zero number for money amount of manager!");
          return;
      }
 
@@ -509,7 +512,7 @@ bool LoginPage::isMoneyAmountValid(QLineEdit* moneyLineEdit)
     QString money = moneyLineEdit->text();
     int pos = 0;
 
-    if( !(phoneNum_regex_val.validate(money, pos) == QValidator::Acceptable) )
+    if( !(phoneNum_regex_val.validate(money, pos) == QValidator::Acceptable) || money.toInt() == 0)
         return false;
 
     else
@@ -584,7 +587,7 @@ void LoginPage::on_MoneyLineEdit_textChanged(const QString &text)
     int pos = 0;
     QString text_tmp = text;
 
-    if (money_regex_val.validate(text_tmp, pos) == QValidator::Acceptable)
+    if (money_regex_val.validate(text_tmp, pos) == QValidator::Acceptable && text_tmp.toInt() != 0)
         ui->isMoneyCorrect->setStyleSheet("background-color: rgb(0, 255, 127);");
 
     else if (text_tmp.isEmpty())
