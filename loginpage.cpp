@@ -22,11 +22,11 @@ LoginPage::LoginPage(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::LoginPage)
 {
-    username_regex.setPattern("\\w+");
+    username_regex.setPattern("\\w+");  // The username can contain alphabets, digits and underline character
     email_regex.setPattern("^[a-zA-Z0-9._-]+@(gmail\\.com|email\\.com|mail\\.um\\.ac)$");
-    password_regex.setPattern("^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{8,}$");
-    phoneNum_regex.setPattern("\\d+");
-    money_regex.setPattern("\\d+");
+    password_regex.setPattern("^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{8,}$");    // The password must contain at least one alphabets and digits character. length >= 8
+    phoneNum_regex.setPattern("\\d+");  // just numbers is valid
+    money_regex.setPattern("\\d+");     // just numbers is valid
     username_regex_val.setRegularExpression(username_regex);
     email_regex_val.setRegularExpression(email_regex);
     password_regex_val.setRegularExpression(password_regex);
@@ -35,28 +35,26 @@ LoginPage::LoginPage(QWidget *parent)
 
     ui->setupUi(this);
     ui->LoginPageGroupBox->hide();
-    ui->countryCodeLBL->hide();
-    ui->isPhoneNumCorrect->hide();
 
-    ui->EyeBtn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\eye-close.png"));
+    ui->EyeBtn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\eye-close.png"));
     ui->PasswordLineEdit->setEchoMode(QLineEdit::Password);
-    ui->RefreshBtn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\refresh.png"));
+    ui->RefreshBtn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\refresh.png"));
 
     QMediaPlayer *StartSound = new QMediaPlayer;
     StartSound->setMedia(
-                QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\StartSound.mp3"));
+                QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\StartSound.mp3"));
     StartSound->play();
 
     QMediaPlayer *NagativeSound = new QMediaPlayer;
     NagativeSound->setMedia(
-                QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
+                QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
 
 
 
     QSqlDatabase mydatabase;
     mydatabase = QSqlDatabase :: addDatabase("QSQLITE");
-    mydatabase.setDatabaseName("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\ProjectDatabase.db");
-    mydatabase.open();
+    mydatabase.setDatabaseName("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\ProjectDatabase.db");
+
     if (!mydatabase.open())
     {
         NagativeSound->play();
@@ -64,16 +62,16 @@ LoginPage::LoginPage(QWidget *parent)
     }
 
 
-    const QPixmap Afghanistan("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\CountryFlags\\afghanistan.png");
-    const QPixmap Brazil("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\CountryFlags\\brazil.png");
-    const QPixmap Canada("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\CountryFlags\\canada.png");
-    const QPixmap China("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\CountryFlags\\china.png");
-    const QPixmap Germany("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\CountryFlags\\germany.png");
-    const QPixmap Iran("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\CountryFlags\\iran.png");
-    const QPixmap Iraq("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\CountryFlags\\iraq.png");
-    const QPixmap Spain("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\CountryFlags\\spain.png");
-    const QPixmap Russia("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\CountryFlags\\russia.png");
-    const QPixmap UnitedStates("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\CountryFlags\\united_states.png");
+    const QPixmap Afghanistan("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\CountryFlags\\afghanistan.png");
+    const QPixmap Brazil("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\CountryFlags\\brazil.png");
+    const QPixmap Canada("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\CountryFlags\\canada.png");
+    const QPixmap China("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\CountryFlags\\china.png");
+    const QPixmap Germany("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\CountryFlags\\germany.png");
+    const QPixmap Iran("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\CountryFlags\\iran.png");
+    const QPixmap Iraq("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\CountryFlags\\iraq.png");
+    const QPixmap Spain("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\CountryFlags\\spain.png");
+    const QPixmap Russia("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\CountryFlags\\russia.png");
+    const QPixmap UnitedStates("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\CountryFlags\\united_states.png");
 
     QStringList countries = {"choose country", "Afghanistan", "Brazil", "Canada", "China", "Germany", "Iran", "Iraq", "Russia", "Spain", "United States"};
     ui->CountryComboBox->addItems(countries);
@@ -100,16 +98,15 @@ void LoginPage::on_EyeBtn_clicked()
 {
     if (ui->PasswordLineEdit->echoMode() == QLineEdit::Password)
     {
-        ui->EyeBtn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\eye.png"));
+        ui->EyeBtn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\eye.png"));
         ui->PasswordLineEdit->setEchoMode(QLineEdit::Normal);
     }
     else
     {
-        ui->EyeBtn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\eye-close.png"));
+        ui->EyeBtn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\eye-close.png"));
         ui->PasswordLineEdit->setEchoMode(QLineEdit::Password);
     }
 }
-
 
 
 void LoginPage::on_ContinueBtn_clicked()
@@ -117,15 +114,15 @@ void LoginPage::on_ContinueBtn_clicked()
      QString username, password, email, phoneNumber, moneyAmount, captchatext;
      QMediaPlayer *NagativeSound = new QMediaPlayer;
      NagativeSound->setMedia(
-                 QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
+                 QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
 
      QMediaPlayer *PositiveSound = new QMediaPlayer;
      PositiveSound->setMedia(
-                 QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\PositiveSound.mp3"));
+                 QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\PositiveSound.mp3"));
 
      QMediaPlayer *CompletedSound = new QMediaPlayer;
      CompletedSound->setMedia(
-                 QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\CompletedSound.mp3"));
+                 QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\CompletedSound.mp3"));
 
      username    =  ui->UsernameLineEdit->text();
      password    =  ui->PasswordLineEdit->text();
@@ -141,7 +138,6 @@ void LoginPage::on_ContinueBtn_clicked()
          NagativeSound->play();
          QMessageBox::warning(this, "Error", "Please complete all informations.");
          on_RefreshBtn_clicked();
-         ui->captchaLineEdit->clear();
          return;
      }
 
@@ -310,9 +306,8 @@ void LoginPage::on_ContinueBtn_clicked()
      if (q.first())
      {
          NagativeSound->play();
-         QMessageBox::warning(this, " Duplicate Error", "This account has the same username , email or phone number.\n"
+         QMessageBox::warning(this, "Duplicate Error", "This account has the same username , email or phone number.\n"
                                                         "please try again");
-
 
          ui->UsernameLineEdit->clear();
          ui->PasswordLineEdit->clear();
@@ -320,11 +315,13 @@ void LoginPage::on_ContinueBtn_clicked()
          ui->PhoneNumberLineEdit->clear();
          ui->MoneyLineEdit->clear();
          ui->CountryComboBox->setCurrentIndex(0);
-         on_EyeBtn_clicked();
+         ui->EyeBtn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\eye-close.png"));
+         ui->PasswordLineEdit->setEchoMode(QLineEdit::Password);
 
          on_RefreshBtn_clicked();
          ui->captchaLineEdit->clear();
      }
+
      else
      {
          q.prepare("INSERT INTO Principle(username, password, email, phone, moneyAmount) "
@@ -346,7 +343,8 @@ void LoginPage::on_ContinueBtn_clicked()
          ui->PhoneNumberLineEdit->clear();
          ui->MoneyLineEdit->clear();
          ui->CountryComboBox->setCurrentIndex(0);
-         on_EyeBtn_clicked();
+         ui->EyeBtn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\eye-close.png"));
+         ui->PasswordLineEdit->setEchoMode(QLineEdit::Password);
 
          on_RefreshBtn_clicked();
          ui->captchaLineEdit->clear();
@@ -361,7 +359,7 @@ void LoginPage::on_ContinueBtn_clicked()
          QMessageBox::information(this, "Completed!", "Adding managers completed!");
 
          G->show();
-         this->close();
+         this->close(); // or calling destructor: this->~LoginPage();
 
          return;
      }
