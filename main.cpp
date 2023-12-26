@@ -2,9 +2,13 @@
 #include "gamepage.h"
 
 #include <QApplication>
-#include <QSettings>
 
 #include <QMediaPlayer>
+
+#include <QSqlDatabase>
+#include <QSqlDriver>
+#include <QSqlQuery>
+#include <QSqlQueryModel>
 
 int main(int argc, char *argv[])
 {
@@ -16,22 +20,25 @@ int main(int argc, char *argv[])
     QMediaPlayer *StartSound = new QMediaPlayer;
 
     StartSound->setMedia(
-                QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\StartSound.mp3"));
+             QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\StartSound.mp3"));
 
 
-    QSettings settings("MyApp", "MyAppSettings");
-
-    settings.setValue("firstRun", true);
-
-    if (settings.value("firstRun", true).toBool())
+    QSqlQuery que;
+    que.exec("SELECT COUNT(*) FROM principle");
+    if(que.next())
     {
-        w.show();
-        //StartSound->play();
-        settings.setValue("firstRun", false);
-    }
-    else
+        int recordCount = que.value(0).toInt();
+        if (recordCount == 0)
+        {
+            w.show();
+        }
+        else
+        {
+            G.show();
+        }
+    }else
     {
-        G.show();
+        qDebug() << "Error executing query.";
     }
 
     return a.exec();
