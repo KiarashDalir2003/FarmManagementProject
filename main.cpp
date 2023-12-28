@@ -28,6 +28,7 @@ int main(int argc, char *argv[])
     if(que.next())
     {
         int recordCount = que.value(0).toInt();
+
         if (recordCount == 0)
         {
             w.show();
@@ -36,7 +37,9 @@ int main(int argc, char *argv[])
         {
             G.show();
         }
-    }else
+    }
+
+    else
     {
         qDebug() << "Error executing query.";
     }
