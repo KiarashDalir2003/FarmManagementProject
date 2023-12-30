@@ -29,7 +29,7 @@
     <property name="title">
      <string/>
     </property>
-    <widget class="QLabel" name="userIconLabell">
+    <widget class="QLabel" name="userIconLabel">
      <property name="geometry">
       <rect>
        <x>20</x>

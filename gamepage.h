@@ -20,7 +20,10 @@ class GamePage : public QMainWindow
 public:
     explicit GamePage(QWidget *parent = nullptr);
     ~GamePage();
+
     void ResetUi();
+    void Resetdata();
+    void SetWorkerNumber();
 
     QTimer *GameTimer = new QTimer(this);
 
@@ -45,6 +48,10 @@ private slots:
     void on_Farm4btn_clicked();
 
     void on_Farm8btn_clicked();
+
+    void on_addWorkerbtn_clicked();
+
+    void on_pushButton_clicked();
 
 private:
     Ui::GamePage *ui;
