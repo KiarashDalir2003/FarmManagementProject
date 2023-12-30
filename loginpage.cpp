@@ -294,7 +294,7 @@ void LoginPage::on_ContinueBtn_clicked()
      QString tempPhone;
      tempPhone = ui->countryCodeLBL->text() + ui->PhoneNumberLineEdit->text();
 
-     QSqlQuery q;
+     QSqlQuery q, q2;
      q.prepare("SELECT * FROM Principle WHERE username=:username OR email=:email OR phone=:phone");
 
      q.bindValue(":username", username);
@@ -327,6 +327,8 @@ void LoginPage::on_ContinueBtn_clicked()
          q.prepare("INSERT INTO Principle(username, password, email, phone, moneyAmount) "
                    "VALUES(:username, :password, :email, :phone, :moneyAmount)");
 
+         q2.prepare("INSERT INTO coins(username, coins) VALUES(:username, :coins)");
+
          q.bindValue(":username", username);
          q.bindValue(":password", password);
          q.bindValue(":email", email);
@@ -334,6 +336,11 @@ void LoginPage::on_ContinueBtn_clicked()
          q.bindValue(":moneyAmount", moneyAmount);
 
          q.exec();
+
+         q2.bindValue(":username", username);
+         q2.bindValue(":coins", 10);
+         q2.exec();
+
          PositiveSound->play();
          QMessageBox::information(this,"Welcome", "The manager has signed up successfully.");
 
