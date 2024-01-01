@@ -3,6 +3,11 @@
 
 #include <QMainWindow>
 
+#include <QSqlQuery>
+#include<QSqlTableModel>
+
+#include<QTableView>
+
 namespace Ui {
 class RankingPage;
 }
@@ -17,6 +22,10 @@ public:
 
 private:
     Ui::RankingPage *ui;
+
+    QSqlTableModel tbModel;
+
+
 };
 
 #endif // RANKINGPAGE_H

@@ -44,6 +44,7 @@ GamePage::~GamePage()
 void GamePage::ResetUi()
 {
     ui->Farm1btn->setStyleSheet("background-color: rgb(0, 170, 0);");
+    ui->Farm1btn->setIcon(QIcon(""));
     ui->Farm2btn->setStyleSheet("background-color: rgb(157, 157, 157);");
     ui->Farm2btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
     ui->Farm3btn->setStyleSheet("background-color: rgb(157, 157, 157);");
@@ -60,12 +61,7 @@ void GamePage::ResetUi()
     ui->Farm8btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
 
     SetWorkerNumber();
-   /* q.prepare("SELECT username, coins FROM coins");
-    if (!q.exec())
-    {
-        qDebug() << "Query execution failed!";
-    }
-*/
+
 }
 void GamePage::Resetdata()
 {
@@ -85,13 +81,13 @@ void GamePage::processNextRecord()
 {
    if (q.next())
    {
-           QString username = q.value(0).toString();
-           int coinAmount = q.value(1).toInt();
+           username = q.value(0).toString();
+           coinAmount = q.value(1).toInt();
 
            ui->usernameLabel->setText(username);
            ui->coinsLabel->setText(QString::number(coinAmount));
 
-           remainingSeconds = 180;
+           remainingSeconds = 10;
            QTimer::singleShot(1000, this, &GamePage::updateTime);
    }else{
        QMessageBox::information(this, "Game finished!", "All users completed the game!");
@@ -170,9 +166,12 @@ void GamePage::on_Farm1btn_clicked()
                      return;
                  }
                  coins -= 3;
+                 if(updateCoinAmount(username, coins))
+                 {
                  ui->coinsLabel->setText(QString::number(coins));
                  ui->label1->setStyleSheet("background-color: rgb(255, 255, 254);");
                  ui->Farm1btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\hen.png"));
+                 }
              }
             break;
          case 1 :
@@ -187,10 +186,13 @@ void GamePage::on_Farm1btn_clicked()
                     return;
                 }
                 coins -= 5;
+                if(updateCoinAmount(username, coins))
+                {
                 ui->coinsLabel->setText(QString::number(coins));
-                ui->label1->setStyleSheet("background-color: rgb(255, 255, 254);");
+                ui->label1->setStyleSheet("background-color: rgb(255, 255, 253);");
                 ui->Farm1btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\sheep.png"));
-            }
+           }
+                }
             break;
          case 2 :
             coins = ui->coinsLabel->text().toInt();
@@ -204,8 +206,11 @@ void GamePage::on_Farm1btn_clicked()
                     return;
                 }
                 coins -= 7;
+                if(updateCoinAmount(username, coins))
+                {
                 ui->coinsLabel->setText(QString::number(coins));
-                ui->label1->setStyleSheet("background-color: rgb(255, 255, 254);");
+                ui->label1->setStyleSheet("background-color: rgb(255, 255, 252);");
+
                 ui->Farm1btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\cow.png"));
             }
             break;
@@ -221,8 +226,10 @@ void GamePage::on_Farm1btn_clicked()
                     return;
                 }
                 coins -= 2;
+                if(updateCoinAmount(username, coins))
+                {
                 ui->coinsLabel->setText(QString::number(coins));
-                ui->label1->setStyleSheet("background-color: rgb(255, 255, 254);");
+                ui->label1->setStyleSheet("background-color: rgb(255, 255, 251);");
                 ui->Farm1btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
             }
             break;
@@ -238,16 +245,21 @@ void GamePage::on_Farm1btn_clicked()
                     return;
                 }
                 coins -= 2;
+                if(updateCoinAmount(username, coins))
+                {
                 ui->coinsLabel->setText(QString::number(coins));
-                ui->label1->setStyleSheet("background-color: rgb(255, 255, 254);");
-                ui->Farm1btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\barley.png"));
-            }
+                ui->label1->setStyleSheet("background-color: rgb(255, 255, 250);");
+
+               ui->Farm1btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\barley.png"));
+           }
+                }
             break;
         case 5:
             return;
         }
     }
-
+}
+}
 }
 void GamePage::on_Farm2btn_clicked()
 {
@@ -266,9 +278,12 @@ void GamePage::on_Farm2btn_clicked()
                  return;
              }
              coins -= 3;
+             if(updateCoinAmount(username, coins))
+             {
              ui->coinsLabel->setText(QString::number(coins));
              ui->Farm2btn->setStyleSheet("background-color: rgb(0, 170, 0);");
              ui->Farm2btn->setIcon(QIcon(""));
+             }
              return;
          }
       }
@@ -304,10 +319,13 @@ void GamePage::on_Farm2btn_clicked()
                           return;
                       }
                       coins -= 3;
+                      if(updateCoinAmount(username, coins))
+                      {
                       ui->coinsLabel->setText(QString::number(coins));
                       ui->label2->setStyleSheet("background-color: rgb(255, 255, 254);");
                       ui->Farm2btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\hen.png"));
-                  }
+                 }
+                      }
                  break;
               case 1 :
                  coins = ui->coinsLabel->text().toInt();
@@ -320,11 +338,14 @@ void GamePage::on_Farm2btn_clicked()
                          QMessageBox::warning(this, "Sorry!", "You do not have enough coin!");
                          return;
                      }
+                     if(updateCoinAmount(username, coins))
+                     {
                      coins -= 5;
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label2->setStyleSheet("background-color: rgb(255, 255, 254);");
+                     ui->label2->setStyleSheet("background-color: rgb(255, 255, 253);");
                      ui->Farm2btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\sheep.png"));
-                 }
+               }
+                     }
                  break;
               case 2 :
                  coins = ui->coinsLabel->text().toInt();
@@ -338,10 +359,13 @@ void GamePage::on_Farm2btn_clicked()
                          return;
                      }
                      coins -= 7;
+                     if(updateCoinAmount(username, coins))
+                     {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label2->setStyleSheet("background-color: rgb(255, 255, 254);");
+                     ui->label2->setStyleSheet("background-color: rgb(255, 255, 252);");
                      ui->Farm2btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\cow.png"));
-                 }
+               }
+                     }
                  break;
               case 3 :
                  coins = ui->coinsLabel->text().toInt();
@@ -355,10 +379,13 @@ void GamePage::on_Farm2btn_clicked()
                          return;
                      }
                      coins -= 2;
+                     if(updateCoinAmount(username, coins))
+                     {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label2->setStyleSheet("background-color: rgb(255, 255, 254);");
+                     ui->label2->setStyleSheet("background-color: rgb(255, 255, 251);");
                      ui->Farm2btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
                  }
+                     }
                  break;
               case 4 :
                  coins = ui->coinsLabel->text().toInt();
@@ -372,10 +399,13 @@ void GamePage::on_Farm2btn_clicked()
                          return;
                      }
                      coins -= 2;
+                     if(updateCoinAmount(username, coins))
+                     {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label2->setStyleSheet("background-color: rgb(255, 255, 254);");
+                     ui->label2->setStyleSheet("background-color: rgb(255, 255, 250);");
                      ui->Farm2btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\barley.png"));
-                 }
+               }
+                     }
                  break;
              case 5:
                  return;
@@ -400,9 +430,12 @@ void GamePage::on_Farm3btn_clicked()
                 return;
             }
             coins -= 3;
+            if(updateCoinAmount(username, coins))
+            {
             ui->coinsLabel->setText(QString::number(coins));
             ui->Farm3btn->setStyleSheet("background-color: rgb(0, 170, 0);");
             ui->Farm3btn->setIcon(QIcon(""));
+            }
             return;
         }
      }
@@ -438,9 +471,12 @@ void GamePage::on_Farm3btn_clicked()
                           return;
                       }
                       coins -= 3;
+                      if(updateCoinAmount(username, coins))
+                      {
                       ui->coinsLabel->setText(QString::number(coins));
                       ui->label3->setStyleSheet("background-color: rgb(255, 255, 254);");
                       ui->Farm3btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\hen.png"));
+                  }
                   }
                  break;
               case 1 :
@@ -455,9 +491,12 @@ void GamePage::on_Farm3btn_clicked()
                          return;
                      }
                      coins -= 5;
+                     if(updateCoinAmount(username, coins))
+                     {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label3->setStyleSheet("background-color: rgb(255, 255, 254);");
+                     ui->label3->setStyleSheet("background-color: rgb(255, 255, 253);");
                      ui->Farm3btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\sheep.png"));
+                 }
                  }
                  break;
               case 2 :
@@ -472,9 +511,12 @@ void GamePage::on_Farm3btn_clicked()
                          return;
                      }
                      coins -= 7;
+                     if(updateCoinAmount(username, coins))
+                     {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label3->setStyleSheet("background-color: rgb(255, 255, 254);");
+                     ui->label3->setStyleSheet("background-color: rgb(255, 255, 252);");
                      ui->Farm3btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\cow.png"));
+                 }
                  }
                  break;
               case 3 :
@@ -489,9 +531,13 @@ void GamePage::on_Farm3btn_clicked()
                          return;
                      }
                      coins -= 2;
+                     if(updateCoinAmount(username, coins))
+                     {
+
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label3->setStyleSheet("background-color: rgb(255, 255, 254);");
+                     ui->label3->setStyleSheet("background-color: rgb(255, 255, 251);");
                      ui->Farm3btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
+                 }
                  }
                  break;
               case 4 :
@@ -506,9 +552,12 @@ void GamePage::on_Farm3btn_clicked()
                          return;
                      }
                      coins -= 2;
+                     if(updateCoinAmount(username, coins))
+                     {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label3->setStyleSheet("background-color: rgb(255, 255, 254);");
+                     ui->label3->setStyleSheet("background-color: rgb(255, 255, 250);");
                      ui->Farm3btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\barley.png"));
+                 }
                  }
                  break;
              case 5:
@@ -535,9 +584,12 @@ void GamePage::on_Farm4btn_clicked()
                 return;
             }
             coins -= 3;
+            if(updateCoinAmount(username, coins))
+            {
             ui->coinsLabel->setText(QString::number(coins));
             ui->Farm4btn->setStyleSheet("background-color: rgb(0, 170, 0);");
             ui->Farm4btn->setIcon(QIcon(""));
+            }
             return;
      }
    }
@@ -573,9 +625,13 @@ void GamePage::on_Farm4btn_clicked()
                           return;
                       }
                       coins -= 3;
+                      if(updateCoinAmount(username, coins))
+                      {
+
                       ui->coinsLabel->setText(QString::number(coins));
                       ui->label4->setStyleSheet("background-color: rgb(255, 255, 254);");
                       ui->Farm4btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\hen.png"));
+                  }
                   }
                  break;
               case 1 :
@@ -590,9 +646,12 @@ void GamePage::on_Farm4btn_clicked()
                          return;
                      }
                      coins -= 5;
+                     if(updateCoinAmount(username, coins))
+                     {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label4->setStyleSheet("background-color: rgb(255, 255, 254);");
+                     ui->label4->setStyleSheet("background-color: rgb(255, 255, 253);");
                      ui->Farm4btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\sheep.png"));
+                 }
                  }
                  break;
               case 2 :
@@ -607,9 +666,12 @@ void GamePage::on_Farm4btn_clicked()
                          return;
                      }
                      coins -= 7;
+                     if(updateCoinAmount(username, coins))
+                     {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label4->setStyleSheet("background-color: rgb(255, 255, 254);");
+                     ui->label4->setStyleSheet("background-color: rgb(255, 255, 252);");
                      ui->Farm4btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\cow.png"));
+                 }
                  }
                  break;
               case 3 :
@@ -624,9 +686,12 @@ void GamePage::on_Farm4btn_clicked()
                          return;
                      }
                      coins -= 2;
+                     if(updateCoinAmount(username, coins))
+                     {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label4->setStyleSheet("background-color: rgb(255, 255, 254);");
+                     ui->label4->setStyleSheet("background-color: rgb(255, 255, 251);");
                      ui->Farm4btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
+                 }
                  }
                  break;
               case 4 :
@@ -641,9 +706,12 @@ void GamePage::on_Farm4btn_clicked()
                          return;
                      }
                      coins -= 2;
+                     if(updateCoinAmount(username, coins))
+                     {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label4->setStyleSheet("background-color: rgb(255, 255, 254);");
+                     ui->label4->setStyleSheet("background-color: rgb(255, 255, 250);");
                      ui->Farm4btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\barley.png"));
+                 }
                  }
                  break;
              case 5:
@@ -669,9 +737,12 @@ void GamePage::on_Farm5btn_clicked()
                 return;
             }
             coins -= 3;
+            if(updateCoinAmount(username, coins))
+            {
             ui->coinsLabel->setText(QString::number(coins));
             ui->Farm5btn->setStyleSheet("background-color: rgb(0, 170, 0);");
             ui->Farm5btn->setIcon(QIcon(""));
+            }
             return;
         }
      }
@@ -707,9 +778,12 @@ void GamePage::on_Farm5btn_clicked()
                           return;
                       }
                       coins -= 3;
+                      if(updateCoinAmount(username, coins))
+                      {
                       ui->coinsLabel->setText(QString::number(coins));
                       ui->label5->setStyleSheet("background-color: rgb(255, 255, 254);");
                       ui->Farm5btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\hen.png"));
+                  }
                   }
                  break;
               case 1 :
@@ -724,9 +798,12 @@ void GamePage::on_Farm5btn_clicked()
                          return;
                      }
                      coins -= 5;
+                     if(updateCoinAmount(username, coins))
+                     {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label5->setStyleSheet("background-color: rgb(255, 255, 254);");
+                     ui->label5->setStyleSheet("background-color: rgb(255, 255, 253);");
                      ui->Farm5btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\sheep.png"));
+                 }
                  }
                  break;
               case 2 :
@@ -741,9 +818,12 @@ void GamePage::on_Farm5btn_clicked()
                          return;
                      }
                      coins -= 7;
+                     if(updateCoinAmount(username, coins))
+                     {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label5->setStyleSheet("background-color: rgb(255, 255, 254);");
+                     ui->label5->setStyleSheet("background-color: rgb(255, 255, 252);");
                      ui->Farm5btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\cow.png"));
+                 }
                  }
                  break;
               case 3 :
@@ -758,9 +838,12 @@ void GamePage::on_Farm5btn_clicked()
                          return;
                      }
                      coins -= 2;
+                     if(updateCoinAmount(username, coins))
+                     {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label5->setStyleSheet("background-color: rgb(255, 255, 254);");
+                     ui->label5->setStyleSheet("background-color: rgb(255, 255, 251);");
                      ui->Farm5btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
+                 }
                  }
                  break;
               case 4 :
@@ -775,9 +858,12 @@ void GamePage::on_Farm5btn_clicked()
                          return;
                      }
                      coins -= 2;
+                     if(updateCoinAmount(username, coins))
+                     {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label5->setStyleSheet("background-color: rgb(255, 255, 254);");
+                     ui->label5->setStyleSheet("background-color: rgb(255, 255, 250);");
                      ui->Farm5btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\barley.png"));
+                 }
                  }
                  break;
              case 5:
@@ -804,9 +890,12 @@ void GamePage::on_Farm6btn_clicked()
                 return;
             }
             coins -= 3;
+            if(updateCoinAmount(username, coins))
+            {
             ui->coinsLabel->setText(QString::number(coins));
             ui->Farm6btn->setStyleSheet("background-color: rgb(0, 170, 0);");
             ui->Farm6btn->setIcon(QIcon(""));
+            }
             return;
         }
      }
@@ -842,9 +931,12 @@ void GamePage::on_Farm6btn_clicked()
                           return;
                       }
                       coins -= 3;
+                      if(updateCoinAmount(username, coins))
+                      {
                       ui->coinsLabel->setText(QString::number(coins));
                       ui->label6->setStyleSheet("background-color: rgb(255, 255, 254);");
                       ui->Farm6btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\hen.png"));
+                  }
                   }
                  break;
               case 1 :
@@ -859,8 +951,10 @@ void GamePage::on_Farm6btn_clicked()
                          return;
                      }
                      coins -= 5;
+                     if(updateCoinAmount(username, coins))
+                     {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label6->setStyleSheet("background-color: rgb(255, 255, 254);");
+                     ui->label6->setStyleSheet("background-color: rgb(255, 255, 253);");
                      ui->Farm6btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\sheep.png"));
                  }
                  break;
@@ -876,9 +970,12 @@ void GamePage::on_Farm6btn_clicked()
                          return;
                      }
                      coins -= 7;
+                     if(updateCoinAmount(username, coins))
+                     {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label6->setStyleSheet("background-color: rgb(255, 255, 254);");
+                     ui->label6->setStyleSheet("background-color: rgb(255, 255, 252);");
                      ui->Farm6btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\cow.png"));
+                 }
                  }
                  break;
               case 3 :
@@ -893,9 +990,12 @@ void GamePage::on_Farm6btn_clicked()
                          return;
                      }
                      coins -= 2;
+                     if(updateCoinAmount(username, coins))
+                     {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label6->setStyleSheet("background-color: rgb(255, 255, 254);");
+                     ui->label6->setStyleSheet("background-color: rgb(255, 255, 251);");
                      ui->Farm6btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
+                 }
                  }
                  break;
               case 4 :
@@ -910,9 +1010,12 @@ void GamePage::on_Farm6btn_clicked()
                          return;
                      }
                      coins -= 2;
+                     if(updateCoinAmount(username, coins))
+                     {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label6->setStyleSheet("background-color: rgb(255, 255, 254);");
+                     ui->label6->setStyleSheet("background-color: rgb(255, 255, 250);");
                      ui->Farm6btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\barley.png"));
+                 }
                  }
                  break;
              case 5:
@@ -921,7 +1024,7 @@ void GamePage::on_Farm6btn_clicked()
          }
 }
 
-
+}
 void GamePage::on_Farm7btn_clicked()
 {
     if(ui->Farm7btn->styleSheet() == "background-color: rgb(157, 157, 157);")
@@ -939,9 +1042,12 @@ void GamePage::on_Farm7btn_clicked()
                 return;
             }
             coins -= 3;
+            if(updateCoinAmount(username, coins))
+            {
             ui->coinsLabel->setText(QString::number(coins));
             ui->Farm7btn->setStyleSheet("background-color: rgb(0, 170, 0);");
             ui->Farm7btn->setIcon(QIcon(""));
+            }
             return;
         }
      }
@@ -977,9 +1083,12 @@ void GamePage::on_Farm7btn_clicked()
                           return;
                       }
                       coins -= 3;
+                      if(updateCoinAmount(username, coins))
+                      {
                       ui->coinsLabel->setText(QString::number(coins));
                       ui->label7->setStyleSheet("background-color: rgb(255, 255, 254);");
                       ui->Farm7btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\hen.png"));
+                  }
                   }
                  break;
               case 1 :
@@ -994,9 +1103,12 @@ void GamePage::on_Farm7btn_clicked()
                          return;
                      }
                      coins -= 5;
+                     if(updateCoinAmount(username, coins))
+                     {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label7->setStyleSheet("background-color: rgb(255, 255, 254);");
+                     ui->label7->setStyleSheet("background-color: rgb(255, 255, 253);");
                      ui->Farm7btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\sheep.png"));
+                 }
                  }
                  break;
               case 2 :
@@ -1011,9 +1123,12 @@ void GamePage::on_Farm7btn_clicked()
                          return;
                      }
                      coins -= 7;
+                     if(updateCoinAmount(username, coins))
+                     {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label7->setStyleSheet("background-color: rgb(255, 255, 254);");
+                     ui->label7->setStyleSheet("background-color: rgb(255, 255, 252);");
                      ui->Farm7btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\cow.png"));
+                 }
                  }
                  break;
               case 3 :
@@ -1028,9 +1143,12 @@ void GamePage::on_Farm7btn_clicked()
                          return;
                      }
                      coins -= 2;
+                     if(updateCoinAmount(username, coins))
+                     {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label7->setStyleSheet("background-color: rgb(255, 255, 254);");
+                     ui->label7->setStyleSheet("background-color: rgb(255, 255, 251);");
                      ui->Farm7btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
+                 }
                  }
                  break;
               case 4 :
@@ -1045,9 +1163,12 @@ void GamePage::on_Farm7btn_clicked()
                          return;
                      }
                      coins -= 2;
+                     if(updateCoinAmount(username, coins))
+                     {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label7->setStyleSheet("background-color: rgb(255, 255, 254);");
+                     ui->label7->setStyleSheet("background-color: rgb(255, 255, 250);");
                      ui->Farm7btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\barley.png"));
+                 }
                  }
                  break;
              case 5:
@@ -1073,9 +1194,12 @@ void GamePage::on_Farm8btn_clicked()
                 return;
             }
             coins -= 3;
+            if(updateCoinAmount(username, coins))
+            {
             ui->coinsLabel->setText(QString::number(coins));
             ui->Farm8btn->setStyleSheet("background-color: rgb(0, 170, 0);");
             ui->Farm8btn->setIcon(QIcon(""));
+        }
             return;
         }
      }
@@ -1111,9 +1235,12 @@ void GamePage::on_Farm8btn_clicked()
                           return;
                       }
                       coins -= 3;
+                      if(updateCoinAmount(username, coins))
+                      {
                       ui->coinsLabel->setText(QString::number(coins));
                       ui->label8->setStyleSheet("background-color: rgb(255, 255, 254);");
                       ui->Farm8btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\hen.png"));
+                  }
                   }
                  break;
               case 1 :
@@ -1128,9 +1255,12 @@ void GamePage::on_Farm8btn_clicked()
                          return;
                      }
                      coins -= 5;
+                     if(updateCoinAmount(username, coins))
+                     {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label8->setStyleSheet("background-color: rgb(255, 255, 254);");
+                     ui->label8->setStyleSheet("background-color: rgb(255, 255, 253);");
                      ui->Farm8btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\sheep.png"));
+                 }
                  }
                  break;
               case 2 :
@@ -1145,9 +1275,12 @@ void GamePage::on_Farm8btn_clicked()
                          return;
                      }
                      coins -= 7;
+                     if(updateCoinAmount(username, coins))
+                     {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label8->setStyleSheet("background-color: rgb(255, 255, 254);");
+                     ui->label8->setStyleSheet("background-color: rgb(255, 255, 252);");
                      ui->Farm8btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\cow.png"));
+                 }
                  }
                  break;
               case 3 :
@@ -1162,9 +1295,12 @@ void GamePage::on_Farm8btn_clicked()
                          return;
                      }
                      coins -= 2;
+                     if(updateCoinAmount(username, coins))
+                     {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label8->setStyleSheet("background-color: rgb(255, 255, 254);");
+                     ui->label8->setStyleSheet("background-color: rgb(255, 255, 251);");
                      ui->Farm8btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
+                 }
                  }
                  break;
               case 4 :
@@ -1179,9 +1315,12 @@ void GamePage::on_Farm8btn_clicked()
                          return;
                      }
                      coins -= 2;
+                     if(updateCoinAmount(username, coins))
+                     {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label8->setStyleSheet("background-color: rgb(255, 255, 254);");
+                     ui->label8->setStyleSheet("background-color: rgb(255, 255, 250);");
                      ui->Farm8btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\barley.png"));
+                 }
                  }
                  break;
              case 5:
@@ -1205,11 +1344,13 @@ void GamePage::on_addWorkerbtn_clicked()
             return;
         }
         coins -= 5;
+        if(updateCoinAmount(username, coins))
+       {
         ui->coinsLabel->setText(QString::number(coins));
-
         availableWorkers++;
         totalWorkers++;
         SetWorkerNumber();
+        }
         return;
     }else
     {
@@ -1225,3 +1366,16 @@ void GamePage::on_pushButton_clicked()
     this->close();
 }
 
+bool GamePage::updateCoinAmount(const QString user, int coinAm)
+{
+    QSqlQuery q;
+    q.prepare("UPDATE coins SET coins = :coinAm WHERE username = :user");
+    q.bindValue(":coinAm", coinAm);
+    q.bindValue(":user", user);
+
+    if (!q.exec())
+    {
+        return false;
+    }
+    return true;
+}

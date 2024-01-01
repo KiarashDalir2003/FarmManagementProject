@@ -319,22 +319,6 @@ url(:/GameBoard/images/gameBoard.jpg);
       <string/>
      </property>
     </widget>
-    <widget class="QLabel" name="label1">
-     <property name="geometry">
-      <rect>
-       <x>750</x>
-       <y>40</y>
-       <width>31</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
     <widget class="QLabel" name="label2">
      <property name="geometry">
       <rect>
@@ -435,22 +419,6 @@ url(:/GameBoard/images/gameBoard.jpg);
      <property name="geometry">
       <rect>
        <x>370</x>
-       <y>40</y>
-       <width>31</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="coinLabel1">
-     <property name="geometry">
-      <rect>
-       <x>670</x>
        <y>40</y>
        <width>31</width>
        <height>31</height>
@@ -575,22 +543,6 @@ url(:/GameBoard/images/gameBoard.jpg);
       <string/>
      </property>
     </widget>
-    <widget class="QLabel" name="prodLabel1">
-     <property name="geometry">
-      <rect>
-       <x>630</x>
-       <y>40</y>
-       <width>31</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
     <widget class="QLabel" name="prodLabel2">
      <property name="geometry">
       <rect>
@@ -692,22 +644,6 @@ url(:/GameBoard/images/gameBoard.jpg);
       <rect>
        <x>60</x>
        <y>260</y>
-       <width>31</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="coinAmoutLabel1">
-     <property name="geometry">
-      <rect>
-       <x>700</x>
-       <y>40</y>
        <width>31</width>
        <height>31</height>
       </rect>
@@ -830,6 +766,83 @@ url(:/GameBoard/images/gameBoard.jpg);
      <property name="text">
       <string/>
      </property>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="geometry">
+      <rect>
+       <x>620</x>
+       <y>20</y>
+       <width>171</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <widget class="QLabel" name="prodLabel1">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>31</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="coinLabel1">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>20</y>
+        <width>31</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="coinAmoutLabel1">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>20</y>
+        <width>31</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label1">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>20</y>
+        <width>31</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>

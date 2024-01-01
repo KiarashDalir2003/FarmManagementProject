@@ -25,6 +25,8 @@ public:
     void Resetdata();
     void SetWorkerNumber();
 
+    bool updateCoinAmount(const QString user, int coinAm);
+
     QTimer *GameTimer = new QTimer(this);
 
 
@@ -59,6 +61,9 @@ private:
     int availableWorkers = 1;
     int totalWorkers = 1;
     int remainingSeconds;
+
+    QString username;
+    int coinAmount;
 
     int coins;
 
