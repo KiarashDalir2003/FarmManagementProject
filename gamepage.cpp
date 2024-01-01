@@ -87,7 +87,7 @@ void GamePage::processNextRecord()
            ui->usernameLabel->setText(username);
            ui->coinsLabel->setText(QString::number(coinAmount));
 
-           remainingSeconds = 10;
+           remainingSeconds = 180;
            QTimer::singleShot(1000, this, &GamePage::updateTime);
    }else{
        QMessageBox::information(this, "Game finished!", "All users completed the game!");
