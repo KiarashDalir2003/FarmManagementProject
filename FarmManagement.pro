@@ -12,16 +12,19 @@ SOURCES += \
     captcha.cpp \
     gamepage.cpp \
     main.cpp \
-    loginpage.cpp
+    loginpage.cpp \
+    rankingpage.cpp
 
 HEADERS += \
     captcha.h \
     gamepage.h \
-    loginpage.h
+    loginpage.h \
+    rankingpage.h
 
 FORMS += \
     gamepage.ui \
-    loginpage.ui
+    loginpage.ui \
+    rankingpage.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

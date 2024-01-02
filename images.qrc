@@ -2,4 +2,7 @@
     <qresource prefix="/Farm">
         <file>images/Farm.jpg</file>
     </qresource>
+    <qresource prefix="/GameBoard">
+        <file>images/gameBoard.jpg</file>
+    </qresource>
 </RCC>
