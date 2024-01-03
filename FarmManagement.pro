@@ -9,17 +9,27 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    barlay.cpp \
     captcha.cpp \
+    cow.cpp \
     gamepage.cpp \
+    hen.cpp \
     main.cpp \
     loginpage.cpp \
-    rankingpage.cpp
+    rankingpage.cpp \
+    sheep.cpp \
+    wheat.cpp
 
 HEADERS += \
+    barlay.h \
     captcha.h \
+    cow.h \
     gamepage.h \
+    hen.h \
     loginpage.h \
-    rankingpage.h
+    rankingpage.h \
+    sheep.h \
+    wheat.h
 
 FORMS += \
     gamepage.ui \

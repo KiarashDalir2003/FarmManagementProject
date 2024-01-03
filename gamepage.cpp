@@ -16,20 +16,26 @@
 #include <QMessageBox>
 #include <QPushButton>
 
+#include "hen.h"
+#include "sheep.h"
+#include "cow.h"
+#include "wheat.h"
+#include "barlay.h"
+
 GamePage::GamePage(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::GamePage)
 {
     ui->setupUi(this);
-    QPixmap worker("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\worker.png");
-    QPixmap clock("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\clock.png");
-    QPixmap coin ("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\coin.png");
-    QPixmap user("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\user.png");
+    QPixmap worker("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\worker.png");
+    QPixmap clock("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\clock.png");
+    QPixmap coin ("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\coin.png");
+    QPixmap user("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\user.png");
 
     ui->worketIconLabel->setPixmap(worker);
     ui->clockIconLabel->setPixmap(clock);
     ui->coinIconLabel->setPixmap(coin);
-    ui->addWorkerbtn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\plus.png"));
+    ui->addWorkerbtn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\plus.png"));
     ui->userIconLabel->setPixmap(user);
 
     ResetUi();
@@ -46,19 +52,19 @@ void GamePage::ResetUi()
     ui->Farm1btn->setStyleSheet("background-color: rgb(0, 170, 0);");
     ui->Farm1btn->setIcon(QIcon(""));
     ui->Farm2btn->setStyleSheet("background-color: rgb(157, 157, 157);");
-    ui->Farm2btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
+    ui->Farm2btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
     ui->Farm3btn->setStyleSheet("background-color: rgb(157, 157, 157);");
-    ui->Farm3btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
+    ui->Farm3btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
     ui->Farm4btn->setStyleSheet("background-color: rgb(157, 157, 157);");
-    ui->Farm4btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
+    ui->Farm4btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
     ui->Farm5btn->setStyleSheet("background-color: rgb(157, 157, 157);");
-    ui->Farm5btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
+    ui->Farm5btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
     ui->Farm6btn->setStyleSheet("background-color: rgb(157, 157, 157);");
-    ui->Farm6btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
+    ui->Farm6btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
     ui->Farm7btn->setStyleSheet("background-color: rgb(157, 157, 157);");
-    ui->Farm7btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
+    ui->Farm7btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
     ui->Farm8btn->setStyleSheet("background-color: rgb(157, 157, 157);");
-    ui->Farm8btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
+    ui->Farm8btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
 
     SetWorkerNumber();
 
@@ -116,7 +122,7 @@ void GamePage::startProcessing()
 {
     QSqlDatabase coinsDB;
            coinsDB = QSqlDatabase::addDatabase("QSQLITE");
-           coinsDB.setDatabaseName("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\ProjectDatabase.db");
+           coinsDB.setDatabaseName("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\ProjectDatabase.db");
            if (!coinsDB.open())
    {
             QMessageBox::warning(this, "Error", "Can not access to the database!");
@@ -131,13 +137,20 @@ void GamePage::startProcessing()
            }
           processNextRecord();
 }
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//---------------------------------------------------------------------------------------------------------------------
+
 void GamePage::on_Farm1btn_clicked()
 {
+    hen* Hen = new hen;
+    sheep* Sheep = new sheep;
+    cow* Cow = new cow;
+    wheat* Wheat = new wheat;
+    barlay* Barlay = new barlay;
+
     if (ui->Farm1btn->styleSheet() == "background-color: rgb(0, 170, 0);" &&
-            ui->label1->styleSheet() == "background-color: rgb(255, 255, 255);"
-            && ui->prodLabel1->text().isEmpty()
-            )
+            ui->timeLabel_1->styleSheet() == "background-color: rgb(255, 255, 255);"
+            && ui->productBTN_1->text().isEmpty())
     {
         QMessageBox StoreMsgBox;
         StoreMsgBox.setWindowTitle("You have nothing in this Farm.");
@@ -152,115 +165,128 @@ void GamePage::on_Farm1btn_clicked()
 
         int result = StoreMsgBox.exec();
 
-        switch (result) {
-         case 0 :
+        switch (result)
+        {
+         case 0:
              coins = ui->coinsLabel->text().toInt();
              QMessageBox::StandardButton reply;
              reply = QMessageBox::question(nullptr, "Chicken",
                                       "Are you really sure you want to purchase this?", QMessageBox::Yes | QMessageBox::No);
              if (reply == QMessageBox::Yes)
              {
-                 if(coins < 3)
+                 if(coins < Hen->getBuyPrice())
                  {
                      QMessageBox::warning(this, "Sorry!", "You do not have enough coin!");
+                     delete Hen;
                      return;
                  }
-                 coins -= 3;
+
+                 coins -= Hen->getBuyPrice();
                  if(updateCoinAmount(username, coins))
                  {
-                 ui->coinsLabel->setText(QString::number(coins));
-                 ui->label1->setStyleSheet("background-color: rgb(255, 255, 254);");
-                 ui->Farm1btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\hen.png"));
+                    ui->coinsLabel->setText(QString::number(coins));
+                    ui->timeLabel_1->setStyleSheet("background-color: rgb(255, 255, 254);");
+                    ui->Farm1btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\hen.png"));
                  }
              }
-            break;
-         case 1 :
+             delete Hen;
+             break;
+
+         case 1:
             coins = ui->coinsLabel->text().toInt();
             reply = QMessageBox::question(nullptr, "Sheep",
                                      "Are you really sure you want to purchase this?", QMessageBox::Yes | QMessageBox::No);
             if (reply == QMessageBox::Yes)
             {
-                if(coins < 5)
+                if(coins < Sheep->getBuyPrice())
                 {
                     QMessageBox::warning(this, "Sorry!", "You do not have enough coin!");
+                    delete Sheep;
                     return;
                 }
+
                 coins -= 5;
                 if(updateCoinAmount(username, coins))
                 {
-                ui->coinsLabel->setText(QString::number(coins));
-                ui->label1->setStyleSheet("background-color: rgb(255, 255, 253);");
-                ui->Farm1btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\sheep.png"));
-           }
+                    ui->coinsLabel->setText(QString::number(coins));
+                    ui->timeLabel_1->setStyleSheet("background-color: rgb(255, 255, 253);");
+                    ui->Farm1btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\sheep.png"));
                 }
+            }
+            delete Sheep;
             break;
-         case 2 :
+
+         case 2:
             coins = ui->coinsLabel->text().toInt();
             reply = QMessageBox::question(nullptr, "Cow",
                                      "Are you really sure you want to purchase this?", QMessageBox::Yes | QMessageBox::No);
             if (reply == QMessageBox::Yes)
             {
-                if(coins < 7)
+                if(coins < Cow->getBuyPrice())
                 {
                     QMessageBox::warning(this, "Sorry!", "You do not have enough coin!");
+                    delete Cow;
                     return;
                 }
-                coins -= 7;
+                coins -= Cow->getBuyPrice();
                 if(updateCoinAmount(username, coins))
                 {
-                ui->coinsLabel->setText(QString::number(coins));
-                ui->label1->setStyleSheet("background-color: rgb(255, 255, 252);");
-
-                ui->Farm1btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\cow.png"));
+                    ui->coinsLabel->setText(QString::number(coins));
+                    ui->timeLabel_1->setStyleSheet("background-color: rgb(255, 255, 252);");
+                    ui->Farm1btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\cow.png"));
+                }
             }
+            delete Cow;
             break;
-         case 3 :
+
+         case 3:
             coins = ui->coinsLabel->text().toInt();
             reply = QMessageBox::question(nullptr, "Wheat",
                                      "Are you really sure you want to purchase this?", QMessageBox::Yes | QMessageBox::No);
             if (reply == QMessageBox::Yes)
             {
-                if(coins < 2)
+                if(coins < Wheat->getBuyPrice())
                 {
                     QMessageBox::warning(this, "Sorry!", "You do not have enough coin!");
+                    delete Wheat;
                     return;
                 }
-                coins -= 2;
+                coins -= Wheat->getBuyPrice();
                 if(updateCoinAmount(username, coins))
                 {
-                ui->coinsLabel->setText(QString::number(coins));
-                ui->label1->setStyleSheet("background-color: rgb(255, 255, 251);");
-                ui->Farm1btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
+                    ui->coinsLabel->setText(QString::number(coins));
+                    ui->timeLabel_1->setStyleSheet("background-color: rgb(255, 255, 251);");
+                    ui->Farm1btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
+                }
             }
+            delete Wheat;
             break;
-         case 4 :
+
+         case 4:
             coins = ui->coinsLabel->text().toInt();
             reply = QMessageBox::question(nullptr, "Barley",
                                      "Are you really sure you want to purchase this?", QMessageBox::Yes | QMessageBox::No);
             if (reply == QMessageBox::Yes)
             {
-                if(coins < 2)
+                if(coins < Barlay->getBuyPrice())
                 {
                     QMessageBox::warning(this, "Sorry!", "You do not have enough coin!");
+                    delete Barlay;
                     return;
                 }
-                coins -= 2;
+                coins -= Barlay->getBuyPrice();
                 if(updateCoinAmount(username, coins))
                 {
-                ui->coinsLabel->setText(QString::number(coins));
-                ui->label1->setStyleSheet("background-color: rgb(255, 255, 250);");
-
-               ui->Farm1btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\barley.png"));
-           }
+                    ui->coinsLabel->setText(QString::number(coins));
+                    ui->timeLabel_1->setStyleSheet("background-color: rgb(255, 255, 250);");
+                    ui->Farm1btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\barley.png"));
                 }
-            break;
-        case 5:
-            return;
+            }
+            delete Barlay;
         }
     }
 }
-}
-}
+
 void GamePage::on_Farm2btn_clicked()
 {
      if(ui->Farm2btn->styleSheet() == "background-color: rgb(157, 157, 157);")
@@ -272,26 +298,27 @@ void GamePage::on_Farm2btn_clicked()
                                   "Are you really sure you want to purchase this Farm?", QMessageBox::Yes | QMessageBox::No);
          if (reply == QMessageBox::Yes)
          {
-             if(coins < 3)
+             if(coins < 3)  // farm buy price = 3
              {
-                 QMessageBox::warning(this, "Sorry!", "You do not have enough coin!");
+                 QMessageBox::warning(this, "Sorry!", "You dont have enough coin!");
                  return;
              }
-             coins -= 3;
+
+             coins -= 3;    // farm buy price = 3
              if(updateCoinAmount(username, coins))
              {
-             ui->coinsLabel->setText(QString::number(coins));
-             ui->Farm2btn->setStyleSheet("background-color: rgb(0, 170, 0);");
-             ui->Farm2btn->setIcon(QIcon(""));
+                ui->coinsLabel->setText(QString::number(coins));
+                ui->Farm2btn->setStyleSheet("background-color: rgb(0, 170, 0);");
+                ui->Farm2btn->setIcon(QIcon(""));
              }
              return;
          }
       }
-    else if (ui->Farm2btn->styleSheet() == "background-color: rgb(0, 170, 0);" &&
-                 ui->label2->styleSheet() == "background-color: rgb(255, 255, 255);"
-                 && ui->prodLabel2->text().isEmpty()
-                 )
-         {
+
+      else if (ui->Farm2btn->styleSheet() == "background-color: rgb(0, 170, 0);" &&
+                 ui->timeLabel_2->styleSheet() == "background-color: rgb(255, 255, 255);"
+                 && ui->productBTN_2->text().isEmpty())
+     {
              QMessageBox StoreMsgBox;
              StoreMsgBox.setWindowTitle("You have nothing in this Farm.");
              StoreMsgBox.setText("Choose one of the following:");
@@ -305,7 +332,14 @@ void GamePage::on_Farm2btn_clicked()
 
              int result = StoreMsgBox.exec();
 
-             switch (result) {
+             hen* Hen = new hen;
+             sheep* Sheep = new sheep;
+             cow* Cow = new cow;
+             wheat* Wheat = new wheat;
+             barlay* Barlay = new barlay;
+
+             switch (result)
+             {
               case 0 :
                   coins = ui->coinsLabel->text().toInt();
                   QMessageBox::StandardButton reply;
@@ -313,105 +347,118 @@ void GamePage::on_Farm2btn_clicked()
                                            "Are you really sure you want to purchase this?", QMessageBox::Yes | QMessageBox::No);
                   if (reply == QMessageBox::Yes)
                   {
-                      if(coins < 3)
+                      if(coins < Hen->getBuyPrice())
                       {
                           QMessageBox::warning(this, "Sorry!", "You do not have enough coin!");
+                          delete Hen;
                           return;
                       }
-                      coins -= 3;
+                      coins -= Hen->getBuyPrice();
                       if(updateCoinAmount(username, coins))
                       {
-                      ui->coinsLabel->setText(QString::number(coins));
-                      ui->label2->setStyleSheet("background-color: rgb(255, 255, 254);");
-                      ui->Farm2btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\hen.png"));
-                 }
+                            ui->coinsLabel->setText(QString::number(coins));
+                            ui->timeLabel_2->setStyleSheet("background-color: rgb(255, 255, 254);");
+                            ui->Farm2btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\hen.png"));
                       }
-                 break;
+                  }
+                  delete Hen;
+                  break;
+
               case 1 :
                  coins = ui->coinsLabel->text().toInt();
                  reply = QMessageBox::question(nullptr, "Sheep",
                                           "Are you really sure you want to purchase this?", QMessageBox::Yes | QMessageBox::No);
                  if (reply == QMessageBox::Yes)
                  {
-                     if(coins < 5)
+                     if(coins < Sheep->getBuyPrice())
                      {
                          QMessageBox::warning(this, "Sorry!", "You do not have enough coin!");
+                         delete Sheep;
                          return;
                      }
                      if(updateCoinAmount(username, coins))
                      {
-                     coins -= 5;
-                     ui->coinsLabel->setText(QString::number(coins));
-                     ui->label2->setStyleSheet("background-color: rgb(255, 255, 253);");
-                     ui->Farm2btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\sheep.png"));
-               }
+                        coins -= Sheep->getBuyPrice();
+                        ui->coinsLabel->setText(QString::number(coins));
+                        ui->timeLabel_2->setStyleSheet("background-color: rgb(255, 255, 253);");
+                        ui->Farm2btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\sheep.png"));
                      }
+                 }
+                 delete Sheep;
                  break;
+
               case 2 :
                  coins = ui->coinsLabel->text().toInt();
                  reply = QMessageBox::question(nullptr, "Cow",
                                           "Are you really sure you want to purchase this?", QMessageBox::Yes | QMessageBox::No);
                  if (reply == QMessageBox::Yes)
                  {
-                     if(coins < 7)
+                     if(coins < Cow->getBuyPrice())
                      {
                          QMessageBox::warning(this, "Sorry!", "You do not have enough coin!");
+                         delete Cow;
                          return;
                      }
-                     coins -= 7;
+                     coins -= Cow->getBuyPrice();
                      if(updateCoinAmount(username, coins))
                      {
-                     ui->coinsLabel->setText(QString::number(coins));
-                     ui->label2->setStyleSheet("background-color: rgb(255, 255, 252);");
-                     ui->Farm2btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\cow.png"));
-               }
+                        ui->coinsLabel->setText(QString::number(coins));
+                        ui->timeLabel_2->setStyleSheet("background-color: rgb(255, 255, 252);");
+                        ui->Farm2btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\cow.png"));
                      }
+                 }
+                 delete Cow;
                  break;
+
               case 3 :
                  coins = ui->coinsLabel->text().toInt();
                  reply = QMessageBox::question(nullptr, "Wheat",
                                           "Are you really sure you want to purchase this?", QMessageBox::Yes | QMessageBox::No);
                  if (reply == QMessageBox::Yes)
                  {
-                     if(coins < 2)
+                     if(coins < Wheat->getBuyPrice())
                      {
                          QMessageBox::warning(this, "Sorry!", "You do not have enough coin!");
+                         delete Wheat;
                          return;
                      }
-                     coins -= 2;
+                     coins -= Wheat->getBuyPrice();
                      if(updateCoinAmount(username, coins))
                      {
-                     ui->coinsLabel->setText(QString::number(coins));
-                     ui->label2->setStyleSheet("background-color: rgb(255, 255, 251);");
-                     ui->Farm2btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
-                 }
+                        ui->coinsLabel->setText(QString::number(coins));
+                        ui->timeLabel_2->setStyleSheet("background-color: rgb(255, 255, 251);");
+                        ui->Farm2btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
                      }
+                 }
+                 delete Wheat;
                  break;
+
               case 4 :
                  coins = ui->coinsLabel->text().toInt();
                  reply = QMessageBox::question(nullptr, "Barley",
                                           "Are you really sure you want to purchase this?", QMessageBox::Yes | QMessageBox::No);
                  if (reply == QMessageBox::Yes)
                  {
-                     if(coins < 2)
+                     if(coins < Barlay->getBuyPrice())
                      {
                          QMessageBox::warning(this, "Sorry!", "You do not have enough coin!");
+                         delete Barlay;
                          return;
                      }
-                     coins -= 2;
+                     coins -= Barlay->getBuyPrice();
                      if(updateCoinAmount(username, coins))
                      {
-                     ui->coinsLabel->setText(QString::number(coins));
-                     ui->label2->setStyleSheet("background-color: rgb(255, 255, 250);");
-                     ui->Farm2btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\barley.png"));
-               }
+                        ui->coinsLabel->setText(QString::number(coins));
+                        ui->timeLabel_2->setStyleSheet("background-color: rgb(255, 255, 250);");
+                        ui->Farm2btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\barley.png"));
                      }
+                 }
+                 delete Barlay;
                  break;
-             case 5:
-                 return;
              }
          }
 }
+
 
 void GamePage::on_Farm3btn_clicked()
 {
@@ -432,17 +479,17 @@ void GamePage::on_Farm3btn_clicked()
             coins -= 3;
             if(updateCoinAmount(username, coins))
             {
-            ui->coinsLabel->setText(QString::number(coins));
-            ui->Farm3btn->setStyleSheet("background-color: rgb(0, 170, 0);");
-            ui->Farm3btn->setIcon(QIcon(""));
+                ui->coinsLabel->setText(QString::number(coins));
+                ui->Farm3btn->setStyleSheet("background-color: rgb(0, 170, 0);");
+                ui->Farm3btn->setIcon(QIcon(""));
             }
             return;
         }
      }
+
     else if (ui->Farm3btn->styleSheet() == "background-color: rgb(0, 170, 0);" &&
-                 ui->label3->styleSheet() == "background-color: rgb(255, 255, 255);"
-                 && ui->prodLabel3->text().isEmpty()
-                 )
+                 ui->timeLabel_3->styleSheet() == "background-color: rgb(255, 255, 255);"
+                 && ui->productBTN_3->text().isEmpty())
          {
              QMessageBox StoreMsgBox;
              StoreMsgBox.setWindowTitle("You have nothing in this Farm.");
@@ -457,6 +504,12 @@ void GamePage::on_Farm3btn_clicked()
 
              int result = StoreMsgBox.exec();
 
+             hen* Hen = new hen;
+             sheep* Sheep = new sheep;
+             cow* Cow = new cow;
+             wheat* Wheat = new wheat;
+             barlay* Barlay = new barlay;
+
              switch (result) {
               case 0 :
                   coins = ui->coinsLabel->text().toInt();
@@ -465,106 +518,117 @@ void GamePage::on_Farm3btn_clicked()
                                            "Are you really sure you want to purchase this?", QMessageBox::Yes | QMessageBox::No);
                   if (reply == QMessageBox::Yes)
                   {
-                      if(coins < 3)
+                      if(coins < Hen->getBuyPrice())
                       {
                           QMessageBox::warning(this, "Sorry!", "You do not have enough coin!");
+                          delete Hen;
                           return;
                       }
-                      coins -= 3;
+                      coins -= Hen->getBuyPrice();
                       if(updateCoinAmount(username, coins))
                       {
-                      ui->coinsLabel->setText(QString::number(coins));
-                      ui->label3->setStyleSheet("background-color: rgb(255, 255, 254);");
-                      ui->Farm3btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\hen.png"));
+                          ui->coinsLabel->setText(QString::number(coins));
+                          ui->timeLabel_3->setStyleSheet("background-color: rgb(255, 255, 254);");
+                          ui->Farm3btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\hen.png"));
+                      }
                   }
-                  }
-                 break;
+                  delete Hen;
+                  break;
+
               case 1 :
                  coins = ui->coinsLabel->text().toInt();
                  reply = QMessageBox::question(nullptr, "Sheep",
                                           "Are you really sure you want to purchase this?", QMessageBox::Yes | QMessageBox::No);
                  if (reply == QMessageBox::Yes)
                  {
-                     if(coins < 5)
+                     if(coins < Sheep->getBuyPrice())
                      {
                          QMessageBox::warning(this, "Sorry!", "You do not have enough coin!");
+                         delete Sheep;
                          return;
                      }
-                     coins -= 5;
+                     coins -= Sheep->getBuyPrice();
                      if(updateCoinAmount(username, coins))
                      {
-                     ui->coinsLabel->setText(QString::number(coins));
-                     ui->label3->setStyleSheet("background-color: rgb(255, 255, 253);");
-                     ui->Farm3btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\sheep.png"));
+                        ui->coinsLabel->setText(QString::number(coins));
+                        ui->timeLabel_3->setStyleSheet("background-color: rgb(255, 255, 253);");
+                        ui->Farm3btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\sheep.png"));
+                     }
                  }
-                 }
+                 delete Sheep;
                  break;
+
               case 2 :
                  coins = ui->coinsLabel->text().toInt();
                  reply = QMessageBox::question(nullptr, "Cow",
                                           "Are you really sure you want to purchase this?", QMessageBox::Yes | QMessageBox::No);
                  if (reply == QMessageBox::Yes)
                  {
-                     if(coins < 7)
+                     if(coins < Cow->getBuyPrice())
                      {
                          QMessageBox::warning(this, "Sorry!", "You do not have enough coin!");
+                         delete Cow;
                          return;
                      }
-                     coins -= 7;
+                     coins -= Cow->getBuyPrice();
                      if(updateCoinAmount(username, coins))
                      {
-                     ui->coinsLabel->setText(QString::number(coins));
-                     ui->label3->setStyleSheet("background-color: rgb(255, 255, 252);");
-                     ui->Farm3btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\cow.png"));
+                        ui->coinsLabel->setText(QString::number(coins));
+                        ui->timeLabel_3->setStyleSheet("background-color: rgb(255, 255, 252);");
+                        ui->Farm3btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\cow.png"));
+                     }
                  }
-                 }
+                 delete Cow;
                  break;
+
               case 3 :
                  coins = ui->coinsLabel->text().toInt();
                  reply = QMessageBox::question(nullptr, "Wheat",
                                           "Are you really sure you want to purchase this?", QMessageBox::Yes | QMessageBox::No);
                  if (reply == QMessageBox::Yes)
                  {
-                     if(coins < 2)
+                     if(coins < Wheat->getBuyPrice())
                      {
                          QMessageBox::warning(this, "Sorry!", "You do not have enough coin!");
+                         delete Wheat;
                          return;
                      }
-                     coins -= 2;
+                     coins -= Wheat->getBuyPrice();
                      if(updateCoinAmount(username, coins))
                      {
-
-                     ui->coinsLabel->setText(QString::number(coins));
-                     ui->label3->setStyleSheet("background-color: rgb(255, 255, 251);");
-                     ui->Farm3btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
+                        ui->coinsLabel->setText(QString::number(coins));
+                        ui->timeLabel_3->setStyleSheet("background-color: rgb(255, 255, 251);");
+                        ui->Farm3btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
+                     }
                  }
-                 }
+                 delete Wheat;
                  break;
+
               case 4 :
                  coins = ui->coinsLabel->text().toInt();
                  reply = QMessageBox::question(nullptr, "Barley",
                                           "Are you really sure you want to purchase this?", QMessageBox::Yes | QMessageBox::No);
                  if (reply == QMessageBox::Yes)
                  {
-                     if(coins < 2)
+                     if(coins < Barlay->getBuyPrice())
                      {
                          QMessageBox::warning(this, "Sorry!", "You do not have enough coin!");
+                         delete Barlay;
                          return;
                      }
-                     coins -= 2;
+                     coins -= Barlay->getBuyPrice();
                      if(updateCoinAmount(username, coins))
                      {
-                     ui->coinsLabel->setText(QString::number(coins));
-                     ui->label3->setStyleSheet("background-color: rgb(255, 255, 250);");
-                     ui->Farm3btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\barley.png"));
+                        ui->coinsLabel->setText(QString::number(coins));
+                        ui->timeLabel_3->setStyleSheet("background-color: rgb(255, 255, 250);");
+                        ui->Farm3btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\barley.png"));
+                     }
                  }
-                 }
+                 delete Barlay;
                  break;
-             case 5:
-                 return;
+
              }
          }
-
 }
 
 void GamePage::on_Farm4btn_clicked()
@@ -594,8 +658,8 @@ void GamePage::on_Farm4btn_clicked()
      }
    }
     else if (ui->Farm4btn->styleSheet() == "background-color: rgb(0, 170, 0);" &&
-                 ui->label4->styleSheet() == "background-color: rgb(255, 255, 255);"
-                 && ui->prodLabel4->text().isEmpty()
+                 ui->timeLabel_4->styleSheet() == "background-color: rgb(255, 255, 255);"
+                 && ui->productBTN_4->text().isEmpty()
                  )
          {
              QMessageBox StoreMsgBox;
@@ -629,8 +693,8 @@ void GamePage::on_Farm4btn_clicked()
                       {
 
                       ui->coinsLabel->setText(QString::number(coins));
-                      ui->label4->setStyleSheet("background-color: rgb(255, 255, 254);");
-                      ui->Farm4btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\hen.png"));
+                      ui->timeLabel_4->setStyleSheet("background-color: rgb(255, 255, 254);");
+                      ui->Farm4btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\hen.png"));
                   }
                   }
                  break;
@@ -649,8 +713,8 @@ void GamePage::on_Farm4btn_clicked()
                      if(updateCoinAmount(username, coins))
                      {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label4->setStyleSheet("background-color: rgb(255, 255, 253);");
-                     ui->Farm4btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\sheep.png"));
+                     ui->timeLabel_4->setStyleSheet("background-color: rgb(255, 255, 253);");
+                     ui->Farm4btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\sheep.png"));
                  }
                  }
                  break;
@@ -669,8 +733,8 @@ void GamePage::on_Farm4btn_clicked()
                      if(updateCoinAmount(username, coins))
                      {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label4->setStyleSheet("background-color: rgb(255, 255, 252);");
-                     ui->Farm4btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\cow.png"));
+                     ui->timeLabel_4->setStyleSheet("background-color: rgb(255, 255, 252);");
+                     ui->Farm4btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\cow.png"));
                  }
                  }
                  break;
@@ -689,8 +753,8 @@ void GamePage::on_Farm4btn_clicked()
                      if(updateCoinAmount(username, coins))
                      {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label4->setStyleSheet("background-color: rgb(255, 255, 251);");
-                     ui->Farm4btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
+                     ui->timeLabel_4->setStyleSheet("background-color: rgb(255, 255, 251);");
+                     ui->Farm4btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
                  }
                  }
                  break;
@@ -709,8 +773,8 @@ void GamePage::on_Farm4btn_clicked()
                      if(updateCoinAmount(username, coins))
                      {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label4->setStyleSheet("background-color: rgb(255, 255, 250);");
-                     ui->Farm4btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\barley.png"));
+                     ui->timeLabel_4->setStyleSheet("background-color: rgb(255, 255, 250);");
+                     ui->Farm4btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\barley.png"));
                  }
                  }
                  break;
@@ -747,8 +811,8 @@ void GamePage::on_Farm5btn_clicked()
         }
      }
     else if (ui->Farm5btn->styleSheet() == "background-color: rgb(0, 170, 0);" &&
-                 ui->label5->styleSheet() == "background-color: rgb(255, 255, 255);"
-                 && ui->prodLabel5->text().isEmpty()
+                 ui->timeLabel_5->styleSheet() == "background-color: rgb(255, 255, 255);"
+                 && ui->productBTN_5->text().isEmpty()
                  )
          {
              QMessageBox StoreMsgBox;
@@ -781,8 +845,8 @@ void GamePage::on_Farm5btn_clicked()
                       if(updateCoinAmount(username, coins))
                       {
                       ui->coinsLabel->setText(QString::number(coins));
-                      ui->label5->setStyleSheet("background-color: rgb(255, 255, 254);");
-                      ui->Farm5btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\hen.png"));
+                      ui->timeLabel_5->setStyleSheet("background-color: rgb(255, 255, 254);");
+                      ui->Farm5btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\hen.png"));
                   }
                   }
                  break;
@@ -801,8 +865,8 @@ void GamePage::on_Farm5btn_clicked()
                      if(updateCoinAmount(username, coins))
                      {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label5->setStyleSheet("background-color: rgb(255, 255, 253);");
-                     ui->Farm5btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\sheep.png"));
+                     ui->timeLabel_5->setStyleSheet("background-color: rgb(255, 255, 253);");
+                     ui->Farm5btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\sheep.png"));
                  }
                  }
                  break;
@@ -821,8 +885,8 @@ void GamePage::on_Farm5btn_clicked()
                      if(updateCoinAmount(username, coins))
                      {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label5->setStyleSheet("background-color: rgb(255, 255, 252);");
-                     ui->Farm5btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\cow.png"));
+                     ui->timeLabel_5->setStyleSheet("background-color: rgb(255, 255, 252);");
+                     ui->Farm5btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\cow.png"));
                  }
                  }
                  break;
@@ -841,8 +905,8 @@ void GamePage::on_Farm5btn_clicked()
                      if(updateCoinAmount(username, coins))
                      {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label5->setStyleSheet("background-color: rgb(255, 255, 251);");
-                     ui->Farm5btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
+                     ui->timeLabel_5->setStyleSheet("background-color: rgb(255, 255, 251);");
+                     ui->Farm5btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
                  }
                  }
                  break;
@@ -861,8 +925,8 @@ void GamePage::on_Farm5btn_clicked()
                      if(updateCoinAmount(username, coins))
                      {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label5->setStyleSheet("background-color: rgb(255, 255, 250);");
-                     ui->Farm5btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\barley.png"));
+                     ui->timeLabel_5->setStyleSheet("background-color: rgb(255, 255, 250);");
+                     ui->Farm5btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\barley.png"));
                  }
                  }
                  break;
@@ -900,8 +964,8 @@ void GamePage::on_Farm6btn_clicked()
         }
      }
     else if (ui->Farm6btn->styleSheet() == "background-color: rgb(0, 170, 0);" &&
-                 ui->label6->styleSheet() == "background-color: rgb(255, 255, 255);"
-                 && ui->prodLabel6->text().isEmpty()
+                 ui->timeLabel_6->styleSheet() == "background-color: rgb(255, 255, 255);"
+                 && ui->productBTN_6->text().isEmpty()
                  )
          {
              QMessageBox StoreMsgBox;
@@ -934,8 +998,8 @@ void GamePage::on_Farm6btn_clicked()
                       if(updateCoinAmount(username, coins))
                       {
                       ui->coinsLabel->setText(QString::number(coins));
-                      ui->label6->setStyleSheet("background-color: rgb(255, 255, 254);");
-                      ui->Farm6btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\hen.png"));
+                      ui->timeLabel_6->setStyleSheet("background-color: rgb(255, 255, 254);");
+                      ui->Farm6btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\hen.png"));
                   }
                   }
                  break;
@@ -954,8 +1018,8 @@ void GamePage::on_Farm6btn_clicked()
                      if(updateCoinAmount(username, coins))
                      {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label6->setStyleSheet("background-color: rgb(255, 255, 253);");
-                     ui->Farm6btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\sheep.png"));
+                     ui->timeLabel_6->setStyleSheet("background-color: rgb(255, 255, 253);");
+                     ui->Farm6btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\sheep.png"));
                  }
                  break;
               case 2 :
@@ -973,8 +1037,8 @@ void GamePage::on_Farm6btn_clicked()
                      if(updateCoinAmount(username, coins))
                      {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label6->setStyleSheet("background-color: rgb(255, 255, 252);");
-                     ui->Farm6btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\cow.png"));
+                     ui->timeLabel_6->setStyleSheet("background-color: rgb(255, 255, 252);");
+                     ui->Farm6btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\cow.png"));
                  }
                  }
                  break;
@@ -993,8 +1057,8 @@ void GamePage::on_Farm6btn_clicked()
                      if(updateCoinAmount(username, coins))
                      {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label6->setStyleSheet("background-color: rgb(255, 255, 251);");
-                     ui->Farm6btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
+                     ui->timeLabel_6->setStyleSheet("background-color: rgb(255, 255, 251);");
+                     ui->Farm6btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
                  }
                  }
                  break;
@@ -1013,8 +1077,8 @@ void GamePage::on_Farm6btn_clicked()
                      if(updateCoinAmount(username, coins))
                      {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label6->setStyleSheet("background-color: rgb(255, 255, 250);");
-                     ui->Farm6btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\barley.png"));
+                     ui->timeLabel_6->setStyleSheet("background-color: rgb(255, 255, 250);");
+                     ui->Farm6btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\barley.png"));
                  }
                  }
                  break;
@@ -1052,8 +1116,8 @@ void GamePage::on_Farm7btn_clicked()
         }
      }
     else if (ui->Farm7btn->styleSheet() == "background-color: rgb(0, 170, 0);" &&
-                 ui->label7->styleSheet() == "background-color: rgb(255, 255, 255);"
-                 && ui->prodLabel7->text().isEmpty()
+                 ui->timeLabel_7->styleSheet() == "background-color: rgb(255, 255, 255);"
+                 && ui->productBTN_7->text().isEmpty()
                  )
          {
              QMessageBox StoreMsgBox;
@@ -1086,8 +1150,8 @@ void GamePage::on_Farm7btn_clicked()
                       if(updateCoinAmount(username, coins))
                       {
                       ui->coinsLabel->setText(QString::number(coins));
-                      ui->label7->setStyleSheet("background-color: rgb(255, 255, 254);");
-                      ui->Farm7btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\hen.png"));
+                      ui->timeLabel_7->setStyleSheet("background-color: rgb(255, 255, 254);");
+                      ui->Farm7btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\hen.png"));
                   }
                   }
                  break;
@@ -1106,8 +1170,8 @@ void GamePage::on_Farm7btn_clicked()
                      if(updateCoinAmount(username, coins))
                      {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label7->setStyleSheet("background-color: rgb(255, 255, 253);");
-                     ui->Farm7btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\sheep.png"));
+                     ui->timeLabel_7->setStyleSheet("background-color: rgb(255, 255, 253);");
+                     ui->Farm7btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\sheep.png"));
                  }
                  }
                  break;
@@ -1126,8 +1190,8 @@ void GamePage::on_Farm7btn_clicked()
                      if(updateCoinAmount(username, coins))
                      {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label7->setStyleSheet("background-color: rgb(255, 255, 252);");
-                     ui->Farm7btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\cow.png"));
+                     ui->timeLabel_7->setStyleSheet("background-color: rgb(255, 255, 252);");
+                     ui->Farm7btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\cow.png"));
                  }
                  }
                  break;
@@ -1146,8 +1210,8 @@ void GamePage::on_Farm7btn_clicked()
                      if(updateCoinAmount(username, coins))
                      {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label7->setStyleSheet("background-color: rgb(255, 255, 251);");
-                     ui->Farm7btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
+                     ui->timeLabel_7->setStyleSheet("background-color: rgb(255, 255, 251);");
+                     ui->Farm7btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
                  }
                  }
                  break;
@@ -1166,8 +1230,8 @@ void GamePage::on_Farm7btn_clicked()
                      if(updateCoinAmount(username, coins))
                      {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label7->setStyleSheet("background-color: rgb(255, 255, 250);");
-                     ui->Farm7btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\barley.png"));
+                     ui->timeLabel_7->setStyleSheet("background-color: rgb(255, 255, 250);");
+                     ui->Farm7btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\barley.png"));
                  }
                  }
                  break;
@@ -1204,8 +1268,8 @@ void GamePage::on_Farm8btn_clicked()
         }
      }
     else if (ui->Farm8btn->styleSheet() == "background-color: rgb(0, 170, 0);" &&
-                 ui->label8->styleSheet() == "background-color: rgb(255, 255, 255);"
-                 && ui->prodLabel8->text().isEmpty()
+                 ui->timeLabel_8->styleSheet() == "background-color: rgb(255, 255, 255);"
+                 && ui->productBTN_8->text().isEmpty()
                  )
          {
              QMessageBox StoreMsgBox;
@@ -1238,8 +1302,8 @@ void GamePage::on_Farm8btn_clicked()
                       if(updateCoinAmount(username, coins))
                       {
                       ui->coinsLabel->setText(QString::number(coins));
-                      ui->label8->setStyleSheet("background-color: rgb(255, 255, 254);");
-                      ui->Farm8btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\hen.png"));
+                      ui->timeLabel_8->setStyleSheet("background-color: rgb(255, 255, 254);");
+                      ui->Farm8btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\hen.png"));
                   }
                   }
                  break;
@@ -1258,8 +1322,8 @@ void GamePage::on_Farm8btn_clicked()
                      if(updateCoinAmount(username, coins))
                      {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label8->setStyleSheet("background-color: rgb(255, 255, 253);");
-                     ui->Farm8btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\sheep.png"));
+                     ui->timeLabel_8->setStyleSheet("background-color: rgb(255, 255, 253);");
+                     ui->Farm8btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\sheep.png"));
                  }
                  }
                  break;
@@ -1278,8 +1342,8 @@ void GamePage::on_Farm8btn_clicked()
                      if(updateCoinAmount(username, coins))
                      {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label8->setStyleSheet("background-color: rgb(255, 255, 252);");
-                     ui->Farm8btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\cow.png"));
+                     ui->timeLabel_8->setStyleSheet("background-color: rgb(255, 255, 252);");
+                     ui->Farm8btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\cow.png"));
                  }
                  }
                  break;
@@ -1298,8 +1362,8 @@ void GamePage::on_Farm8btn_clicked()
                      if(updateCoinAmount(username, coins))
                      {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label8->setStyleSheet("background-color: rgb(255, 255, 251);");
-                     ui->Farm8btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
+                     ui->timeLabel_8->setStyleSheet("background-color: rgb(255, 255, 251);");
+                     ui->Farm8btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
                  }
                  }
                  break;
@@ -1318,8 +1382,8 @@ void GamePage::on_Farm8btn_clicked()
                      if(updateCoinAmount(username, coins))
                      {
                      ui->coinsLabel->setText(QString::number(coins));
-                     ui->label8->setStyleSheet("background-color: rgb(255, 255, 250);");
-                     ui->Farm8btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\barley.png"));
+                     ui->timeLabel_8->setStyleSheet("background-color: rgb(255, 255, 250);");
+                     ui->Farm8btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\barley.png"));
                  }
                  }
                  break;
@@ -1343,19 +1407,17 @@ void GamePage::on_addWorkerbtn_clicked()
             QMessageBox::warning(this, "Error", "You do not have enough coin");
             return;
         }
+
         coins -= 5;
         if(updateCoinAmount(username, coins))
        {
-        ui->coinsLabel->setText(QString::number(coins));
-        availableWorkers++;
-        totalWorkers++;
-        SetWorkerNumber();
+            ui->coinsLabel->setText(QString::number(coins));
+            availableWorkers++;
+            totalWorkers++;
+            SetWorkerNumber();
         }
         return;
-    }else
-    {
-       return;
-     }
+    }
 }
 
 void GamePage::on_pushButton_clicked()
