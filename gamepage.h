@@ -74,9 +74,7 @@ private:
 
     int coins;
 
-
     QSqlQuery q;
-
 
     QTimer* breedingTimer1 = nullptr;
     QTimer* penaltyTimer1 = nullptr;
