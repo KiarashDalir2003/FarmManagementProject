@@ -55,6 +55,13 @@ private slots:
 
     void on_pushButton_clicked();
 
+
+
+
+    void on_productBTN_1_clicked();
+
+    void on_productBTN_2_clicked();
+
 private:
     Ui::GamePage *ui;
 
@@ -67,7 +74,33 @@ private:
 
     int coins;
 
+
     QSqlQuery q;
+
+
+    QTimer* breedingTimer1 = nullptr;
+    QTimer* penaltyTimer1 = nullptr;
+
+    QTimer* breedingTimer2 = nullptr;
+    QTimer* penaltyTimer2 = nullptr;
+
+    QTimer* breedingTimer3 = nullptr;
+    QTimer* penaltyTimer3 = nullptr;
+
+    QTimer* breedingTimer4 = nullptr;
+    QTimer* penaltyTimer4 = nullptr;
+
+    QTimer* breedingTimer5 = nullptr;
+    QTimer* penaltyTimer5 = nullptr;
+
+    QTimer* breedingTimer6 = nullptr;
+    QTimer* penaltyTimer6 = nullptr;
+
+    QTimer* breedingTimer7 = nullptr;
+    QTimer* penaltyTimer7 = nullptr;
+
+    QTimer* breedingTimer8 = nullptr;
+    QTimer* penaltyTimer8 = nullptr;
 
 };
 

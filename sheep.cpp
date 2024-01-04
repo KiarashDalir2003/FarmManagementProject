@@ -24,3 +24,19 @@ int sheep::getPenaltyTime()
 {
     return penaltyTime;
 }
+void sheep::decreaseBreedingTime()
+{
+    breedingTime--;
+}
+void sheep::decreasePenaltyTime()
+{
+    penaltyTime--;
+}
+void sheep::decreaseMilkPrice()
+{
+    milkPrice--;
+}
+void sheep::resetPenaltyTime()
+{
+    penaltyTime = 4;
+}

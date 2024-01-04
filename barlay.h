@@ -5,15 +5,22 @@ class barlay
 {
 private:
     const int buyPrice = 2;
-    const int barlayPrice = 2;        // product price
-    const int breedingTime = 20;      // breeding time =  20 second
-    const int penaltyTime = 10;       // penalty  time =  5 second
+    int barlayPrice = 2;        // product price
+    int breedingTime = 20;      // breeding time =  20 second
+    int penaltyTime = 10;       // penalty  time =  5 second
 
 public:
     int getBuyPrice();
     int getBarlayPrice();
     int getBreedingTime();
+
+    void decreaseBreedingTime();
+    void decreasePenaltyTime();
+    void decreaseBarlayPrice();
+
     int getPenaltyTime();
+
+    void resetPenaltyTime();
 };
 
 #endif // BARLAY_H

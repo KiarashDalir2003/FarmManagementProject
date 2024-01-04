@@ -24,3 +24,19 @@ int hen::getPenaltyTime()
 {
     return penaltyTime;
 }
+void hen::decreaseBreedingTime()
+{
+    breedingTime--;
+}
+void hen::decreasePenaltyTime()
+{
+    penaltyTime--;
+}
+void hen::decreaseEggPrice()
+{
+    eggPrice--;
+}
+void hen::resetPenaltyTime()
+{
+    penaltyTime = 5;
+}
