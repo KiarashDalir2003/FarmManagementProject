@@ -14,6 +14,8 @@
 
 #include "ui_gamepage.h"
 
+#include <QPropertyAnimation>
+
 namespace Ui {
 class GamePage;
 }
@@ -41,6 +43,7 @@ public:
 
     void manageProducts(QPushButton* product, QLabel* coinLogo, QLabel* coinAmount, QLabel* totalCoins, QLabel* time, QTimer* penaltyTime);
 
+    void ShakeTotalCoinsLabel();
 private slots:
     void processNextRecord();
 
@@ -99,6 +102,8 @@ private:
     int coins;
 
     QSqlQuery q;
+
+
 
     QTimer* breedingTimer1 = nullptr;
     QTimer* penaltyTimer1 = nullptr;

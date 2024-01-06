@@ -222,12 +222,14 @@ if not , there is nothing product.
 
 void GamePage::on_Farm1btn_clicked()
 {
+
     managingFarm(ui->Farm1btn, ui->productBTN_1, ui->coinLabel_1, ui->coinAmountLabel_1, ui->coinsLabel, ui->timeLabel_1, breedingTimer1, penaltyTimer1);
 }
 
 
 void GamePage::on_productBTN_1_clicked()
 {
+
     manageProducts(ui->productBTN_1, ui->coinLabel_1, ui->coinAmountLabel_1, ui->coinsLabel, ui->timeLabel_1, penaltyTimer1);
 }
 
@@ -337,6 +339,7 @@ void GamePage::on_addWorkerbtn_clicked()
         }
 
         coins -= 5;
+        ShakeTotalCoinsLabel();
         if(updateCoinAmount(username, coins))
         {
             ui->coinsLabel->setText(QString::number(coins));
@@ -398,6 +401,7 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
             }
 
             coins -= 3;    // farm buy price = 3
+            ShakeTotalCoinsLabel();
             if(updateCoinAmount(username, coins))
             {
                 totalCoins->setText(QString::number(coins));
@@ -444,6 +448,7 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
                 }
 
                 coins -= Hen->getBuyPrice();
+                ShakeTotalCoinsLabel();
                 if(updateCoinAmount(username, coins))
                 {
                     totalCoins->setText(QString::number(coins));
@@ -467,6 +472,7 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
                 }
 
                 coins -= Sheep->getBuyPrice();
+                ShakeTotalCoinsLabel();
                 if(updateCoinAmount(username, coins))
                 {
                     totalCoins->setText(QString::number(coins));
@@ -489,6 +495,7 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
                     return;
                 }
                 coins -= Cow->getBuyPrice();
+                ShakeTotalCoinsLabel();
                 if(updateCoinAmount(username, coins))
                 {
                     totalCoins->setText(QString::number(coins));
@@ -511,6 +518,7 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
                     return;
                 }
                 coins -= Wheat->getBuyPrice();
+                ShakeTotalCoinsLabel();
                 if(updateCoinAmount(username, coins))
                 {
                     totalCoins->setText(QString::number(coins));
@@ -533,6 +541,7 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
                     return;
                 }
                 coins -= Barlay->getBuyPrice();
+                ShakeTotalCoinsLabel();
                 if(updateCoinAmount(username, coins))
                 {
                     totalCoins->setText(QString::number(coins));
@@ -570,6 +579,7 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
         {
         case 0:
             coins += Hen->getMeatPrice();
+            ShakeTotalCoinsLabel();
             if(updateCoinAmount(username, coins))
             {
                 totalCoins->setText(QString::number(coins));
@@ -641,6 +651,10 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
                                 coinAmount->setText(QString::number(Hen->getEggPrice()));
                                 Hen->resetPenaltyTime();
                                 penaltyTime->start(1000);
+                                if (Hen->getEggPrice() == 0)
+                                {
+                                    penaltyTime->stop();
+                                }
                             }
                         });
 
@@ -685,6 +699,7 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
         {
         case 0:
             coins += Sheep->getMeatPrice();
+            ShakeTotalCoinsLabel();
             if(updateCoinAmount(username, coins))
             {
                 totalCoins->setText(QString::number(coins));
@@ -753,7 +768,7 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
                             if (Sheep->getPenaltyTime() < 0)
                             {
                                 penaltyTime->stop();
-                               // penaltyTime->deleteLater();
+                                //penaltyTime->deleteLater();
 
                                 Sheep->decreaseMilkPrice();
                                 coinAmount->setText(QString::number(Sheep->getMilkPrice()));
@@ -803,6 +818,7 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
         case 0:
 
             coins += Cow->getMeatPrice();
+            ShakeTotalCoinsLabel();
             if(updateCoinAmount(username, coins))
             {
                 totalCoins->setText(QString::number(coins));
@@ -1142,4 +1158,17 @@ void GamePage::manageProducts(QPushButton *product, QLabel *coinLogo, QLabel *co
         }
 }
 
+void GamePage::ShakeTotalCoinsLabel()
+{
+    QPropertyAnimation *animation = new QPropertyAnimation(ui->coinIconLabel, "geometry");
 
+    animation->setDuration(200);
+    animation->setLoopCount(3);
+
+    animation->setKeyValueAt(0, ui->coinIconLabel->geometry());
+    animation->setKeyValueAt(0.25, ui->coinIconLabel->geometry().translated(0, 3));
+    animation->setKeyValueAt(0.75, ui->coinIconLabel->geometry().translated(1, 3));
+    animation->setKeyValueAt(1, ui->coinIconLabel->geometry());
+
+    animation->start();
+}
