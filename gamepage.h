@@ -15,6 +15,7 @@
 #include "ui_gamepage.h"
 
 #include <QPropertyAnimation>
+#include <QMediaPlayer>
 
 namespace Ui {
 class GamePage;
@@ -104,6 +105,8 @@ private:
     QSqlQuery q;
 
 
+
+    QMediaPlayer *PositiveSound = new QMediaPlayer;
 
     QTimer* breedingTimer1 = nullptr;
     QTimer* penaltyTimer1 = nullptr;

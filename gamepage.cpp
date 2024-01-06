@@ -22,6 +22,9 @@
 #include "wheat.h"
 #include "barlay.h"
 
+#include<QPropertyAnimation>
+#include<QMediaPlayer>
+
 GamePage::GamePage(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::GamePage)
@@ -1138,23 +1141,24 @@ void GamePage::manageProducts(QPushButton *product, QLabel *coinLogo, QLabel *co
 
             if (availableWorkers != 0)
             {
-            coins += coinAmount->text().toInt();
-            penaltyTime->stop();
-            delete penaltyTime;
-            penaltyTime = nullptr;
+              ShakeTotalCoinsLabel();
+              coins += coinAmount->text().toInt();
+              penaltyTime->stop();
+              delete penaltyTime;
+              penaltyTime = nullptr;
 
-            if (updateCoinAmount(username, coins))
-            {
+               if (updateCoinAmount(username, coins))
+                  {
 
-                totalCoins->setText(QString::number(coins));
-                product->setIcon(QIcon(""));
-                coinAmount->clear();
-                coinLogo->clear();
-                time->clear();
+                     totalCoins->setText(QString::number(coins));
+                     product->setIcon(QIcon(""));
+                     coinAmount->clear();
+                     coinLogo->clear();
+                     time->clear();
 
-                product->setStyleSheet("background-color: rgb(255, 255, 255);");
+                     product->setStyleSheet("background-color: rgb(255, 255, 255);");
+                  }
             }
-           }
         }
 }
 
@@ -1171,4 +1175,9 @@ void GamePage::ShakeTotalCoinsLabel()
     animation->setKeyValueAt(1, ui->coinIconLabel->geometry());
 
     animation->start();
+
+    PositiveSound->setMedia(
+                QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\PositiveSound.mp3"));
+
+    PositiveSound->play();
 }

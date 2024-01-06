@@ -43,7 +43,7 @@ LoginPage::LoginPage(QWidget *parent)
     QMediaPlayer *StartSound = new QMediaPlayer;
     StartSound->setMedia(
                 QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\StartSound.mp3"));
-    StartSound->play();
+
 
     QMediaPlayer *NagativeSound = new QMediaPlayer;
     NagativeSound->setMedia(

@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
     QMediaPlayer *StartSound = new QMediaPlayer;
 
     StartSound->setMedia(
-             QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\StartSound.mp3"));
+             QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\StartSound.mp3"));
 
 
     QSqlQuery que;
@@ -31,10 +31,12 @@ int main(int argc, char *argv[])
 
         if (recordCount == 0)
         {
+           StartSound->play();
             w.show();
         }
         else
         {
+            StartSound->play();
             G.show();
         }
     }
