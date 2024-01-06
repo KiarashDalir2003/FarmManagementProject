@@ -9,6 +9,11 @@
 #include<QSqlQuery>
 #include<QSqlRecord>
 
+#include <QPushButton>
+#include <QLabel>
+
+#include "ui_gamepage.h"
+
 namespace Ui {
 class GamePage;
 }
@@ -19,20 +24,28 @@ class GamePage : public QMainWindow
 
 public:
     explicit GamePage(QWidget *parent = nullptr);
+
     ~GamePage();
 
     void ResetUi();
+
     void Resetdata();
+
     void SetWorkerNumber();
 
     bool updateCoinAmount(const QString user, int coinAm);
 
     QTimer *GameTimer = new QTimer(this);
 
+    void managingFarm(QPushButton* farm, QPushButton* product, QLabel* coinLogo, QLabel* coinAmount, QLabel* totalCoins, QLabel* time, QTimer* breedTime, QTimer* penaltyTime);
+
+    void manageProducts(QPushButton* product, QLabel* coinLogo, QLabel* coinAmount, QLabel* totalCoins, QLabel* time, QTimer* penaltyTime);
 
 private slots:
     void processNextRecord();
+
     void updateTime();
+
     void startProcessing();
 
     void on_Farm1btn_clicked();
@@ -55,12 +68,21 @@ private slots:
 
     void on_pushButton_clicked();
 
-
-
-
     void on_productBTN_1_clicked();
 
     void on_productBTN_2_clicked();
+
+    void on_productBTN_3_clicked();
+
+    void on_productBTN_4_clicked();
+
+    void on_productBTN_5_clicked();
+
+    void on_productBTN_6_clicked();
+
+    void on_productBTN_7_clicked();
+
+    void on_productBTN_8_clicked();
 
 private:
     Ui::GamePage *ui;

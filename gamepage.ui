@@ -334,6 +334,9 @@ url(:/GameBoard/images/gameBoard.jpg);
      <property name="text">
       <string/>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
     <widget class="QLabel" name="timeLabel_4">
      <property name="geometry">
@@ -349,6 +352,9 @@ url(:/GameBoard/images/gameBoard.jpg);
      </property>
      <property name="text">
       <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="timeLabel_8">
@@ -366,6 +372,9 @@ url(:/GameBoard/images/gameBoard.jpg);
      <property name="text">
       <string/>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
     <widget class="QLabel" name="timeLabel_6">
      <property name="geometry">
@@ -381,6 +390,9 @@ url(:/GameBoard/images/gameBoard.jpg);
      </property>
      <property name="text">
       <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="timeLabel_7">
@@ -398,6 +410,9 @@ url(:/GameBoard/images/gameBoard.jpg);
      <property name="text">
       <string/>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
     <widget class="QLabel" name="timeLabel_5">
      <property name="geometry">
@@ -414,6 +429,9 @@ url(:/GameBoard/images/gameBoard.jpg);
      <property name="text">
       <string/>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
     <widget class="QLabel" name="timeLabel_3">
      <property name="geometry">
@@ -429,6 +447,9 @@ url(:/GameBoard/images/gameBoard.jpg);
      </property>
      <property name="text">
       <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="coinLabel_2">
@@ -670,6 +691,9 @@ url(:/GameBoard/images/gameBoard.jpg);
      <property name="text">
       <string/>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
     <widget class="QLabel" name="coinLabel_1">
      <property name="geometry">
@@ -839,7 +863,7 @@ url(:/GameBoard/images/gameBoard.jpg);
      <x>0</x>
      <y>0</y>
      <width>941</width>
-     <height>25</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
