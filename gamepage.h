@@ -84,6 +84,8 @@ private slots:
 
     void on_productBTN_8_clicked();
 
+
+
 private:
     Ui::GamePage *ui;
 
