@@ -45,12 +45,37 @@ public:
     void manageProducts(QPushButton* product, QLabel* coinLogo, QLabel* coinAmount, QLabel* totalCoins, QLabel* time, QTimer* penaltyTime);
 
     void ShakeTotalCoinsLabel();
+
+    int checkFarmStatus(QPushButton* farm, QPushButton* product, QLabel* time);
+
+    int showStoreMessage();
+
+
+    void buyHen(QPushButton* farm, QLabel* time, QLabel* totalCoins);
+    void buySheep(QPushButton* farm, QLabel* time, QLabel* totalCoins);
+    void buyCow(QPushButton* farm, QLabel* time, QLabel* totalCoins);
+    void buyWheat(QPushButton* farm, QLabel* time, QLabel* totalCoins);
+    void buyBarlay(QPushButton* farm, QLabel* time, QLabel* totalCoins);
+
+    void breedHen(QPushButton* farm, QPushButton* product, QLabel* coinLogo, QLabel* coinAmount, QLabel* totalCoins, QLabel* time, QTimer* breedTime, QTimer* penaltyTime);
+    void breedSheep(QPushButton* farm, QPushButton* product, QLabel* coinLogo, QLabel* coinAmount, QLabel* totalCoins, QLabel* time, QTimer* breedTime, QTimer* penaltyTime);
+    void breedCow(QPushButton* farm, QPushButton* product, QLabel* coinLogo, QLabel* coinAmount, QLabel* totalCoins, QLabel* time, QTimer* breedTime, QTimer* penaltyTime);
+    void breedWheat(QPushButton* farm, QPushButton* product, QLabel* coinLogo, QLabel* coinAmount, QLabel* totalCoins, QLabel* time, QTimer* breedTime, QTimer* penaltyTime);
+    void breedBralay(QPushButton* farm, QPushButton* product, QLabel* coinLogo, QLabel* coinAmount, QLabel* totalCoins, QLabel* time, QTimer* breedTime, QTimer* penaltyTime);
+
+    void killHen (QPushButton* farm, QPushButton* product, QLabel* totalCoins, QLabel* time);
+    void killSheep (QPushButton* farm, QPushButton* product, QLabel* totalCoins, QLabel* time);
+    void killCow (QPushButton* farm, QPushButton* product, QLabel* totalCoins, QLabel* time);
+
 private slots:
     void processNextRecord();
 
     void updateTime();
 
     void startProcessing();
+
+
+
 
     void on_Farm1btn_clicked();
 

@@ -388,7 +388,7 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
     barlay* Barlay = new barlay;
 
 
-    if(farm->styleSheet() == "background-color: rgb(157, 157, 157);")
+    if(checkFarmStatus(farm, product, time) == 1)
     {
         coins = totalCoins->text().toInt();
 
@@ -404,9 +404,10 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
             }
 
             coins -= 3;    // farm buy price = 3
-            ShakeTotalCoinsLabel();
+
             if(updateCoinAmount(username, coins))
             {
+                ShakeTotalCoinsLabel();
                 totalCoins->setText(QString::number(coins));
                 farm->setStyleSheet("background-color: rgb(0, 170, 0);");
                 farm->setIcon(QIcon(""));
@@ -416,142 +417,31 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
     }
 
 
-    else if (farm->styleSheet() == "background-color: rgb(0, 170, 0);" &&
-            time->styleSheet() == "background-color: rgb(255, 255, 255);"
-            && product->styleSheet() == "background-color: rgb(255, 255, 255);")
+    else if (checkFarmStatus(farm, product, time) == 2 )
     {
         //rgb(255, 255, 255) means that this farm has no animals or plants.
 
-        QMessageBox StoreMsgBox;
-        StoreMsgBox.setWindowTitle("You have nothing in this Farm.");
-        StoreMsgBox.setText("Choose one of the following:");
 
-        StoreMsgBox.addButton("Hen = 3 coins", QMessageBox::AcceptRole);
-        StoreMsgBox.addButton("Sheep = 5 coins", QMessageBox::AcceptRole);
-        StoreMsgBox.addButton("Cow = 7 coins", QMessageBox::AcceptRole);
-        StoreMsgBox.addButton("Wheat = 2 coins", QMessageBox::AcceptRole);
-        StoreMsgBox.addButton("Barlay = 2 coins", QMessageBox::AcceptRole);
-        StoreMsgBox.addButton("Back", QMessageBox::AcceptRole);
-
-        int result = StoreMsgBox.exec();
-
-        switch (result)
+        switch (showStoreMessage())
         {
         case 0:
-            coins = totalCoins->text().toInt();
-            QMessageBox::StandardButton reply;
-            reply = QMessageBox::question(nullptr, "Hen",
-                                          "Are you really sure you want to purchase this?", QMessageBox::Yes | QMessageBox::No);
-            if (reply == QMessageBox::Yes)
-            {
-                if(coins < Hen->getBuyPrice())
-                {
-                    QMessageBox::warning(this, "Sorry!", "You dont have enough coin!");
-                    return;
-                }
-
-                coins -= Hen->getBuyPrice();
-                ShakeTotalCoinsLabel();
-                if(updateCoinAmount(username, coins))
-                {
-                    totalCoins->setText(QString::number(coins));
-                    time->setStyleSheet("background-color: rgb(255, 255, 254);");
-                    //rgb(255, 255, 254) means that this farm has hen.
-                    farm->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\hen.png"));
-                }
-            }
+            buyHen(farm, time, totalCoins);
             break;
 
         case 1:
-            coins = totalCoins->text().toInt();
-            reply = QMessageBox::question(nullptr, "Sheep",
-                                          "Are you really sure you want to purchase this?", QMessageBox::Yes | QMessageBox::No);
-            if (reply == QMessageBox::Yes)
-            {
-                if(coins < Sheep->getBuyPrice())
-                {
-                    QMessageBox::warning(this, "Sorry!", "You do not have enough coin!");
-                    return;
-                }
-
-                coins -= Sheep->getBuyPrice();
-                ShakeTotalCoinsLabel();
-                if(updateCoinAmount(username, coins))
-                {
-                    totalCoins->setText(QString::number(coins));
-                    time->setStyleSheet("background-color: rgb(255, 255, 253);");
-                    //rgb(255, 255, 253) means that this farm has sheep
-                    farm->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\sheep.png"));
-                }
-            }
+            buySheep(farm, time, totalCoins);
             break;
 
         case 2:
-            coins = totalCoins->text().toInt();
-            reply = QMessageBox::question(nullptr, "Cow",
-                                          "Are you really sure you want to purchase this?", QMessageBox::Yes | QMessageBox::No);
-            if (reply == QMessageBox::Yes)
-            {
-                if(coins < Cow->getBuyPrice())
-                {
-                    QMessageBox::warning(this, "Sorry!", "You do not have enough coin!");
-                    return;
-                }
-                coins -= Cow->getBuyPrice();
-                ShakeTotalCoinsLabel();
-                if(updateCoinAmount(username, coins))
-                {
-                    totalCoins->setText(QString::number(coins));
-                    time->setStyleSheet("background-color: rgb(255, 255, 252);");
-                    //rgb(255, 255, 252) means that this farm has cow.
-                    farm->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\cow.png"));
-                }
-            }
+            buyCow(farm, time, totalCoins);
             break;
 
         case 3:
-            coins = totalCoins->text().toInt();
-            reply = QMessageBox::question(nullptr, "Wheat",
-                                          "Are you really sure you want to purchase this?", QMessageBox::Yes | QMessageBox::No);
-            if (reply == QMessageBox::Yes)
-            {
-                if(coins < Wheat->getBuyPrice())
-                {
-                    QMessageBox::warning(this, "Sorry!", "You do not have enough coin!");
-                    return;
-                }
-                coins -= Wheat->getBuyPrice();
-                ShakeTotalCoinsLabel();
-                if(updateCoinAmount(username, coins))
-                {
-                    totalCoins->setText(QString::number(coins));
-                    time->setStyleSheet("background-color: rgb(255, 255, 251);");
-                    //rgb(255, 255, 251) means that this farm has wheat.
-                    farm->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
-                }
-            }
+            buyWheat(farm, time, totalCoins);
             break;
 
         case 4:
-            coins = totalCoins->text().toInt();
-            reply = QMessageBox::question(nullptr, "Barley",
-                                          "Are you really sure you want to purchase this?", QMessageBox::Yes | QMessageBox::No);
-            if (reply == QMessageBox::Yes)
-            {
-                if(coins < Barlay->getBuyPrice())
-                {
-                    QMessageBox::warning(this, "Sorry!", "You do not have enough coin!");
-                    return;
-                }
-                coins -= Barlay->getBuyPrice();
-                ShakeTotalCoinsLabel();
-                if(updateCoinAmount(username, coins))
-                {
-                    totalCoins->setText(QString::number(coins));
-                    time->setStyleSheet("background-color: rgb(255, 255, 250);");
-                    farm->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\barlay.png"));
-                }
-            }
+            buyBarlay(farm, time, totalCoins);
             break;
 
         case 5:
@@ -560,9 +450,7 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
         }
     }
 
-    else if (farm->styleSheet() == "background-color: rgb(0, 170, 0);" &&
-             time->styleSheet() == "background-color: rgb(255, 255, 254);"
-             && product->styleSheet() == "background-color: rgb(255, 255, 255);")
+    else if (checkFarmStatus(farm, product, time) == 3 )
     {
         //this farm has hen
 
@@ -581,107 +469,19 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
         switch (questionMsgResult)
         {
         case 0:
-            coins += Hen->getMeatPrice();
-            ShakeTotalCoinsLabel();
-            if(updateCoinAmount(username, coins))
-            {
-                totalCoins->setText(QString::number(coins));
-                farm->setIcon(QIcon(""));
-                product->setIcon(QIcon(""));
-                time->setStyleSheet("background-color: rgb(255, 255, 255);");
-                availableWorkers++;
-                SetWorkerNumber();
-            }
+            killHen(farm, product, totalCoins, time);
             break;
 
 
         case 1:
-            if(availableWorkers != 0)
-            {
-                availableWorkers--;
-                SetWorkerNumber();
-
-                farm->setEnabled(false);
-
-                if (breedTime && breedTime->isActive())
-                {
-                    breedTime->stop();
-                    delete breedTime;
-
-                }
-
-                if (penaltyTime && penaltyTime->isActive())
-                {
-                    penaltyTime->stop();
-                    delete penaltyTime;
-
-                }
-
-                breedTime = new QTimer(this);
-                connect(breedTime, &QTimer::timeout, [=]() mutable
-                {
-                    time->setText(QString::number(Hen->getBreedingTime()));
-                    Hen->decreaseBreedingTime();
-
-                    if (Hen->getBreedingTime() < 0)
-                    {
-                        breedTime->stop();
-                        delete breedTime;
-                        breedTime = nullptr;
-                        farm->setEnabled(true);
-                        product->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\egg.png"));
-                        product->setStyleSheet("background-color: rgb(255, 255, 254);");
-                        time->clear();
-                        QPixmap coinsPix ("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\coin.png");
-                        coinLogo->setPixmap(coinsPix);
-                        coinAmount->setText(QString::number(Hen->getEggPrice()));
-
-                        availableWorkers++;
-                        SetWorkerNumber();
-
-                        penaltyTime = new QTimer(this);
-                        connect(penaltyTime, &QTimer::timeout, [=]() mutable
-                        {
-
-                            time->setText(QString::number(Hen->getPenaltyTime()));
-
-                            Hen->decreasePenaltyTime();
-                            if (Hen->getPenaltyTime() < 0)
-                            {
-                                penaltyTime->stop();
-
-                                Hen->decreaseEggPrice();
-                                coinAmount->setText(QString::number(Hen->getEggPrice()));
-                                Hen->resetPenaltyTime();
-                                penaltyTime->start(1000);
-                                if (Hen->getEggPrice() == 0)
-                                {
-                                    penaltyTime->stop();
-                                }
-                            }
-                        });
-
-                        penaltyTime->start(1000);
-                    }
-                });
-
-                breedTime->start(1000);
-                break;
-            }
-
-            else
-            {
-                QMessageBox::warning(this, "", "You don't have a worker available.");
-                return;
-            }
+            breedHen(farm, product, coinLogo, coinAmount, totalCoins, time, breedTime, penaltyTime);
+            break;
         case 2:
             return;
         }
     }
 
-    else if (farm->styleSheet() == "background-color: rgb(0, 170, 0);" &&
-             time->styleSheet() == "background-color: rgb(255, 255, 253);"
-             && product->styleSheet() == "background-color: rgb(255, 255, 255);")
+    else if (checkFarmStatus(farm, product, time) == 4 )
     {
         //this farm has sheep
 
@@ -701,106 +501,18 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
         switch (questionMsgResult)
         {
         case 0:
-            coins += Sheep->getMeatPrice();
-            ShakeTotalCoinsLabel();
-            if(updateCoinAmount(username, coins))
-            {
-                totalCoins->setText(QString::number(coins));
-                farm->setIcon(QIcon(""));
-                time->setStyleSheet("background-color: rgb(255, 255, 255);");
-                availableWorkers++;
-                SetWorkerNumber();
-            }
+            killSheep(farm, product, totalCoins, time);
             break;
 
         case 1:
-            if(availableWorkers != 0)
-            {
-                availableWorkers--;
-                SetWorkerNumber();
-
-                farm->setEnabled(false);
-
-                if (breedTime && breedTime->isActive())
-                {
-                    breedTime->stop();
-                    delete breedTime;
-
-                }
-
-                if (penaltyTime && penaltyTime->isActive())
-                {
-                    penaltyTime->stop();
-                    delete penaltyTime;
-
-                }
-                breedTime = new QTimer(this);
-                connect(breedTime, &QTimer::timeout, [=]() mutable
-                {
-                    time->setText(QString::number(Sheep->getBreedingTime()));
-                    Sheep->decreaseBreedingTime();
-
-                    if (Sheep->getBreedingTime() < 0)
-                    {
-                        breedTime->stop();
-
-                        delete breedTime;
-                        breedTime = nullptr;
-
-                        farm->setEnabled(true);
-
-                        product->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\milk.png"));
-                        product->setStyleSheet("background-color: rgb(255, 255, 254);");
-
-                        time->clear();
-
-                        QPixmap coinsPix ("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\coin.png");
-
-                        coinLogo->setPixmap(coinsPix);
-                        coinAmount->setText(QString::number(Sheep->getMilkPrice()));
-
-                        availableWorkers++;
-                        SetWorkerNumber();
-
-                        penaltyTime = new QTimer(this);
-                        connect(penaltyTime, &QTimer::timeout, [=]() mutable{
-
-                            time->setText(QString::number(Sheep->getPenaltyTime()));
-
-                            Sheep->decreasePenaltyTime();
-                            if (Sheep->getPenaltyTime() < 0)
-                            {
-                                penaltyTime->stop();
-                                //penaltyTime->deleteLater();
-
-                                Sheep->decreaseMilkPrice();
-                                coinAmount->setText(QString::number(Sheep->getMilkPrice()));
-                                Sheep->resetPenaltyTime();
-                                penaltyTime->start(1000);
-
-                            }
-                        } );
-                        penaltyTime->start(1000);
-
-
-                    }
-                });
-
-                breedTime->start(1000);
-                break;
-            }
-
-            else
-            {
-                QMessageBox::warning(this, "", "You don't have a worker available.");
-                return;
-            }
+            breedSheep(farm, product, coinLogo, coinAmount, totalCoins, time, breedTime, penaltyTime);
+            break;
+        case 2:
+            return;
         }
     }
 
-    else if (farm->styleSheet() == "background-color: rgb(0, 170, 0);" &&
-             time->styleSheet() == "background-color: rgb(255, 255, 252);"
-             && product->styleSheet() == "background-color: rgb(255, 255, 255);")
+   else if (checkFarmStatus(farm, product, time) == 5 )
     {
         //this farm has cow
 
@@ -819,110 +531,19 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
         switch (questionMsgResult)
         {
         case 0:
-
-            coins += Cow->getMeatPrice();
-            ShakeTotalCoinsLabel();
-            if(updateCoinAmount(username, coins))
-            {
-                totalCoins->setText(QString::number(coins));
-                farm->setIcon(QIcon(""));
-                time->setStyleSheet("background-color: rgb(255, 255, 255);");
-                availableWorkers++;
-                SetWorkerNumber();
-            }
+            killCow(farm, product, totalCoins, time);
             break;
 
         case 1:
-            if (availableWorkers != 0)
-            {
-                availableWorkers--;
-                SetWorkerNumber();
-
-                farm->setEnabled(false);
-
-                if (breedTime && breedTime->isActive())
-                {
-                    breedTime->stop();
-                    delete breedTime;
-
-                }
-
-                if (penaltyTime && penaltyTime->isActive())
-                {
-                    penaltyTime->stop();
-                    delete penaltyTime;
-
-                }
-
-                breedTime = new QTimer(this);
-                connect(breedTime, &QTimer::timeout, [=]() mutable
-                {
-                    time->setText(QString::number(Cow->getBreedingTime()));
-                    Cow->decreaseBreedingTime();
-
-                    if (Cow->getBreedingTime() < 0)
-                    {
-                        breedTime->stop();
-
-                        delete breedTime;
-                        breedTime = nullptr;
-
-                        farm->setEnabled(true);
-
-                        product->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\milk.png"));
-                        product->setStyleSheet("background-color: rgb(255, 255, 254);");
-
-                        time->clear();
-
-                        QPixmap coinsPix ("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\coin.png");
-
-                        coinLogo->setPixmap(coinsPix);
-                        coinAmount->setText(QString::number(Cow->getMilkPrice()));
-
-                        availableWorkers++;
-                        SetWorkerNumber();
-
-                        penaltyTime = new QTimer(this);
-                        connect(penaltyTime, &QTimer::timeout, [=]() mutable{
-
-                            time->setText(QString::number(Cow->getPenaltyTime()));
-
-                            Cow->decreasePenaltyTime();
-                            if (Cow->getPenaltyTime() < 0)
-                            {
-                                penaltyTime->stop();
-                               // penaltyTime->deleteLater();
-
-                                Cow->decreaseMilkPrice();
-                                coinAmount->setText(QString::number(Cow->getMilkPrice()));
-                                Cow->resetPenaltyTime();
-                                penaltyTime->start(1000);
-
-                            }
-                        } );
-                        penaltyTime->start(1000);
-
-                    }
-                });
-
-                breedTime->start(1000);
-                break;
-            }
-
-            else
-            {
-                QMessageBox::warning(this, "", "You don't have a worker available.");
-                return;
-            }
+             breedCow(farm, product, coinLogo, coinAmount, totalCoins, time, breedTime, penaltyTime);
+             break;
         case 2:
             return;
         }
     }
 
 
-    else if (farm->styleSheet() == "background-color: rgb(0, 170, 0);" &&
-             time->styleSheet() == "background-color: rgb(255, 255, 251);"
-             && product->styleSheet() == "background-color: rgb(255, 255, 255);")
+    else if  (checkFarmStatus(farm, product, time) == 6 )
     {
         //this farm has wheat
         QMessageBox questionMsg;
@@ -940,97 +561,16 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
         {
         case 0:
 
-            if (availableWorkers != 0)
-            {
-                availableWorkers--;
-                SetWorkerNumber();
-
-                farm->setEnabled(false);
-
-                if (breedTime && breedTime->isActive())
-                {
-                    breedTime->stop();
-                    delete breedTime;
-
-                }
-
-                if (penaltyTime && penaltyTime->isActive())
-                {
-                    penaltyTime->stop();
-                    delete penaltyTime;
-
-                }
-                breedTime = new QTimer(this);
-                connect(breedTime, &QTimer::timeout, [=]() mutable
-                {
-                    time->setText(QString::number(Wheat->getBreedingTime()));
-                    Wheat->decreaseBreedingTime();
-
-                    if (Wheat->getBreedingTime() < 0)
-                    {
-                        breedTime->stop();
-
-                        delete breedTime;
-                        breedTime = nullptr;
-
-                        farm->setEnabled(true);
-
-                        product->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
-                        product->setStyleSheet("background-color: rgb(255, 255, 254);");
-
-                        time->clear();
-
-                        QPixmap coinsPix ("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\coin.png");
-
-                        coinLogo->setPixmap(coinsPix);
-                        coinAmount->setText(QString::number(Wheat->getWheatPrice()));
-
-                        availableWorkers++;
-                        SetWorkerNumber();
-
-                        penaltyTime = new QTimer(this);
-                        connect(penaltyTime, &QTimer::timeout, [=]() mutable{
-
-                            time->setText(QString::number(Wheat->getPenaltyTime()));
-
-                            Wheat->decreasePenaltyTime();
-                            if (Wheat->getPenaltyTime() < 0)
-                            {
-                                penaltyTime->stop();
-                                penaltyTime->deleteLater();
-
-                                Wheat->decreaseWheatPrice();
-                                coinAmount->setText(QString::number(Wheat->getWheatPrice()));
-                                Wheat->resetPenaltyTime();
-                                penaltyTime->start(1000);
-
-                            }
-                        } );
-                        penaltyTime->start(1000);
-
-                    }
-                });
-
-                breedTime->start(1000);
-                break;
-            }
-
-            else
-            {
-                QMessageBox::warning(this, "", "You don't have a worker available.");
-                return;
-            }
-
-        case 2:
+            breedWheat(farm, product, coinLogo, coinAmount, totalCoins, time, breedTime, penaltyTime);
+            break;
+        case 1:
             return;
         }
 
     }
 
 
-    else if (farm->styleSheet() == "background-color: rgb(0, 170, 0);" &&
-             time->styleSheet() == "background-color: rgb(255, 255, 250);"
-             && product->styleSheet() == "background-color: rgb(255, 255, 255);")
+     else if (checkFarmStatus(farm, product, time) == 7 )
     {
         //this farm has barlay
         QMessageBox questionMsg;
@@ -1047,94 +587,21 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
         switch (questionMsgResult)
         {
         case 0:
-
-            if (availableWorkers != 0)
-            {
-                availableWorkers--;
-                SetWorkerNumber();
-
-                farm->setEnabled(false);
-                if (breedTime && breedTime->isActive())
-                {
-                    breedTime->stop();
-                    delete breedTime;
-
-                }
-
-                if (penaltyTime && penaltyTime->isActive())
-                {
-                    penaltyTime->stop();
-                    delete penaltyTime;
-
-                }
-                breedTime = new QTimer(this);
-                connect(breedTime, &QTimer::timeout, [=]() mutable
-                {
-                    time->setText(QString::number(Barlay->getBreedingTime()));
-                    Barlay->decreaseBreedingTime();
-
-                    if (Barlay->getBreedingTime() < 0)
-                    {
-                        breedTime->stop();
-
-                        delete breedTime;
-                        breedTime = nullptr;
-
-                        farm->setEnabled(true);
-
-                        product->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\barlay.png"));
-                        product->setStyleSheet("background-color: rgb(255, 255, 254);");
-
-                        time->clear();
-
-                        QPixmap coinsPix ("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\coin.png");
-
-                        coinLogo->setPixmap(coinsPix);
-                        coinAmount->setText(QString::number(Barlay->getBarlayPrice()));
-
-                        availableWorkers++;
-                        SetWorkerNumber();
-
-                        penaltyTime = new QTimer(this);
-                        connect(penaltyTime, &QTimer::timeout, [=]() mutable{
-
-                            time->setText(QString::number(Barlay->getPenaltyTime()));
-
-                            Barlay->decreasePenaltyTime();
-                            if (Barlay->getPenaltyTime() < 0)
-                            {
-                                penaltyTime->stop();
-                          //      penaltyTime->deleteLater();
-
-                                Barlay->decreaseBarlayPrice();
-                                coinAmount->setText(QString::number(Barlay->getBarlayPrice()));
-                                Barlay->resetPenaltyTime();
-                                penaltyTime->start(1000);
-
-                            }
-                        } );
-                        penaltyTime->start(1000);
-
-                    }
-                });
-
-                breedTime->start(1000);
-                break;
-            }
-            else
-            {
-                QMessageBox::warning(this, "", "You don't have a worker available.");
-                return;
-            }
+            breedBralay(farm, product, coinLogo, coinAmount, totalCoins, time, breedTime, penaltyTime);
+            break;
         case 1:
             return;
 
         }
 
     }
+    else
+    {
+        QMessageBox::warning(this, "Error!", "Something went wrong!");
+    }
    }
 
-void GamePage::manageProducts(QPushButton *product, QLabel *coinLogo, QLabel *coinAmount, QLabel *totalCoins, QLabel *time, QTimer* penaltyTime)
+void GamePage::manageProducts(QPushButton* product, QLabel* coinLogo, QLabel* coinAmount, QLabel* totalCoins, QLabel* time, QTimer* penaltyTime)
 {
     if (product->styleSheet() == "background-color: rgb(255, 255, 254);")
         {
@@ -1144,6 +611,8 @@ void GamePage::manageProducts(QPushButton *product, QLabel *coinLogo, QLabel *co
               ShakeTotalCoinsLabel();
               coins += coinAmount->text().toInt();
               penaltyTime->stop();
+              penaltyTime->deleteLater();
+
               delete penaltyTime;
               penaltyTime = nullptr;
 
@@ -1181,3 +650,684 @@ void GamePage::ShakeTotalCoinsLabel()
 
     PositiveSound->play();
 }
+
+int GamePage::checkFarmStatus(QPushButton* farm, QPushButton* product, QLabel* time)
+{
+    if(farm->styleSheet() == "background-color: rgb(157, 157, 157);")
+    {
+        //this farm hasn't been purchased.
+        return 1;
+    }
+    else if (farm->styleSheet() == "background-color: rgb(0, 170, 0);" &&
+            time->styleSheet() == "background-color: rgb(255, 255, 255);"
+            && product->styleSheet() == "background-color: rgb(255, 255, 255);")
+    {
+        //this farm has nothing.
+        return 2;
+    }
+    else if(farm->styleSheet() == "background-color: rgb(0, 170, 0);" &&
+            time->styleSheet() == "background-color: rgb(255, 255, 254);"
+            && product->styleSheet() == "background-color: rgb(255, 255, 255);")
+    {
+        //this farm has hen.
+        return 3;
+    }
+    else if(farm->styleSheet() == "background-color: rgb(0, 170, 0);" &&
+            time->styleSheet() == "background-color: rgb(255, 255, 253);"
+            && product->styleSheet() == "background-color: rgb(255, 255, 255);")
+    {
+        //this farm has sheep.
+        return 4;
+    }
+    else if(farm->styleSheet() == "background-color: rgb(0, 170, 0);" &&
+            time->styleSheet() == "background-color: rgb(255, 255, 252);"
+            && product->styleSheet() == "background-color: rgb(255, 255, 255);")
+    {
+        //this farm has cow.
+        return 5;
+    }
+    else if(farm->styleSheet() == "background-color: rgb(0, 170, 0);" &&
+            time->styleSheet() == "background-color: rgb(255, 255, 251);"
+            && product->styleSheet() == "background-color: rgb(255, 255, 255);")
+    {
+        //this farm has wheat.
+        return 6;
+    }
+    else if(farm->styleSheet() == "background-color: rgb(0, 170, 0);" &&
+            time->styleSheet() == "background-color: rgb(255, 255, 250);"
+            && product->styleSheet() == "background-color: rgb(255, 255, 255);")
+    {
+        //this farm has baraly.
+        return 7;
+    }
+
+    return 0;
+}
+
+int GamePage::showStoreMessage()
+{
+    QMessageBox StoreMsgBox;
+    StoreMsgBox.setWindowTitle("You have nothing in this Farm.");
+    StoreMsgBox.setText("Choose one of the following:");
+
+    StoreMsgBox.addButton("Hen = 3 coins", QMessageBox::AcceptRole);
+    StoreMsgBox.addButton("Sheep = 5 coins", QMessageBox::AcceptRole);
+    StoreMsgBox.addButton("Cow = 7 coins", QMessageBox::AcceptRole);
+    StoreMsgBox.addButton("Wheat = 2 coins", QMessageBox::AcceptRole);
+    StoreMsgBox.addButton("Barlay = 2 coins", QMessageBox::AcceptRole);
+    StoreMsgBox.addButton("Back", QMessageBox::AcceptRole);
+
+    int result = StoreMsgBox.exec();
+
+    return result;
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+void GamePage::buyHen(QPushButton *farm, QLabel *time, QLabel *totalCoins)
+{
+    hen* Hen = new hen;
+
+    coins = totalCoins->text().toInt();
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(nullptr, "Hen",
+                                  "Are you really sure you want to purchase this?", QMessageBox::Yes | QMessageBox::No);
+    if (reply == QMessageBox::Yes)
+    {
+        if(coins < Hen->getBuyPrice())
+        {
+            QMessageBox::warning(this, "Sorry!", "You dont have enough coin!");
+            return;
+        }
+
+        coins -= Hen->getBuyPrice();
+        ShakeTotalCoinsLabel();
+        if(updateCoinAmount(username, coins))
+        {
+            totalCoins->setText(QString::number(coins));
+            time->setStyleSheet("background-color: rgb(255, 255, 254);");
+            //rgb(255, 255, 254) means that this farm has hen.
+            farm->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\hen.png"));
+        }
+    }
+    delete Hen;
+}
+
+void GamePage::buySheep(QPushButton *farm, QLabel *time, QLabel *totalCoins)
+{
+    sheep* Sheep = new sheep;
+
+    coins = totalCoins->text().toInt();
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(nullptr, "Sheep",
+                                  "Are you really sure you want to purchase this?", QMessageBox::Yes | QMessageBox::No);
+    if (reply == QMessageBox::Yes)
+    {
+        if(coins < Sheep->getBuyPrice())
+        {
+            QMessageBox::warning(this, "Sorry!", "You do not have enough coin!");
+            return;
+        }
+
+        coins -= Sheep->getBuyPrice();
+        ShakeTotalCoinsLabel();
+        if(updateCoinAmount(username, coins))
+        {
+            totalCoins->setText(QString::number(coins));
+            time->setStyleSheet("background-color: rgb(255, 255, 253);");
+            //rgb(255, 255, 253) means that this farm has sheep
+            farm->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\sheep.png"));
+        }
+    }
+    delete Sheep;
+}
+
+void GamePage::buyCow(QPushButton *farm, QLabel *time, QLabel *totalCoins)
+{
+    cow* Cow = new cow;
+
+    coins = totalCoins->text().toInt();
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(nullptr, "Cow",
+                                  "Are you really sure you want to purchase this?", QMessageBox::Yes | QMessageBox::No);
+    if (reply == QMessageBox::Yes)
+    {
+        if(coins < Cow->getBuyPrice())
+        {
+            QMessageBox::warning(this, "Sorry!", "You do not have enough coin!");
+            return;
+        }
+        coins -= Cow->getBuyPrice();
+        ShakeTotalCoinsLabel();
+        if(updateCoinAmount(username, coins))
+        {
+            totalCoins->setText(QString::number(coins));
+            time->setStyleSheet("background-color: rgb(255, 255, 252);");
+            //rgb(255, 255, 252) means that this farm has cow.
+            farm->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\cow.png"));
+        }
+    }
+    delete Cow;
+}
+
+void GamePage::buyWheat(QPushButton *farm, QLabel *time, QLabel *totalCoins)
+{
+    wheat* Wheat = new wheat;
+
+    coins = totalCoins->text().toInt();
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(nullptr, "Wheat",
+                                  "Are you really sure you want to purchase this?", QMessageBox::Yes | QMessageBox::No);
+    if (reply == QMessageBox::Yes)
+    {
+        if(coins < Wheat->getBuyPrice())
+        {
+            QMessageBox::warning(this, "Sorry!", "You do not have enough coin!");
+            return;
+        }
+        coins -= Wheat->getBuyPrice();
+        ShakeTotalCoinsLabel();
+        if(updateCoinAmount(username, coins))
+        {
+            totalCoins->setText(QString::number(coins));
+            time->setStyleSheet("background-color: rgb(255, 255, 251);");
+            //rgb(255, 255, 251) means that this farm has wheat.
+            farm->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
+        }
+    }
+    delete Wheat;
+}
+
+void GamePage::buyBarlay(QPushButton *farm, QLabel *time, QLabel *totalCoins)
+{
+    barlay* Barlay = new barlay;
+
+    coins = totalCoins->text().toInt();
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(nullptr, "Barley",
+                                  "Are you really sure you want to purchase this?", QMessageBox::Yes | QMessageBox::No);
+    if (reply == QMessageBox::Yes)
+    {
+        if(coins < Barlay->getBuyPrice())
+        {
+            QMessageBox::warning(this, "Sorry!", "You do not have enough coin!");
+            return;
+        }
+        coins -= Barlay->getBuyPrice();
+        ShakeTotalCoinsLabel();
+        if(updateCoinAmount(username, coins))
+        {
+            totalCoins->setText(QString::number(coins));
+            time->setStyleSheet("background-color: rgb(255, 255, 250);");
+            farm->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\barlay.png"));
+        }
+    }
+    delete Barlay;
+}
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+void GamePage::breedHen(QPushButton *farm, QPushButton *product, QLabel *coinLogo, QLabel *coinAmount,
+                        QLabel *totalCoins, QLabel *time, QTimer *breedTime, QTimer *penaltyTime)
+{
+    hen* Hen = new hen;
+
+    if(availableWorkers != 0)
+    {
+        availableWorkers--;
+        SetWorkerNumber();
+
+        farm->setEnabled(false);
+
+        if (breedTime && breedTime->isActive())
+        {
+            breedTime->stop();
+            delete breedTime;
+
+        }
+
+        if (penaltyTime && penaltyTime->isActive())
+        {
+            penaltyTime->stop();
+            delete penaltyTime;
+
+        }
+
+        breedTime = new QTimer(this);
+        connect(breedTime, &QTimer::timeout, [=]() mutable
+        {
+            time->setText(QString::number(Hen->getBreedingTime()));
+            Hen->decreaseBreedingTime();
+
+            if (Hen->getBreedingTime() < 0)
+            {
+                breedTime->stop();
+                delete breedTime;
+                breedTime = nullptr;
+                farm->setEnabled(true);
+                product->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\egg.png"));
+                product->setStyleSheet("background-color: rgb(255, 255, 254);");
+                time->clear();
+                QPixmap coinsPix ("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\coin.png");
+                coinLogo->setPixmap(coinsPix);
+                coinAmount->setText(QString::number(Hen->getEggPrice()));
+
+                availableWorkers++;
+                SetWorkerNumber();
+
+                penaltyTime = new QTimer(this);
+                connect(penaltyTime, &QTimer::timeout, [=]() mutable
+                {
+
+                    time->setText(QString::number(Hen->getPenaltyTime()));
+
+                    Hen->decreasePenaltyTime();
+                    if (Hen->getPenaltyTime() < 0)
+                    {
+                        penaltyTime->stop();
+
+                        Hen->decreaseEggPrice();
+                        coinAmount->setText(QString::number(Hen->getEggPrice()));
+                        Hen->resetPenaltyTime();
+                        penaltyTime->start(1000);
+                        if (Hen->getEggPrice() == 0)
+                        {
+                            penaltyTime->stop();
+                        }
+                    }
+                });
+
+                penaltyTime->start(1000);
+            }
+        });
+
+        breedTime->start(1000);
+    }
+    else
+    {
+        QMessageBox::warning(this, "", "You don't have a worker available.");
+        return;
+    }
+}
+
+void GamePage::breedSheep(QPushButton *farm, QPushButton *product, QLabel *coinLogo, QLabel *coinAmount, QLabel *totalCoins, QLabel *time, QTimer *breedTime, QTimer *penaltyTime)
+{
+    sheep* Sheep = new sheep;
+    if(availableWorkers != 0)
+    {
+        availableWorkers--;
+        SetWorkerNumber();
+
+        farm->setEnabled(false);
+
+        if (breedTime && breedTime->isActive())
+        {
+            breedTime->stop();
+            delete breedTime;
+
+        }
+
+        if (penaltyTime && penaltyTime->isActive())
+        {
+            penaltyTime->stop();
+            delete penaltyTime;
+
+        }
+        breedTime = new QTimer(this);
+        connect(breedTime, &QTimer::timeout, [=]() mutable
+        {
+            time->setText(QString::number(Sheep->getBreedingTime()));
+            Sheep->decreaseBreedingTime();
+
+            if (Sheep->getBreedingTime() < 0)
+            {
+                breedTime->stop();
+
+                delete breedTime;
+                breedTime = nullptr;
+
+                farm->setEnabled(true);
+
+                product->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\milk.png"));
+                product->setStyleSheet("background-color: rgb(255, 255, 254);");
+
+                time->clear();
+
+                QPixmap coinsPix ("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\coin.png");
+
+                coinLogo->setPixmap(coinsPix);
+                coinAmount->setText(QString::number(Sheep->getMilkPrice()));
+
+                availableWorkers++;
+                SetWorkerNumber();
+
+                penaltyTime = new QTimer(this);
+                connect(penaltyTime, &QTimer::timeout, [=]() mutable{
+
+                    time->setText(QString::number(Sheep->getPenaltyTime()));
+
+                    Sheep->decreasePenaltyTime();
+                    if (Sheep->getPenaltyTime() < 0)
+                    {
+                        penaltyTime->stop();
+
+                        Sheep->decreaseMilkPrice();
+                        coinAmount->setText(QString::number(Sheep->getMilkPrice()));
+                        Sheep->resetPenaltyTime();
+                        penaltyTime->start(1000);
+
+                    }
+                } );
+                penaltyTime->start(1000);
+            }
+        });
+
+        breedTime->start(1000);
+
+    }
+
+    else
+    {
+        QMessageBox::warning(this, "", "You don't have a worker available.");
+        return;
+    }
+}
+
+void GamePage::breedCow(QPushButton *farm, QPushButton *product, QLabel *coinLogo, QLabel *coinAmount, QLabel *totalCoins, QLabel *time, QTimer *breedTime, QTimer *penaltyTime)
+{
+    cow* Cow = new cow;
+    if (availableWorkers != 0)
+    {
+        availableWorkers--;
+        SetWorkerNumber();
+
+        farm->setEnabled(false);
+
+        if (breedTime && breedTime->isActive())
+        {
+            breedTime->stop();
+            delete breedTime;
+
+        }
+
+        if (penaltyTime && penaltyTime->isActive())
+        {
+            penaltyTime->stop();
+            delete penaltyTime;
+
+        }
+
+        breedTime = new QTimer(this);
+        connect(breedTime, &QTimer::timeout, [=]() mutable
+        {
+            time->setText(QString::number(Cow->getBreedingTime()));
+            Cow->decreaseBreedingTime();
+
+            if (Cow->getBreedingTime() < 0)
+            {
+                breedTime->stop();
+
+                delete breedTime;
+                breedTime = nullptr;
+
+                farm->setEnabled(true);
+
+                product->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\milk.png"));
+                product->setStyleSheet("background-color: rgb(255, 255, 254);");
+
+                time->clear();
+
+                QPixmap coinsPix ("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\coin.png");
+
+                coinLogo->setPixmap(coinsPix);
+                coinAmount->setText(QString::number(Cow->getMilkPrice()));
+
+                availableWorkers++;
+                SetWorkerNumber();
+
+                penaltyTime = new QTimer(this);
+                connect(penaltyTime, &QTimer::timeout, [=]() mutable{
+
+                    time->setText(QString::number(Cow->getPenaltyTime()));
+
+                    Cow->decreasePenaltyTime();
+                    if (Cow->getPenaltyTime() < 0)
+                    {
+                        penaltyTime->stop();
+
+                        Cow->decreaseMilkPrice();
+                        coinAmount->setText(QString::number(Cow->getMilkPrice()));
+                        Cow->resetPenaltyTime();
+                        penaltyTime->start(1000);
+
+                    }
+                } );
+                penaltyTime->start(1000);
+
+            }
+        });
+
+        breedTime->start(1000);
+    }
+
+    else
+    {
+        QMessageBox::warning(this, "", "You don't have a worker available.");
+        return;
+    }
+}
+
+void GamePage::breedWheat(QPushButton *farm, QPushButton *product, QLabel *coinLogo, QLabel *coinAmount, QLabel *totalCoins, QLabel *time, QTimer *breedTime, QTimer *penaltyTime)
+{
+    wheat* Wheat = new wheat;
+    if (availableWorkers != 0)
+    {
+        availableWorkers--;
+        SetWorkerNumber();
+
+        farm->setEnabled(false);
+
+        if (breedTime && breedTime->isActive())
+        {
+            breedTime->stop();
+            delete breedTime;
+
+        }
+
+        if (penaltyTime && penaltyTime->isActive())
+        {
+            penaltyTime->stop();
+            delete penaltyTime;
+
+        }
+        breedTime = new QTimer(this);
+        connect(breedTime, &QTimer::timeout, [=]() mutable
+        {
+            time->setText(QString::number(Wheat->getBreedingTime()));
+            Wheat->decreaseBreedingTime();
+
+            if (Wheat->getBreedingTime() < 0)
+            {
+                breedTime->stop();
+
+                delete breedTime;
+                breedTime = nullptr;
+
+                farm->setEnabled(true);
+
+                product->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
+                product->setStyleSheet("background-color: rgb(255, 255, 254);");
+
+                time->clear();
+
+                QPixmap coinsPix ("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\coin.png");
+
+                coinLogo->setPixmap(coinsPix);
+                coinAmount->setText(QString::number(Wheat->getWheatPrice()));
+
+                availableWorkers++;
+                SetWorkerNumber();
+
+                penaltyTime = new QTimer(this);
+                connect(penaltyTime, &QTimer::timeout, [=]() mutable{
+
+                    time->setText(QString::number(Wheat->getPenaltyTime()));
+
+                    Wheat->decreasePenaltyTime();
+                    if (Wheat->getPenaltyTime() < 0)
+                    {
+                        penaltyTime->stop();
+
+                        Wheat->decreaseWheatPrice();
+                        coinAmount->setText(QString::number(Wheat->getWheatPrice()));
+                        Wheat->resetPenaltyTime();
+                        penaltyTime->start(1000);
+
+                    }
+                } );
+                penaltyTime->start(1000);
+
+            }
+        });
+
+        breedTime->start(1000);
+    }
+
+    else
+    {
+        QMessageBox::warning(this, "", "You don't have a worker available.");
+        return;
+    }
+}
+
+void GamePage::breedBralay(QPushButton *farm, QPushButton *product, QLabel *coinLogo, QLabel *coinAmount, QLabel *totalCoins, QLabel *time, QTimer *breedTime, QTimer *penaltyTime)
+{
+    barlay* Barlay = new barlay;
+
+    if (availableWorkers != 0)
+    {
+        availableWorkers--;
+        SetWorkerNumber();
+
+        farm->setEnabled(false);
+        if (breedTime && breedTime->isActive())
+        {
+            breedTime->stop();
+            delete breedTime;
+
+        }
+
+        if (penaltyTime && penaltyTime->isActive())
+        {
+            penaltyTime->stop();
+            delete penaltyTime;
+
+        }
+        breedTime = new QTimer(this);
+        connect(breedTime, &QTimer::timeout, [=]() mutable
+        {
+            time->setText(QString::number(Barlay->getBreedingTime()));
+            Barlay->decreaseBreedingTime();
+
+            if (Barlay->getBreedingTime() < 0)
+            {
+                breedTime->stop();
+
+                delete breedTime;
+                breedTime = nullptr;
+
+                farm->setEnabled(true);
+
+                product->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\barlay.png"));
+                product->setStyleSheet("background-color: rgb(255, 255, 254);");
+
+                time->clear();
+
+                QPixmap coinsPix ("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\coin.png");
+
+                coinLogo->setPixmap(coinsPix);
+                coinAmount->setText(QString::number(Barlay->getBarlayPrice()));
+
+                availableWorkers++;
+                SetWorkerNumber();
+
+                penaltyTime = new QTimer(this);
+                connect(penaltyTime, &QTimer::timeout, [=]() mutable{
+
+                    time->setText(QString::number(Barlay->getPenaltyTime()));
+
+                    Barlay->decreasePenaltyTime();
+                    if (Barlay->getPenaltyTime() < 0)
+                    {
+                        penaltyTime->stop();
+
+                        Barlay->decreaseBarlayPrice();
+                        coinAmount->setText(QString::number(Barlay->getBarlayPrice()));
+                        Barlay->resetPenaltyTime();
+                        penaltyTime->start(1000);
+
+                    }
+                } );
+                penaltyTime->start(1000);
+
+            }
+        });
+
+        breedTime->start(1000);
+
+    }
+    else
+    {
+        QMessageBox::warning(this, "", "You don't have a worker available.");
+        return;
+    }
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+void GamePage::killHen(QPushButton *farm, QPushButton *product, QLabel *totalCoins, QLabel *time)
+{
+    hen* Hen = new hen;
+
+    coins += Hen->getMeatPrice();
+    ShakeTotalCoinsLabel();
+    if(updateCoinAmount(username, coins))
+    {
+        totalCoins->setText(QString::number(coins));
+        farm->setIcon(QIcon(""));
+        product->setIcon(QIcon(""));
+        time->setStyleSheet("background-color: rgb(255, 255, 255);");
+        availableWorkers++;
+        SetWorkerNumber();
+    }
+    delete Hen;
+}
+
+void GamePage::killSheep(QPushButton *farm, QPushButton *product, QLabel *totalCoins, QLabel *time)
+{
+    sheep* Sheep = new sheep;
+    coins += Sheep->getMeatPrice();
+    ShakeTotalCoinsLabel();
+    if(updateCoinAmount(username, coins))
+    {
+        totalCoins->setText(QString::number(coins));
+        farm->setIcon(QIcon(""));
+        product->setIcon(QIcon(""));
+        time->setStyleSheet("background-color: rgb(255, 255, 255);");
+        availableWorkers++;
+        SetWorkerNumber();
+    }
+    delete Sheep;
+}
+
+void GamePage::killCow(QPushButton *farm, QPushButton *product, QLabel *totalCoins, QLabel *time)
+{
+    cow* Cow = new cow;
+    coins += Cow->getMeatPrice();
+    ShakeTotalCoinsLabel();
+    if(updateCoinAmount(username, coins))
+    {
+        totalCoins->setText(QString::number(coins));
+        farm->setIcon(QIcon(""));
+        product->setIcon(QIcon(""));
+        time->setStyleSheet("background-color: rgb(255, 255, 255);");
+        availableWorkers++;
+        SetWorkerNumber();
+    }
+    delete Cow;
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
