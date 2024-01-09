@@ -36,13 +36,18 @@ public:
 
     void SetWorkerNumber();
 
+    void makeTimersNull();
+    void makePenaltyTimerBooliansFalse();
+
     bool updateCoinAmount(const QString user, int coinAm);
 
     QTimer *GameTimer = new QTimer(this);
 
-    void managingFarm(QPushButton* farm, QPushButton* product, QLabel* coinLogo, QLabel* coinAmount, QLabel* totalCoins, QLabel* time, QTimer* breedTime, QTimer* penaltyTime);
+    void managingFarm(QPushButton* farm, QPushButton* product, QLabel* coinLogo, QLabel* coinAmount, QLabel* totalCoins, QLabel* time,
+                      QTimer* breedTime, QTimer* penaltyTime,
+                      bool* isPenalTimerActive);
 
-    void manageProducts(QPushButton* product, QLabel* coinLogo, QLabel* coinAmount, QLabel* totalCoins, QLabel* time, QTimer* penaltyTime);
+    void manageProducts(QPushButton* product, QLabel* coinLogo, QLabel* coinAmount, QLabel* totalCoins, QLabel* time, QTimer *penaltyTime);
 
     void ShakeTotalCoinsLabel();
 
@@ -57,11 +62,23 @@ public:
     void buyWheat(QPushButton* farm, QLabel* time, QLabel* totalCoins);
     void buyBarlay(QPushButton* farm, QLabel* time, QLabel* totalCoins);
 
-    void breedHen(QPushButton* farm, QPushButton* product, QLabel* coinLogo, QLabel* coinAmount, QLabel* totalCoins, QLabel* time, QTimer* breedTime, QTimer* penaltyTime);
-    void breedSheep(QPushButton* farm, QPushButton* product, QLabel* coinLogo, QLabel* coinAmount, QLabel* totalCoins, QLabel* time, QTimer* breedTime, QTimer* penaltyTime);
-    void breedCow(QPushButton* farm, QPushButton* product, QLabel* coinLogo, QLabel* coinAmount, QLabel* totalCoins, QLabel* time, QTimer* breedTime, QTimer* penaltyTime);
-    void breedWheat(QPushButton* farm, QPushButton* product, QLabel* coinLogo, QLabel* coinAmount, QLabel* totalCoins, QLabel* time, QTimer* breedTime, QTimer* penaltyTime);
-    void breedBralay(QPushButton* farm, QPushButton* product, QLabel* coinLogo, QLabel* coinAmount, QLabel* totalCoins, QLabel* time, QTimer* breedTime, QTimer* penaltyTime);
+    void breedHen(QPushButton* farm, QPushButton* product,
+                  QLabel* coinLogo, QLabel* coinAmount, QLabel* time,
+                  QTimer* breedTime, QTimer* penaltyTime,
+                  bool* isPenalTimerActive);
+
+    void breedSheep(QPushButton* farm, QPushButton* product,
+                    QLabel* coinLogo, QLabel* coinAmount, QLabel* time,
+                    QTimer* breedTime, QTimer* penaltyTime, bool* isPenalTimerActive);
+    void breedCow(QPushButton* farm, QPushButton* product,
+                  QLabel* coinLogo, QLabel* coinAmount, QLabel* time,
+                  QTimer* breedTime, QTimer* penaltyTime, bool* isPenalTimerActive);
+    void breedWheat(QPushButton* farm, QPushButton* product,
+                    QLabel* coinLogo, QLabel* coinAmount, QLabel* time,
+                    QTimer* breedTime, QTimer* penaltyTime, bool* isPenalTimerActive);
+    void breedBralay(QPushButton* farm, QPushButton* product,
+                     QLabel* coinLogo, QLabel* coinAmount, QLabel* time,
+                     QTimer* breedTime, QTimer* penaltyTime, bool* isPenalTimerActive);
 
     void killHen (QPushButton* farm, QPushButton* product, QLabel* totalCoins, QLabel* time);
     void killSheep (QPushButton* farm, QPushButton* product, QLabel* totalCoins, QLabel* time);
@@ -133,29 +150,40 @@ private:
 
     QMediaPlayer *PositiveSound = new QMediaPlayer;
 
-    QTimer* breedingTimer1 = nullptr;
-    QTimer* penaltyTimer1 = nullptr;
+    QTimer* breedingTimer1 ;
+    QTimer* penaltyTimer1 ;
 
-    QTimer* breedingTimer2 = nullptr;
-    QTimer* penaltyTimer2 = nullptr;
+    QTimer* breedingTimer2 ;
+    QTimer* penaltyTimer2 ;
 
-    QTimer* breedingTimer3 = nullptr;
-    QTimer* penaltyTimer3 = nullptr;
+    QTimer* breedingTimer3 ;
+    QTimer* penaltyTimer3 ;
 
-    QTimer* breedingTimer4 = nullptr;
-    QTimer* penaltyTimer4 = nullptr;
+    QTimer* breedingTimer4 ;
+    QTimer* penaltyTimer4 ;
 
-    QTimer* breedingTimer5 = nullptr;
-    QTimer* penaltyTimer5 = nullptr;
+    QTimer* breedingTimer5 ;
+    QTimer* penaltyTimer5 ;
 
-    QTimer* breedingTimer6 = nullptr;
-    QTimer* penaltyTimer6 = nullptr;
+    QTimer* breedingTimer6 ;
+    QTimer* penaltyTimer6 ;
 
-    QTimer* breedingTimer7 = nullptr;
-    QTimer* penaltyTimer7 = nullptr;
+    QTimer* breedingTimer7 ;
+    QTimer* penaltyTimer7 ;
 
-    QTimer* breedingTimer8 = nullptr;
-    QTimer* penaltyTimer8 = nullptr;
+    QTimer* breedingTimer8 ;
+    QTimer* penaltyTimer8 ;
+
+    bool isPenaltyTimerActive1;
+    bool isPenaltyTimerActive2;
+    bool isPenaltyTimerActive3;
+    bool isPenaltyTimerActive4;
+    bool isPenaltyTimerActive5;
+    bool isPenaltyTimerActive6;
+    bool isPenaltyTimerActive7;
+    bool isPenaltyTimerActive8;
+
+    bool isUserActive;
 
 };
 

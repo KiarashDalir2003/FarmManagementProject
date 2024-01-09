@@ -43,6 +43,11 @@ GamePage::GamePage(QWidget *parent) :
 
     ResetUi();
     startProcessing();
+
+    makeTimersNull();
+
+    makePenaltyTimerBooliansFalse();
+
 }
 
 
@@ -77,6 +82,15 @@ void GamePage::ResetUi()
     ui->Farm7btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
     ui->Farm8btn->setStyleSheet("background-color: rgb(157, 157, 157);");
     ui->Farm8btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
+
+    ui->Farm1btn->setEnabled(true);
+    ui->Farm2btn->setEnabled(true);
+    ui->Farm3btn->setEnabled(true);
+    ui->Farm4btn->setEnabled(true);
+    ui->Farm5btn->setEnabled(true);
+    ui->Farm6btn->setEnabled(true);
+    ui->Farm7btn->setEnabled(true);
+    ui->Farm8btn->setEnabled(true);
 
     ui->coinAmountLabel_1->clear();
     ui->coinAmountLabel_2->clear();
@@ -124,6 +138,7 @@ void GamePage::ResetUi()
     ui->productBTN_8->setStyleSheet("background-color: rgb(255, 255, 255);");
 
     SetWorkerNumber();
+
 }
 
 
@@ -142,6 +157,45 @@ void GamePage::SetWorkerNumber()
     ui->workerLabel->setText(labelTextWorkers);
 }
 
+void GamePage::makeTimersNull()
+{
+    breedingTimer1 = nullptr;
+    penaltyTimer1 = nullptr;
+
+    breedingTimer2 = nullptr;
+    penaltyTimer2 = nullptr;
+
+    breedingTimer3 = nullptr;
+    penaltyTimer3 = nullptr;
+
+    breedingTimer4 = nullptr;
+    penaltyTimer4 = nullptr;
+
+    breedingTimer5 = nullptr;
+    penaltyTimer5 = nullptr;
+
+    breedingTimer6 = nullptr;
+    penaltyTimer6 = nullptr;
+
+    breedingTimer7 = nullptr;
+    penaltyTimer7 = nullptr;
+
+    breedingTimer8 = nullptr;
+    penaltyTimer8 = nullptr;
+}
+
+void GamePage::makePenaltyTimerBooliansFalse()
+{
+    isPenaltyTimerActive1 = false;
+    isPenaltyTimerActive2 = false;
+    isPenaltyTimerActive3 = false;
+    isPenaltyTimerActive4 = false;
+    isPenaltyTimerActive5 = false;
+    isPenaltyTimerActive6 = false;
+    isPenaltyTimerActive7 = false;
+    isPenaltyTimerActive8 = false;
+}
+
 
 void GamePage::processNextRecord()
 {
@@ -155,6 +209,7 @@ void GamePage::processNextRecord()
 
         remainingSeconds = 180;
         QTimer::singleShot(1000, this, &GamePage::updateTime);
+        isUserActive = true;
     }
 
     else
@@ -180,6 +235,7 @@ void GamePage::updateTime()
     {
         QMessageBox::information(this, "Next turn", "Your time is over!");
         Resetdata();
+        isUserActive = false;
         processNextRecord();
     }
 }
@@ -226,103 +282,112 @@ if not , there is nothing product.
 void GamePage::on_Farm1btn_clicked()
 {
 
-    managingFarm(ui->Farm1btn, ui->productBTN_1, ui->coinLabel_1, ui->coinAmountLabel_1, ui->coinsLabel, ui->timeLabel_1, breedingTimer1, penaltyTimer1);
+    managingFarm(ui->Farm1btn, ui->productBTN_1, ui->coinLabel_1, ui->coinAmountLabel_1, ui->coinsLabel, ui->timeLabel_1, breedingTimer1,  penaltyTimer1, &isPenaltyTimerActive1);
+
 }
 
 
 void GamePage::on_productBTN_1_clicked()
 {
 
-    manageProducts(ui->productBTN_1, ui->coinLabel_1, ui->coinAmountLabel_1, ui->coinsLabel, ui->timeLabel_1, penaltyTimer1);
+   // manageProducts(ui->productBTN_1, ui->coinLabel_1, ui->coinAmountLabel_1, ui->coinsLabel, ui->timeLabel_1, penaltyTimer1);
+    isPenaltyTimerActive1 = false;
 }
 
 //---------------------------------------------------------------------------------------------------------------------
 
 void GamePage::on_Farm2btn_clicked()
 {
-    managingFarm(ui->Farm2btn, ui->productBTN_2, ui->coinLabel_2, ui->coinAmountLabel_2, ui->coinsLabel, ui->timeLabel_2, breedingTimer2, penaltyTimer2);
+    managingFarm(ui->Farm2btn, ui->productBTN_2, ui->coinLabel_2, ui->coinAmountLabel_2, ui->coinsLabel, ui->timeLabel_2, breedingTimer2, penaltyTimer2, &isPenaltyTimerActive2);
 }
 
 
 void GamePage::on_productBTN_2_clicked()
 {
-    manageProducts(ui->productBTN_2, ui->coinLabel_2, ui->coinAmountLabel_2, ui->coinsLabel, ui->timeLabel_2, penaltyTimer2);
+   // manageProducts(ui->productBTN_2, ui->coinLabel_2, ui->coinAmountLabel_2, ui->coinsLabel, ui->timeLabel_2, penaltyTimer2);
+    isPenaltyTimerActive2 = false;
 }
 
 //---------------------------------------------------------------------------------------------------------------------
 
 void GamePage::on_Farm3btn_clicked()
 {
-    managingFarm(ui->Farm3btn, ui->productBTN_3, ui->coinLabel_3, ui->coinAmountLabel_3, ui->coinsLabel, ui->timeLabel_3, breedingTimer3, penaltyTimer3);
+    managingFarm(ui->Farm3btn, ui->productBTN_3, ui->coinLabel_3, ui->coinAmountLabel_3, ui->coinsLabel, ui->timeLabel_3, breedingTimer3, penaltyTimer3, &isPenaltyTimerActive3);
 }
 
 
 void GamePage::on_productBTN_3_clicked()
 {
-    manageProducts(ui->productBTN_3, ui->coinLabel_3, ui->coinAmountLabel_3, ui->coinsLabel, ui->timeLabel_3, penaltyTimer3);
+  //  manageProducts(ui->productBTN_3, ui->coinLabel_3, ui->coinAmountLabel_3, ui->coinsLabel, ui->timeLabel_3, penaltyTimer3);
+    isPenaltyTimerActive3 = false;
 }
 
 //---------------------------------------------------------------------------------------------------------------------
 
 void GamePage::on_Farm4btn_clicked()
 {
-    managingFarm(ui->Farm4btn, ui->productBTN_4, ui->coinLabel_4, ui->coinAmountLabel_4, ui->coinsLabel, ui->timeLabel_4, breedingTimer4, penaltyTimer4);
+    managingFarm(ui->Farm4btn, ui->productBTN_4, ui->coinLabel_4, ui->coinAmountLabel_4, ui->coinsLabel, ui->timeLabel_4, breedingTimer4, penaltyTimer4, &isPenaltyTimerActive4);
 }
 
 
 void GamePage::on_productBTN_4_clicked()
 {
-    manageProducts(ui->productBTN_4, ui->coinLabel_4, ui->coinAmountLabel_4, ui->coinsLabel, ui->timeLabel_4, penaltyTimer4);
+   // manageProducts(ui->productBTN_4, ui->coinLabel_4, ui->coinAmountLabel_4, ui->coinsLabel, ui->timeLabel_4, penaltyTimer4);
+    isPenaltyTimerActive4 = false;
 }
 
 //---------------------------------------------------------------------------------------------------------------------
 
 void GamePage::on_Farm5btn_clicked()
 {
-    managingFarm(ui->Farm5btn, ui->productBTN_5, ui->coinLabel_5, ui->coinAmountLabel_5, ui->coinsLabel, ui->timeLabel_5, breedingTimer5, penaltyTimer5);
+    managingFarm(ui->Farm5btn, ui->productBTN_5, ui->coinLabel_5, ui->coinAmountLabel_5, ui->coinsLabel, ui->timeLabel_5, breedingTimer5, penaltyTimer5, &isPenaltyTimerActive5);
 }
 
 
 void GamePage::on_productBTN_5_clicked()
 {
-    manageProducts(ui->productBTN_5, ui->coinLabel_5, ui->coinAmountLabel_5, ui->coinsLabel, ui->timeLabel_5, penaltyTimer5);
+  //  manageProducts(ui->productBTN_5, ui->coinLabel_5, ui->coinAmountLabel_5, ui->coinsLabel, ui->timeLabel_5, penaltyTimer5);
+    isPenaltyTimerActive5 = false;
 }
 
 //---------------------------------------------------------------------------------------------------------------------
 
 void GamePage::on_Farm6btn_clicked()
 {
-    managingFarm(ui->Farm6btn, ui->productBTN_6, ui->coinLabel_6, ui->coinAmountLabel_6, ui->coinsLabel, ui->timeLabel_6, breedingTimer6, penaltyTimer6);
+    managingFarm(ui->Farm6btn, ui->productBTN_6, ui->coinLabel_6, ui->coinAmountLabel_6, ui->coinsLabel, ui->timeLabel_6, breedingTimer6, penaltyTimer6, &isPenaltyTimerActive6);
 }
 
 
 void GamePage::on_productBTN_6_clicked()
 {
-    manageProducts(ui->productBTN_6, ui->coinLabel_6, ui->coinAmountLabel_6, ui->coinsLabel, ui->timeLabel_6, penaltyTimer6);
+    isPenaltyTimerActive6 = false;
+   // manageProducts(ui->productBTN_6, ui->coinLabel_6, ui->coinAmountLabel_6, ui->coinsLabel, ui->timeLabel_6, penaltyTimer6);
 }
 
 //---------------------------------------------------------------------------------------------------------------------
 
 void GamePage::on_Farm7btn_clicked()
 {
-    managingFarm(ui->Farm7btn, ui->productBTN_7, ui->coinLabel_7, ui->coinAmountLabel_7, ui->coinsLabel, ui->timeLabel_7, breedingTimer7, penaltyTimer7);
+    managingFarm(ui->Farm7btn, ui->productBTN_7, ui->coinLabel_7, ui->coinAmountLabel_7, ui->coinsLabel, ui->timeLabel_7, breedingTimer7, penaltyTimer7, &isPenaltyTimerActive7);
 }
 
 void GamePage::on_productBTN_7_clicked()
 {
-    manageProducts(ui->productBTN_7, ui->coinLabel_7, ui->coinAmountLabel_7, ui->coinsLabel, ui->timeLabel_7, penaltyTimer7);
+    isPenaltyTimerActive7 = false;
+   // manageProducts(ui->productBTN_7, ui->coinLabel_7, ui->coinAmountLabel_7, ui->coinsLabel, ui->timeLabel_7, penaltyTimer7);
 }
 
 //---------------------------------------------------------------------------------------------------------------------
 
 void GamePage::on_Farm8btn_clicked()
 {
-    managingFarm(ui->Farm8btn, ui->productBTN_8, ui->coinLabel_8, ui->coinAmountLabel_8, ui->coinsLabel, ui->timeLabel_8, breedingTimer8, penaltyTimer8);
+    managingFarm(ui->Farm8btn, ui->productBTN_8, ui->coinLabel_8, ui->coinAmountLabel_8, ui->coinsLabel, ui->timeLabel_8, breedingTimer8, penaltyTimer8, &isPenaltyTimerActive8);
 }
 
 void GamePage::on_productBTN_8_clicked()
 {
-    manageProducts(ui->productBTN_8, ui->coinLabel_8, ui->coinAmountLabel_8, ui->coinsLabel, ui->timeLabel_8, penaltyTimer8);
+    isPenaltyTimerActive8 = false;
+   // manageProducts(ui->productBTN_8, ui->coinLabel_8, ui->coinAmountLabel_8, ui->coinsLabel, ui->timeLabel_8, penaltyTimer8);
 }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -379,15 +444,8 @@ bool GamePage::updateCoinAmount(const QString user, int coinAm)
     return true;
 }
 
-void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coinLogo, QLabel* coinAmount, QLabel* totalCoins, QLabel* time, QTimer* breedTime, QTimer* penaltyTime)
+void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coinLogo, QLabel* coinAmount, QLabel* totalCoins, QLabel* time, QTimer* breedTime, QTimer* penaltyTime, bool *isPenalTimerActive)
 {
-    hen* Hen = new hen;
-    sheep* Sheep = new sheep;
-    cow* Cow = new cow;
-    wheat* Wheat = new wheat;
-    barlay* Barlay = new barlay;
-
-
     if(checkFarmStatus(farm, product, time) == 1)
     {
         coins = totalCoins->text().toInt();
@@ -474,7 +532,7 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
 
 
         case 1:
-            breedHen(farm, product, coinLogo, coinAmount, totalCoins, time, breedTime, penaltyTime);
+            breedHen(farm, product, coinLogo, coinAmount, time, breedTime, penaltyTime, isPenalTimerActive);
             break;
         case 2:
             return;
@@ -505,7 +563,7 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
             break;
 
         case 1:
-            breedSheep(farm, product, coinLogo, coinAmount, totalCoins, time, breedTime, penaltyTime);
+            breedSheep(farm, product, coinLogo, coinAmount, time, breedTime, penaltyTime, isPenalTimerActive);
             break;
         case 2:
             return;
@@ -524,6 +582,7 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
 
         questionMsg.addButton("Kill", QMessageBox::AcceptRole);
         questionMsg.addButton("Breed", QMessageBox::AcceptRole);
+        questionMsg.addButton("Back", QMessageBox::AcceptRole);
 
         int questionMsgResult;
         questionMsgResult = questionMsg.exec();
@@ -535,7 +594,7 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
             break;
 
         case 1:
-             breedCow(farm, product, coinLogo, coinAmount, totalCoins, time, breedTime, penaltyTime);
+             breedCow(farm, product, coinLogo, coinAmount, time, breedTime, penaltyTime, isPenalTimerActive);
              break;
         case 2:
             return;
@@ -561,7 +620,7 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
         {
         case 0:
 
-            breedWheat(farm, product, coinLogo, coinAmount, totalCoins, time, breedTime, penaltyTime);
+            breedWheat(farm, product, coinLogo, coinAmount, time, breedTime, penaltyTime, isPenalTimerActive);
             break;
         case 1:
             return;
@@ -587,7 +646,7 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
         switch (questionMsgResult)
         {
         case 0:
-            breedBralay(farm, product, coinLogo, coinAmount, totalCoins, time, breedTime, penaltyTime);
+            breedBralay(farm, product, coinLogo, coinAmount, time, breedTime, penaltyTime, isPenalTimerActive);
             break;
         case 1:
             return;
@@ -601,7 +660,7 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
     }
    }
 
-void GamePage::manageProducts(QPushButton* product, QLabel* coinLogo, QLabel* coinAmount, QLabel* totalCoins, QLabel* time, QTimer* penaltyTime)
+void GamePage::manageProducts(QPushButton* product, QLabel* coinLogo, QLabel* coinAmount, QLabel* totalCoins, QLabel* time, QTimer *penaltyTime)
 {
     if (product->styleSheet() == "background-color: rgb(255, 255, 254);")
         {
@@ -862,9 +921,11 @@ void GamePage::buyBarlay(QPushButton *farm, QLabel *time, QLabel *totalCoins)
     }
     delete Barlay;
 }
+
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 void GamePage::breedHen(QPushButton *farm, QPushButton *product, QLabel *coinLogo, QLabel *coinAmount,
-                        QLabel *totalCoins, QLabel *time, QTimer *breedTime, QTimer *penaltyTime)
+                        QLabel *time, QTimer *breedTime, QTimer *penaltyTime, bool *isPenalTimerActive)
 {
     hen* Hen = new hen;
 
@@ -900,7 +961,8 @@ void GamePage::breedHen(QPushButton *farm, QPushButton *product, QLabel *coinLog
                 breedTime->stop();
                 delete breedTime;
                 breedTime = nullptr;
-                farm->setEnabled(true);
+                *isPenalTimerActive = true;
+                //farm->setEnabled(true);
                 product->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\egg.png"));
                 product->setStyleSheet("background-color: rgb(255, 255, 254);");
                 time->clear();
@@ -915,22 +977,51 @@ void GamePage::breedHen(QPushButton *farm, QPushButton *product, QLabel *coinLog
                 connect(penaltyTime, &QTimer::timeout, [=]() mutable
                 {
 
-                    time->setText(QString::number(Hen->getPenaltyTime()));
+                   if (*isPenalTimerActive)
+                   {
+                       time->setText(QString::number(Hen->getPenaltyTime()));
 
-                    Hen->decreasePenaltyTime();
-                    if (Hen->getPenaltyTime() < 0)
-                    {
-                        penaltyTime->stop();
+                       Hen->decreasePenaltyTime();
+                       if (Hen->getPenaltyTime() < 0)
+                       {
+                           penaltyTime->stop();
 
-                        Hen->decreaseEggPrice();
-                        coinAmount->setText(QString::number(Hen->getEggPrice()));
-                        Hen->resetPenaltyTime();
-                        penaltyTime->start(1000);
-                        if (Hen->getEggPrice() == 0)
-                        {
-                            penaltyTime->stop();
-                        }
-                    }
+                           Hen->decreaseEggPrice();
+                           coinAmount->setText(QString::number(Hen->getEggPrice()));
+                           Hen->resetPenaltyTime();
+                           penaltyTime->start(1000);
+                       }
+                   }
+                   else
+                   {
+                       if (product->styleSheet() == "background-color: rgb(255, 255, 254);")
+                           {
+
+                               if (availableWorkers != 0)
+                               {
+                                 ShakeTotalCoinsLabel();
+                                 coins += coinAmount->text().toInt();
+                                 penaltyTime->stop();
+                                 penaltyTime->deleteLater();
+
+                                 delete penaltyTime;
+                                 penaltyTime = nullptr;
+
+                                  if (updateCoinAmount(username, coins))
+                                     {
+
+                                        ui->coinsLabel->setText(QString::number(coins));
+                                        product->setIcon(QIcon(""));
+                                        coinAmount->clear();
+                                        coinLogo->clear();
+                                        time->clear();
+                                        farm->setEnabled(true);
+
+                                        product->setStyleSheet("background-color: rgb(255, 255, 255);");
+                                     }
+                               }
+                           }
+                   }
                 });
 
                 penaltyTime->start(1000);
@@ -939,16 +1030,19 @@ void GamePage::breedHen(QPushButton *farm, QPushButton *product, QLabel *coinLog
 
         breedTime->start(1000);
     }
+
     else
     {
         QMessageBox::warning(this, "", "You don't have a worker available.");
         return;
     }
+
 }
 
-void GamePage::breedSheep(QPushButton *farm, QPushButton *product, QLabel *coinLogo, QLabel *coinAmount, QLabel *totalCoins, QLabel *time, QTimer *breedTime, QTimer *penaltyTime)
+void GamePage::breedSheep(QPushButton *farm, QPushButton *product, QLabel *coinLogo, QLabel *coinAmount, QLabel *time, QTimer *breedTime, QTimer *penaltyTime, bool* isPenalTimerActive)
 {
     sheep* Sheep = new sheep;
+
     if(availableWorkers != 0)
     {
         availableWorkers--;
@@ -969,6 +1063,7 @@ void GamePage::breedSheep(QPushButton *farm, QPushButton *product, QLabel *coinL
             delete penaltyTime;
 
         }
+
         breedTime = new QTimer(this);
         connect(breedTime, &QTimer::timeout, [=]() mutable
         {
@@ -978,19 +1073,14 @@ void GamePage::breedSheep(QPushButton *farm, QPushButton *product, QLabel *coinL
             if (Sheep->getBreedingTime() < 0)
             {
                 breedTime->stop();
-
                 delete breedTime;
                 breedTime = nullptr;
-
-                farm->setEnabled(true);
-
+                *isPenalTimerActive = true;
+                //farm->setEnabled(true);
                 product->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\milk.png"));
                 product->setStyleSheet("background-color: rgb(255, 255, 254);");
-
                 time->clear();
-
                 QPixmap coinsPix ("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\coin.png");
-
                 coinLogo->setPixmap(coinsPix);
                 coinAmount->setText(QString::number(Sheep->getMilkPrice()));
 
@@ -998,28 +1088,61 @@ void GamePage::breedSheep(QPushButton *farm, QPushButton *product, QLabel *coinL
                 SetWorkerNumber();
 
                 penaltyTime = new QTimer(this);
-                connect(penaltyTime, &QTimer::timeout, [=]() mutable{
+                connect(penaltyTime, &QTimer::timeout, [=]() mutable
+                {
 
-                    time->setText(QString::number(Sheep->getPenaltyTime()));
+                   if (*isPenalTimerActive)
+                   {
+                       time->setText(QString::number(Sheep->getPenaltyTime()));
 
-                    Sheep->decreasePenaltyTime();
-                    if (Sheep->getPenaltyTime() < 0)
-                    {
-                        penaltyTime->stop();
+                       Sheep->decreasePenaltyTime();
+                       if (Sheep->getPenaltyTime() < 0)
+                       {
+                           penaltyTime->stop();
 
-                        Sheep->decreaseMilkPrice();
-                        coinAmount->setText(QString::number(Sheep->getMilkPrice()));
-                        Sheep->resetPenaltyTime();
-                        penaltyTime->start(1000);
+                           Sheep->decreaseMilkPrice();
+                           coinAmount->setText(QString::number(Sheep->getMilkPrice()));
+                           Sheep->resetPenaltyTime();
+                           penaltyTime->start(1000);
+                       }
+                   }
+                   else
+                   {
+                       if (product->styleSheet() == "background-color: rgb(255, 255, 254);")
+                           {
 
-                    }
-                } );
+                               if (availableWorkers != 0)
+                               {
+                                 ShakeTotalCoinsLabel();
+                                 coins += coinAmount->text().toInt();
+                                 penaltyTime->stop();
+                                 penaltyTime->deleteLater();
+
+                                 delete penaltyTime;
+                                 penaltyTime = nullptr;
+
+                                  if (updateCoinAmount(username, coins))
+                                     {
+
+                                        ui->coinsLabel->setText(QString::number(coins));
+                                        product->setIcon(QIcon(""));
+                                        coinAmount->clear();
+                                        coinLogo->clear();
+                                        time->clear();
+                                        farm->setEnabled(true);
+
+                                        product->setStyleSheet("background-color: rgb(255, 255, 255);");
+                                     }
+                               }
+                           }
+                   }
+                });
+
                 penaltyTime->start(1000);
             }
         });
 
         breedTime->start(1000);
-
     }
 
     else
@@ -1029,10 +1152,12 @@ void GamePage::breedSheep(QPushButton *farm, QPushButton *product, QLabel *coinL
     }
 }
 
-void GamePage::breedCow(QPushButton *farm, QPushButton *product, QLabel *coinLogo, QLabel *coinAmount, QLabel *totalCoins, QLabel *time, QTimer *breedTime, QTimer *penaltyTime)
+void GamePage::breedCow(QPushButton *farm, QPushButton *product, QLabel *coinLogo, QLabel *coinAmount, QLabel *time, QTimer *breedTime, QTimer *penaltyTime, bool* isPenalTimerActive)
 {
+
     cow* Cow = new cow;
-    if (availableWorkers != 0)
+
+    if(availableWorkers != 0)
     {
         availableWorkers--;
         SetWorkerNumber();
@@ -1062,19 +1187,14 @@ void GamePage::breedCow(QPushButton *farm, QPushButton *product, QLabel *coinLog
             if (Cow->getBreedingTime() < 0)
             {
                 breedTime->stop();
-
                 delete breedTime;
                 breedTime = nullptr;
-
-                farm->setEnabled(true);
-
+                *isPenalTimerActive = true;
+                //farm->setEnabled(true);
                 product->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\milk.png"));
                 product->setStyleSheet("background-color: rgb(255, 255, 254);");
-
                 time->clear();
-
                 QPixmap coinsPix ("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\coin.png");
-
                 coinLogo->setPixmap(coinsPix);
                 coinAmount->setText(QString::number(Cow->getMilkPrice()));
 
@@ -1082,24 +1202,57 @@ void GamePage::breedCow(QPushButton *farm, QPushButton *product, QLabel *coinLog
                 SetWorkerNumber();
 
                 penaltyTime = new QTimer(this);
-                connect(penaltyTime, &QTimer::timeout, [=]() mutable{
+                connect(penaltyTime, &QTimer::timeout, [=]() mutable
+                {
 
-                    time->setText(QString::number(Cow->getPenaltyTime()));
+                   if (*isPenalTimerActive)
+                   {
+                       time->setText(QString::number(Cow->getPenaltyTime()));
 
-                    Cow->decreasePenaltyTime();
-                    if (Cow->getPenaltyTime() < 0)
-                    {
-                        penaltyTime->stop();
+                       Cow->decreasePenaltyTime();
+                       if (Cow->getPenaltyTime() < 0)
+                       {
+                           penaltyTime->stop();
 
-                        Cow->decreaseMilkPrice();
-                        coinAmount->setText(QString::number(Cow->getMilkPrice()));
-                        Cow->resetPenaltyTime();
-                        penaltyTime->start(1000);
+                           Cow->decreaseMilkPrice();
+                           coinAmount->setText(QString::number(Cow->getMilkPrice()));
+                           Cow->resetPenaltyTime();
+                           penaltyTime->start(1000);
+                       }
+                   }
+                   else
+                   {
+                       if (product->styleSheet() == "background-color: rgb(255, 255, 254);")
+                           {
 
-                    }
-                } );
+                               if (availableWorkers != 0)
+                               {
+                                 ShakeTotalCoinsLabel();
+                                 coins += coinAmount->text().toInt();
+                                 penaltyTime->stop();
+                                 penaltyTime->deleteLater();
+
+                                 delete penaltyTime;
+                                 penaltyTime = nullptr;
+
+                                  if (updateCoinAmount(username, coins))
+                                     {
+
+                                        ui->coinsLabel->setText(QString::number(coins));
+                                        product->setIcon(QIcon(""));
+                                        coinAmount->clear();
+                                        coinLogo->clear();
+                                        time->clear();
+                                        farm->setEnabled(true);
+
+                                        product->setStyleSheet("background-color: rgb(255, 255, 255);");
+                                     }
+                               }
+                           }
+                   }
+                });
+
                 penaltyTime->start(1000);
-
             }
         });
 
@@ -1111,12 +1264,14 @@ void GamePage::breedCow(QPushButton *farm, QPushButton *product, QLabel *coinLog
         QMessageBox::warning(this, "", "You don't have a worker available.");
         return;
     }
+
 }
 
-void GamePage::breedWheat(QPushButton *farm, QPushButton *product, QLabel *coinLogo, QLabel *coinAmount, QLabel *totalCoins, QLabel *time, QTimer *breedTime, QTimer *penaltyTime)
+void GamePage::breedWheat(QPushButton *farm, QPushButton *product, QLabel *coinLogo, QLabel *coinAmount, QLabel *time, QTimer *breedTime, QTimer *penaltyTime, bool* isPenalTimerActive)
 {
     wheat* Wheat = new wheat;
-    if (availableWorkers != 0)
+
+    if(availableWorkers != 0)
     {
         availableWorkers--;
         SetWorkerNumber();
@@ -1136,6 +1291,7 @@ void GamePage::breedWheat(QPushButton *farm, QPushButton *product, QLabel *coinL
             delete penaltyTime;
 
         }
+
         breedTime = new QTimer(this);
         connect(breedTime, &QTimer::timeout, [=]() mutable
         {
@@ -1145,19 +1301,14 @@ void GamePage::breedWheat(QPushButton *farm, QPushButton *product, QLabel *coinL
             if (Wheat->getBreedingTime() < 0)
             {
                 breedTime->stop();
-
                 delete breedTime;
                 breedTime = nullptr;
-
-                farm->setEnabled(true);
-
+                *isPenalTimerActive = true;
+                //farm->setEnabled(true);
                 product->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
                 product->setStyleSheet("background-color: rgb(255, 255, 254);");
-
                 time->clear();
-
                 QPixmap coinsPix ("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\coin.png");
-
                 coinLogo->setPixmap(coinsPix);
                 coinAmount->setText(QString::number(Wheat->getWheatPrice()));
 
@@ -1165,24 +1316,63 @@ void GamePage::breedWheat(QPushButton *farm, QPushButton *product, QLabel *coinL
                 SetWorkerNumber();
 
                 penaltyTime = new QTimer(this);
-                connect(penaltyTime, &QTimer::timeout, [=]() mutable{
+                connect(penaltyTime, &QTimer::timeout, [=]() mutable
+                {
 
-                    time->setText(QString::number(Wheat->getPenaltyTime()));
+                   if (*isPenalTimerActive)
+                   {
+                       time->setText(QString::number(Wheat->getPenaltyTime()));
 
-                    Wheat->decreasePenaltyTime();
-                    if (Wheat->getPenaltyTime() < 0)
-                    {
-                        penaltyTime->stop();
+                       Wheat->decreasePenaltyTime();
+                       if (Wheat->getPenaltyTime() < 0)
+                       {
+                           penaltyTime->stop();
 
-                        Wheat->decreaseWheatPrice();
-                        coinAmount->setText(QString::number(Wheat->getWheatPrice()));
-                        Wheat->resetPenaltyTime();
-                        penaltyTime->start(1000);
+                           Wheat->decreaseWheatPrice();
+                           coinAmount->setText(QString::number(Wheat->getWheatPrice()));
+                           Wheat->resetPenaltyTime();
+                           penaltyTime->start(1000);
+                       }
+                   }
+                   else
+                   {
+                       if (product->styleSheet() == "background-color: rgb(255, 255, 254);")
+                           {
 
-                    }
-                } );
+                               if (availableWorkers != 0)
+                               {
+                                 ShakeTotalCoinsLabel();
+                                 coins += coinAmount->text().toInt();
+                                 penaltyTime->stop();
+                                 penaltyTime->deleteLater();
+
+                                 delete penaltyTime;
+                                 penaltyTime = nullptr;
+
+                                  if (updateCoinAmount(username, coins))
+                                     {
+
+                                        ui->coinsLabel->setText(QString::number(coins));
+                                        product->setIcon(QIcon(""));
+
+
+                                        coinAmount->clear();
+                                        coinLogo->clear();
+                                        time->clear();
+                                        farm->setEnabled(true);
+
+                                        product->setStyleSheet("background-color: rgb(255, 255, 255);");
+
+                                        farm->setIcon(QIcon(""));
+                                        time->setStyleSheet("background-color: rgb(255, 255, 255);");
+
+                                     }
+                               }
+                           }
+                   }
+                });
+
                 penaltyTime->start(1000);
-
             }
         });
 
@@ -1194,18 +1384,20 @@ void GamePage::breedWheat(QPushButton *farm, QPushButton *product, QLabel *coinL
         QMessageBox::warning(this, "", "You don't have a worker available.");
         return;
     }
+
 }
 
-void GamePage::breedBralay(QPushButton *farm, QPushButton *product, QLabel *coinLogo, QLabel *coinAmount, QLabel *totalCoins, QLabel *time, QTimer *breedTime, QTimer *penaltyTime)
+void GamePage::breedBralay(QPushButton *farm, QPushButton *product, QLabel *coinLogo, QLabel *coinAmount, QLabel *time, QTimer *breedTime, QTimer *penaltyTime, bool* isPenalTimerActive)
 {
     barlay* Barlay = new barlay;
 
-    if (availableWorkers != 0)
+    if(availableWorkers != 0)
     {
         availableWorkers--;
         SetWorkerNumber();
 
         farm->setEnabled(false);
+
         if (breedTime && breedTime->isActive())
         {
             breedTime->stop();
@@ -1219,6 +1411,7 @@ void GamePage::breedBralay(QPushButton *farm, QPushButton *product, QLabel *coin
             delete penaltyTime;
 
         }
+
         breedTime = new QTimer(this);
         connect(breedTime, &QTimer::timeout, [=]() mutable
         {
@@ -1228,19 +1421,14 @@ void GamePage::breedBralay(QPushButton *farm, QPushButton *product, QLabel *coin
             if (Barlay->getBreedingTime() < 0)
             {
                 breedTime->stop();
-
                 delete breedTime;
                 breedTime = nullptr;
-
-                farm->setEnabled(true);
-
+                *isPenalTimerActive = true;
+                //farm->setEnabled(true);
                 product->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\barlay.png"));
                 product->setStyleSheet("background-color: rgb(255, 255, 254);");
-
                 time->clear();
-
                 QPixmap coinsPix ("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\coin.png");
-
                 coinLogo->setPixmap(coinsPix);
                 coinAmount->setText(QString::number(Barlay->getBarlayPrice()));
 
@@ -1248,30 +1436,66 @@ void GamePage::breedBralay(QPushButton *farm, QPushButton *product, QLabel *coin
                 SetWorkerNumber();
 
                 penaltyTime = new QTimer(this);
-                connect(penaltyTime, &QTimer::timeout, [=]() mutable{
+                connect(penaltyTime, &QTimer::timeout, [=]() mutable
+                {
 
-                    time->setText(QString::number(Barlay->getPenaltyTime()));
+                   if (*isPenalTimerActive)
+                   {
+                       time->setText(QString::number(Barlay->getPenaltyTime()));
 
-                    Barlay->decreasePenaltyTime();
-                    if (Barlay->getPenaltyTime() < 0)
-                    {
-                        penaltyTime->stop();
+                       Barlay->decreasePenaltyTime();
+                       if (Barlay->getPenaltyTime() < 0)
+                       {
+                           penaltyTime->stop();
 
-                        Barlay->decreaseBarlayPrice();
-                        coinAmount->setText(QString::number(Barlay->getBarlayPrice()));
-                        Barlay->resetPenaltyTime();
-                        penaltyTime->start(1000);
+                           Barlay->decreaseBarlayPrice();
+                           coinAmount->setText(QString::number(Barlay->getBarlayPrice()));
+                           Barlay->resetPenaltyTime();
+                           penaltyTime->start(1000);
+                       }
+                   }
+                   else
+                   {
+                       if (product->styleSheet() == "background-color: rgb(255, 255, 254);")
+                           {
 
-                    }
-                } );
+                               if (availableWorkers != 0)
+                               {
+                                 ShakeTotalCoinsLabel();
+                                 coins += coinAmount->text().toInt();
+                                 penaltyTime->stop();
+                                 penaltyTime->deleteLater();
+
+                                 delete penaltyTime;
+                                 penaltyTime = nullptr;
+
+                                  if (updateCoinAmount(username, coins))
+                                     {
+
+                                        ui->coinsLabel->setText(QString::number(coins));
+                                        product->setIcon(QIcon(""));
+                                        coinAmount->clear();
+                                        coinLogo->clear();
+                                        time->clear();
+                                        farm->setEnabled(true);
+
+                                        product->setStyleSheet("background-color: rgb(255, 255, 255);");
+
+                                        farm->setIcon(QIcon(""));
+                                        time->setStyleSheet("background-color: rgb(255, 255, 255);");
+                                     }
+                               }
+                           }
+                   }
+                });
+
                 penaltyTime->start(1000);
-
             }
         });
 
         breedTime->start(1000);
-
     }
+
     else
     {
         QMessageBox::warning(this, "", "You don't have a worker available.");
