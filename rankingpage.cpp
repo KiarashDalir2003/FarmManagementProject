@@ -23,6 +23,7 @@ RankingPage::RankingPage(QWidget *parent) :
         QMessageBox::warning(this, "Error", "Failed to reset coin values!");
         return;
     }
+    ui->tableView->setEnabled(false);
 }
 
 RankingPage::~RankingPage()

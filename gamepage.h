@@ -48,8 +48,9 @@ public:
                       bool* isPenalTimerActive);
 
 
-
     void ShakeTotalCoinsLabel();
+
+    void KillingActionAndShakeTotalCoinsLabel();
 
     int checkFarmStatus(QPushButton* farm, QPushButton* product, QLabel* time);
 
@@ -69,16 +70,23 @@ public:
 
     void breedSheep(QPushButton* farm, QPushButton* product,
                     QLabel* coinLogo, QLabel* coinAmount, QLabel* time,
-                    QTimer* breedTime, QTimer* penaltyTime, bool* isPenalTimerActive);
+                    QTimer* breedTime, QTimer* penaltyTime,
+                    bool* isPenalTimerActive);
+
     void breedCow(QPushButton* farm, QPushButton* product,
                   QLabel* coinLogo, QLabel* coinAmount, QLabel* time,
-                  QTimer* breedTime, QTimer* penaltyTime, bool* isPenalTimerActive);
+                  QTimer* breedTime, QTimer* penaltyTime,
+                  bool* isPenalTimerActive);
+
     void breedWheat(QPushButton* farm, QPushButton* product,
                     QLabel* coinLogo, QLabel* coinAmount, QLabel* time,
-                    QTimer* breedTime, QTimer* penaltyTime, bool* isPenalTimerActive);
+                    QTimer* breedTime, QTimer* penaltyTime,
+                    bool* isPenalTimerActive);
+
     void breedBralay(QPushButton* farm, QPushButton* product,
                      QLabel* coinLogo, QLabel* coinAmount, QLabel* time,
-                     QTimer* breedTime, QTimer* penaltyTime, bool* isPenalTimerActive);
+                     QTimer* breedTime, QTimer* penaltyTime,
+                     bool* isPenalTimerActive);
 
     void killHen (QPushButton* farm, QPushButton* product, QLabel* totalCoins, QLabel* time);
     void killSheep (QPushButton* farm, QPushButton* product, QLabel* totalCoins, QLabel* time);
@@ -149,6 +157,13 @@ private:
 
 
     QMediaPlayer *PositiveSound = new QMediaPlayer;
+    QMediaPlayer *NegetiveSound = new QMediaPlayer;
+    QMediaPlayer *TimeOverSound = new QMediaPlayer;
+    QMediaPlayer *HenSound = new QMediaPlayer;
+    QMediaPlayer *SheepSound = new QMediaPlayer;
+    QMediaPlayer *CowSound = new QMediaPlayer;
+    QMediaPlayer *PlantSound = new QMediaPlayer;
+    QMediaPlayer *KillingSound = new QMediaPlayer;
 
     QTimer* breedingTimer1 ;
     QTimer* penaltyTimer1 ;

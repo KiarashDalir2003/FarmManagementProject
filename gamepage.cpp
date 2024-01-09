@@ -219,6 +219,7 @@ void GamePage::processNextRecord()
         QMessageBox::information(this, "Game finished!", "All users completed the game!");
         RankingPage *R = new RankingPage;
         R->show();
+        this->close();
     }
 }
 
@@ -235,6 +236,8 @@ void GamePage::updateTime()
 
     else
     {
+        TimeOverSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\timeoverSound.mp3"));
+        TimeOverSound->play();
         QMessageBox::information(this, "Next turn", "Your time is over!");
         Resetdata();
         isUserActive = false;
@@ -457,7 +460,7 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
         {
             if(coins < 3)  // farm buy price = 3
             {
-                QMessageBox::warning(this, "Sorry!", "You dont have enough coin!");
+                QMessageBox::warning(this, "Sorry!", "You don't have enough coin!");
                 return;
             }
 
@@ -512,6 +515,9 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
     {
         //this farm has hen
 
+        HenSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\henSound.mp3"));
+        HenSound->play();
+
         QMessageBox questionMsg;
 
         questionMsg.setWindowTitle("Action!");
@@ -543,6 +549,8 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
     {
         //this farm has sheep
 
+        SheepSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\sheepSound.mp3"));
+        SheepSound->play();
 
         QMessageBox questionMsg;
 
@@ -575,6 +583,9 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
         //this farm has cow
 
 
+        CowSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\cowSound.mp3"));
+        CowSound->play();
+
         QMessageBox questionMsg;
 
         questionMsg.setWindowTitle("Action!");
@@ -605,6 +616,10 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
     else if  (checkFarmStatus(farm, product, time) == 6 )
     {
         //this farm has wheat
+
+        PlantSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\plantSound.mp3"));
+        PlantSound->play();
+
         QMessageBox questionMsg;
 
         questionMsg.setWindowTitle("Action!");
@@ -632,6 +647,10 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
      else if (checkFarmStatus(farm, product, time) == 7 )
     {
         //this farm has barlay
+
+        PlantSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\plantSound.mp3"));
+        PlantSound->play();
+
         QMessageBox questionMsg;
 
         questionMsg.setWindowTitle("Action!");
@@ -679,6 +698,24 @@ void GamePage::ShakeTotalCoinsLabel()
                 QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\PositiveSound.mp3"));
 
     PositiveSound->play();
+}
+
+void GamePage::KillingActionAndShakeTotalCoinsLabel()
+{
+    QPropertyAnimation *animation = new QPropertyAnimation(ui->coinIconLabel, "geometry");
+
+        animation->setDuration(200);
+        animation->setLoopCount(3);
+
+        animation->setKeyValueAt(0, ui->coinIconLabel->geometry());
+        animation->setKeyValueAt(0.25, ui->coinIconLabel->geometry().translated(0, 3));
+        animation->setKeyValueAt(0.75, ui->coinIconLabel->geometry().translated(1, 3));
+        animation->setKeyValueAt(1, ui->coinIconLabel->geometry());
+
+        animation->start();
+
+        KillingSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\killingSound.mp3"));
+        KillingSound->play();
 }
 
 int GamePage::checkFarmStatus(QPushButton* farm, QPushButton* product, QLabel* time)
@@ -1605,15 +1642,14 @@ void GamePage::killHen(QPushButton *farm, QPushButton *product, QLabel *totalCoi
     hen* Hen = new hen;
 
     coins += Hen->getMeatPrice();
-    ShakeTotalCoinsLabel();
+    KillingActionAndShakeTotalCoinsLabel();
     if(updateCoinAmount(username, coins))
     {
         totalCoins->setText(QString::number(coins));
         farm->setIcon(QIcon(""));
         product->setIcon(QIcon(""));
         time->setStyleSheet("background-color: rgb(255, 255, 255);");
-        availableWorkers++;
-        SetWorkerNumber();
+
     }
     delete Hen;
 }
@@ -1622,15 +1658,14 @@ void GamePage::killSheep(QPushButton *farm, QPushButton *product, QLabel *totalC
 {
     sheep* Sheep = new sheep;
     coins += Sheep->getMeatPrice();
-    ShakeTotalCoinsLabel();
+    KillingActionAndShakeTotalCoinsLabel();
     if(updateCoinAmount(username, coins))
     {
         totalCoins->setText(QString::number(coins));
         farm->setIcon(QIcon(""));
         product->setIcon(QIcon(""));
         time->setStyleSheet("background-color: rgb(255, 255, 255);");
-        availableWorkers++;
-        SetWorkerNumber();
+
     }
     delete Sheep;
 }
@@ -1639,15 +1674,14 @@ void GamePage::killCow(QPushButton *farm, QPushButton *product, QLabel *totalCoi
 {
     cow* Cow = new cow;
     coins += Cow->getMeatPrice();
-    ShakeTotalCoinsLabel();
+    KillingActionAndShakeTotalCoinsLabel();
     if(updateCoinAmount(username, coins))
     {
         totalCoins->setText(QString::number(coins));
         farm->setIcon(QIcon(""));
         product->setIcon(QIcon(""));
         time->setStyleSheet("background-color: rgb(255, 255, 255);");
-        availableWorkers++;
-        SetWorkerNumber();
+
     }
     delete Cow;
 }
