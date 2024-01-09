@@ -47,7 +47,7 @@ public:
                       QTimer* breedTime, QTimer* penaltyTime,
                       bool* isPenalTimerActive);
 
-    void manageProducts(QPushButton* product, QLabel* coinLogo, QLabel* coinAmount, QLabel* totalCoins, QLabel* time, QTimer *penaltyTime);
+
 
     void ShakeTotalCoinsLabel();
 
