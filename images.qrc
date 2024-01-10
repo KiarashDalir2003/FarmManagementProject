@@ -4,5 +4,6 @@
     </qresource>
     <qresource prefix="/GameBoard">
         <file>images/gameBoard.jpg</file>
+        <file>images/gameboard_background.jpg</file>
     </qresource>
 </RCC>

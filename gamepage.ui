@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>941</width>
-    <height>682</height>
+    <width>775</width>
+    <height>780</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,9 +17,9 @@
    <widget class="QGroupBox" name="toolBarGroupBox">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>20</y>
-      <width>841</width>
+      <x>0</x>
+      <y>0</y>
+      <width>775</width>
       <height>80</height>
      </rect>
     </property>
@@ -32,7 +32,7 @@
     <widget class="QLabel" name="userIconLabel">
      <property name="geometry">
       <rect>
-       <x>20</x>
+       <x>10</x>
        <y>30</y>
        <width>41</width>
        <height>31</height>
@@ -48,7 +48,7 @@
     <widget class="QLabel" name="usernameLabel">
      <property name="geometry">
       <rect>
-       <x>60</x>
+       <x>50</x>
        <y>30</y>
        <width>121</width>
        <height>31</height>
@@ -64,7 +64,7 @@
     <widget class="QPushButton" name="addWorkerbtn">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>205</x>
        <y>30</y>
        <width>41</width>
        <height>32</height>
@@ -80,7 +80,7 @@
     <widget class="QLabel" name="workerLabel">
      <property name="geometry">
       <rect>
-       <x>300</x>
+       <x>285</x>
        <y>30</y>
        <width>51</width>
        <height>31</height>
@@ -96,7 +96,7 @@
     <widget class="QLabel" name="timerLabel">
      <property name="geometry">
       <rect>
-       <x>430</x>
+       <x>415</x>
        <y>30</y>
        <width>61</width>
        <height>31</height>
@@ -118,7 +118,7 @@
     <widget class="QLabel" name="coinsLabel">
      <property name="geometry">
       <rect>
-       <x>580</x>
+       <x>555</x>
        <y>30</y>
        <width>61</width>
        <height>31</height>
@@ -134,7 +134,7 @@
     <widget class="QLabel" name="clockIconLabel">
      <property name="geometry">
       <rect>
-       <x>390</x>
+       <x>375</x>
        <y>30</y>
        <width>41</width>
        <height>31</height>
@@ -150,7 +150,7 @@
     <widget class="QLabel" name="coinIconLabel">
      <property name="geometry">
       <rect>
-       <x>540</x>
+       <x>515</x>
        <y>30</y>
        <width>41</width>
        <height>31</height>
@@ -166,7 +166,7 @@
     <widget class="QLabel" name="worketIconLabel">
      <property name="geometry">
       <rect>
-       <x>260</x>
+       <x>245</x>
        <y>30</y>
        <width>41</width>
        <height>31</height>
@@ -182,7 +182,7 @@
     <widget class="QPushButton" name="pushButton">
      <property name="geometry">
       <rect>
-       <x>690</x>
+       <x>650</x>
        <y>30</y>
        <width>111</width>
        <height>31</height>
@@ -200,17 +200,14 @@ color: rgb(0, 0, 0);</string>
    <widget class="QGroupBox" name="GameBoardGroupBox">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>120</y>
-      <width>851</width>
-      <height>501</height>
+      <x>0</x>
+      <y>100</y>
+      <width>775</width>
+      <height>620</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">#GameBoardGroupBox{
-background-image: 
-url(:/GameBoard/images/gameBoard.jpg);
-}</string>
+     <string notr="true"/>
     </property>
     <property name="title">
      <string/>
@@ -218,10 +215,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QPushButton" name="Farm5btn">
      <property name="geometry">
       <rect>
-       <x>630</x>
-       <y>300</y>
-       <width>151</width>
-       <height>151</height>
+       <x>610</x>
+       <y>260</y>
+       <width>120</width>
+       <height>120</height>
       </rect>
      </property>
      <property name="text">
@@ -231,10 +228,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QPushButton" name="Farm6btn">
      <property name="geometry">
       <rect>
-       <x>440</x>
-       <y>300</y>
-       <width>151</width>
-       <height>151</height>
+       <x>420</x>
+       <y>260</y>
+       <width>120</width>
+       <height>120</height>
       </rect>
      </property>
      <property name="text">
@@ -244,10 +241,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QPushButton" name="Farm4btn">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>80</y>
-       <width>151</width>
-       <height>151</height>
+       <x>40</x>
+       <y>55</y>
+       <width>120</width>
+       <height>120</height>
       </rect>
      </property>
      <property name="text">
@@ -257,10 +254,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QPushButton" name="Farm8btn">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>300</y>
-       <width>151</width>
-       <height>151</height>
+       <x>40</x>
+       <y>260</y>
+       <width>120</width>
+       <height>120</height>
       </rect>
      </property>
      <property name="text">
@@ -270,10 +267,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QPushButton" name="Farm7btn">
      <property name="geometry">
       <rect>
-       <x>250</x>
-       <y>300</y>
-       <width>151</width>
-       <height>151</height>
+       <x>230</x>
+       <y>260</y>
+       <width>120</width>
+       <height>120</height>
       </rect>
      </property>
      <property name="text">
@@ -283,10 +280,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QPushButton" name="Farm3btn">
      <property name="geometry">
       <rect>
-       <x>250</x>
-       <y>80</y>
-       <width>151</width>
-       <height>151</height>
+       <x>230</x>
+       <y>55</y>
+       <width>120</width>
+       <height>120</height>
       </rect>
      </property>
      <property name="text">
@@ -296,10 +293,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QPushButton" name="Farm2btn">
      <property name="geometry">
       <rect>
-       <x>440</x>
-       <y>80</y>
-       <width>151</width>
-       <height>151</height>
+       <x>420</x>
+       <y>55</y>
+       <width>120</width>
+       <height>120</height>
       </rect>
      </property>
      <property name="text">
@@ -309,10 +306,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QPushButton" name="Farm1btn">
      <property name="geometry">
       <rect>
-       <x>630</x>
-       <y>80</y>
-       <width>151</width>
-       <height>151</height>
+       <x>610</x>
+       <y>55</y>
+       <width>120</width>
+       <height>120</height>
       </rect>
      </property>
      <property name="text">
@@ -322,10 +319,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QLabel" name="timeLabel_2">
      <property name="geometry">
       <rect>
-       <x>560</x>
-       <y>40</y>
-       <width>31</width>
-       <height>31</height>
+       <x>515</x>
+       <y>20</y>
+       <width>25</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -341,10 +338,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QLabel" name="timeLabel_4">
      <property name="geometry">
       <rect>
-       <x>180</x>
-       <y>40</y>
-       <width>31</width>
-       <height>31</height>
+       <x>135</x>
+       <y>20</y>
+       <width>25</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -360,10 +357,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QLabel" name="timeLabel_8">
      <property name="geometry">
       <rect>
-       <x>180</x>
-       <y>260</y>
-       <width>31</width>
-       <height>31</height>
+       <x>135</x>
+       <y>225</y>
+       <width>25</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -379,10 +376,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QLabel" name="timeLabel_6">
      <property name="geometry">
       <rect>
-       <x>560</x>
-       <y>260</y>
-       <width>31</width>
-       <height>31</height>
+       <x>515</x>
+       <y>225</y>
+       <width>25</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -398,10 +395,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QLabel" name="timeLabel_7">
      <property name="geometry">
       <rect>
-       <x>370</x>
-       <y>260</y>
-       <width>31</width>
-       <height>31</height>
+       <x>325</x>
+       <y>225</y>
+       <width>25</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -417,10 +414,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QLabel" name="timeLabel_5">
      <property name="geometry">
       <rect>
-       <x>750</x>
-       <y>260</y>
-       <width>31</width>
-       <height>31</height>
+       <x>705</x>
+       <y>225</y>
+       <width>25</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -436,10 +433,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QLabel" name="timeLabel_3">
      <property name="geometry">
       <rect>
-       <x>370</x>
-       <y>40</y>
-       <width>31</width>
-       <height>31</height>
+       <x>325</x>
+       <y>20</y>
+       <width>25</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -455,10 +452,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QLabel" name="coinLabel_2">
      <property name="geometry">
       <rect>
-       <x>480</x>
-       <y>40</y>
-       <width>31</width>
-       <height>31</height>
+       <x>455</x>
+       <y>20</y>
+       <width>30</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -471,10 +468,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QLabel" name="coinLabel_3">
      <property name="geometry">
       <rect>
-       <x>290</x>
-       <y>40</y>
-       <width>31</width>
-       <height>31</height>
+       <x>265</x>
+       <y>20</y>
+       <width>30</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -487,10 +484,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QLabel" name="coinLabel_4">
      <property name="geometry">
       <rect>
-       <x>100</x>
-       <y>40</y>
-       <width>31</width>
-       <height>31</height>
+       <x>75</x>
+       <y>20</y>
+       <width>30</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -503,10 +500,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QLabel" name="coinLabel_5">
      <property name="geometry">
       <rect>
-       <x>670</x>
-       <y>260</y>
-       <width>31</width>
-       <height>31</height>
+       <x>645</x>
+       <y>225</y>
+       <width>30</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -519,10 +516,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QLabel" name="coinLabel_6">
      <property name="geometry">
       <rect>
-       <x>480</x>
-       <y>260</y>
-       <width>31</width>
-       <height>31</height>
+       <x>455</x>
+       <y>225</y>
+       <width>30</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -535,10 +532,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QLabel" name="coinLabel_7">
      <property name="geometry">
       <rect>
-       <x>290</x>
-       <y>260</y>
-       <width>31</width>
-       <height>31</height>
+       <x>265</x>
+       <y>225</y>
+       <width>30</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -551,10 +548,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QLabel" name="coinLabel_8">
      <property name="geometry">
       <rect>
-       <x>100</x>
-       <y>260</y>
-       <width>31</width>
-       <height>31</height>
+       <x>75</x>
+       <y>225</y>
+       <width>30</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -567,10 +564,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QLabel" name="coinAmountLabel_2">
      <property name="geometry">
       <rect>
-       <x>510</x>
-       <y>40</y>
-       <width>31</width>
-       <height>31</height>
+       <x>485</x>
+       <y>20</y>
+       <width>25</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -586,10 +583,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QLabel" name="coinAmountLabel_3">
      <property name="geometry">
       <rect>
-       <x>320</x>
-       <y>40</y>
-       <width>31</width>
-       <height>31</height>
+       <x>295</x>
+       <y>20</y>
+       <width>25</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -605,10 +602,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QLabel" name="coinAmountLabel_4">
      <property name="geometry">
       <rect>
-       <x>130</x>
-       <y>40</y>
-       <width>31</width>
-       <height>31</height>
+       <x>105</x>
+       <y>20</y>
+       <width>25</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -624,10 +621,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QLabel" name="coinAmountLabel_5">
      <property name="geometry">
       <rect>
-       <x>700</x>
-       <y>260</y>
-       <width>31</width>
-       <height>31</height>
+       <x>675</x>
+       <y>225</y>
+       <width>25</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -643,10 +640,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QLabel" name="coinAmountLabel_6">
      <property name="geometry">
       <rect>
-       <x>510</x>
-       <y>260</y>
-       <width>31</width>
-       <height>31</height>
+       <x>485</x>
+       <y>225</y>
+       <width>25</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -662,10 +659,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QLabel" name="coinAmountLabel_8">
      <property name="geometry">
       <rect>
-       <x>130</x>
-       <y>260</y>
-       <width>31</width>
-       <height>31</height>
+       <x>105</x>
+       <y>225</y>
+       <width>25</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -681,10 +678,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QLabel" name="coinAmountLabel_7">
      <property name="geometry">
       <rect>
-       <x>320</x>
-       <y>260</y>
-       <width>31</width>
-       <height>31</height>
+       <x>295</x>
+       <y>225</y>
+       <width>25</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -700,10 +697,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QLabel" name="timeLabel_1">
      <property name="geometry">
       <rect>
-       <x>750</x>
-       <y>40</y>
-       <width>31</width>
-       <height>31</height>
+       <x>705</x>
+       <y>20</y>
+       <width>25</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -719,10 +716,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QLabel" name="coinLabel_1">
      <property name="geometry">
       <rect>
-       <x>670</x>
-       <y>40</y>
-       <width>31</width>
-       <height>31</height>
+       <x>645</x>
+       <y>20</y>
+       <width>30</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -735,10 +732,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QLabel" name="coinAmountLabel_1">
      <property name="geometry">
       <rect>
-       <x>700</x>
-       <y>40</y>
-       <width>31</width>
-       <height>31</height>
+       <x>675</x>
+       <y>20</y>
+       <width>25</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -754,10 +751,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QPushButton" name="productBTN_1">
      <property name="geometry">
       <rect>
-       <x>630</x>
-       <y>40</y>
-       <width>32</width>
-       <height>33</height>
+       <x>610</x>
+       <y>20</y>
+       <width>31</width>
+       <height>32</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -770,10 +767,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QPushButton" name="productBTN_2">
      <property name="geometry">
       <rect>
-       <x>440</x>
-       <y>40</y>
-       <width>32</width>
-       <height>33</height>
+       <x>420</x>
+       <y>20</y>
+       <width>31</width>
+       <height>32</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -786,10 +783,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QPushButton" name="productBTN_3">
      <property name="geometry">
       <rect>
-       <x>250</x>
-       <y>40</y>
-       <width>32</width>
-       <height>33</height>
+       <x>230</x>
+       <y>20</y>
+       <width>31</width>
+       <height>32</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -802,10 +799,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QPushButton" name="productBTN_4">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>40</y>
-       <width>32</width>
-       <height>33</height>
+       <x>40</x>
+       <y>20</y>
+       <width>31</width>
+       <height>32</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -818,10 +815,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QPushButton" name="productBTN_5">
      <property name="geometry">
       <rect>
-       <x>630</x>
-       <y>260</y>
-       <width>32</width>
-       <height>33</height>
+       <x>610</x>
+       <y>225</y>
+       <width>31</width>
+       <height>32</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -834,10 +831,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QPushButton" name="productBTN_6">
      <property name="geometry">
       <rect>
-       <x>440</x>
-       <y>260</y>
-       <width>32</width>
-       <height>33</height>
+       <x>420</x>
+       <y>225</y>
+       <width>31</width>
+       <height>32</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -850,10 +847,10 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QPushButton" name="productBTN_7">
      <property name="geometry">
       <rect>
-       <x>250</x>
-       <y>260</y>
-       <width>32</width>
-       <height>33</height>
+       <x>230</x>
+       <y>225</y>
+       <width>31</width>
+       <height>32</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -866,10 +863,306 @@ url(:/GameBoard/images/gameBoard.jpg);
     <widget class="QPushButton" name="productBTN_8">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>260</y>
-       <width>32</width>
-       <height>33</height>
+       <x>40</x>
+       <y>225</y>
+       <width>31</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="Farm9btn">
+     <property name="geometry">
+      <rect>
+       <x>610</x>
+       <y>455</y>
+       <width>120</width>
+       <height>120</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="Farm10btn">
+     <property name="geometry">
+      <rect>
+       <x>420</x>
+       <y>455</y>
+       <width>120</width>
+       <height>120</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="Farm11btn">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>455</y>
+       <width>120</width>
+       <height>120</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="Farm12btn">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>455</y>
+       <width>120</width>
+       <height>120</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="productBTN_9">
+     <property name="geometry">
+      <rect>
+       <x>610</x>
+       <y>420</y>
+       <width>31</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="productBTN_10">
+     <property name="geometry">
+      <rect>
+       <x>420</x>
+       <y>420</y>
+       <width>31</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="productBTN_11">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>420</y>
+       <width>31</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="productBTN_12">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>420</y>
+       <width>31</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="coinLabel_12">
+     <property name="geometry">
+      <rect>
+       <x>75</x>
+       <y>420</y>
+       <width>30</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="coinLabel_11">
+     <property name="geometry">
+      <rect>
+       <x>265</x>
+       <y>420</y>
+       <width>30</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="coinLabel_10">
+     <property name="geometry">
+      <rect>
+       <x>455</x>
+       <y>420</y>
+       <width>30</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="coinLabel_9">
+     <property name="geometry">
+      <rect>
+       <x>645</x>
+       <y>420</y>
+       <width>30</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="coinAmountLabel_12">
+     <property name="geometry">
+      <rect>
+       <x>105</x>
+       <y>420</y>
+       <width>25</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="coinAmountLabel_11">
+     <property name="geometry">
+      <rect>
+       <x>295</x>
+       <y>420</y>
+       <width>25</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="coinAmountLabel_10">
+     <property name="geometry">
+      <rect>
+       <x>485</x>
+       <y>420</y>
+       <width>25</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="coinAmountLabel_9">
+     <property name="geometry">
+      <rect>
+       <x>675</x>
+       <y>420</y>
+       <width>25</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="timeLabel_12">
+     <property name="geometry">
+      <rect>
+       <x>135</x>
+       <y>420</y>
+       <width>25</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="timeLabel_11">
+     <property name="geometry">
+      <rect>
+       <x>325</x>
+       <y>420</y>
+       <width>25</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="timeLabel_10">
+     <property name="geometry">
+      <rect>
+       <x>515</x>
+       <y>420</y>
+       <width>25</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="timeLabel_9">
+     <property name="geometry">
+      <rect>
+       <x>705</x>
+       <y>420</y>
+       <width>25</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -886,7 +1179,7 @@ url(:/GameBoard/images/gameBoard.jpg);
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>941</width>
+     <width>775</width>
      <height>26</height>
     </rect>
    </property>

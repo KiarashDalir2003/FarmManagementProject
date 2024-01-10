@@ -84,6 +84,14 @@ void GamePage::ResetUi()
     ui->Farm7btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
     ui->Farm8btn->setStyleSheet("background-color: rgb(157, 157, 157);");
     ui->Farm8btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
+    ui->Farm9btn->setStyleSheet("background-color: rgb(157, 157, 157);");
+    ui->Farm9btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
+    ui->Farm10btn->setStyleSheet("background-color: rgb(157, 157, 157);");
+    ui->Farm10btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
+    ui->Farm11btn->setStyleSheet("background-color: rgb(157, 157, 157);");
+    ui->Farm11btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
+    ui->Farm12btn->setStyleSheet("background-color: rgb(157, 157, 157);");
+    ui->Farm12btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
 
     ui->Farm1btn->setEnabled(true);
     ui->Farm2btn->setEnabled(true);
@@ -93,6 +101,10 @@ void GamePage::ResetUi()
     ui->Farm6btn->setEnabled(true);
     ui->Farm7btn->setEnabled(true);
     ui->Farm8btn->setEnabled(true);
+    ui->Farm9btn->setEnabled(true);
+    ui->Farm10btn->setEnabled(true);
+    ui->Farm11btn->setEnabled(true);
+    ui->Farm12btn->setEnabled(true);
 
     ui->coinAmountLabel_1->clear();
     ui->coinAmountLabel_2->clear();
@@ -102,6 +114,10 @@ void GamePage::ResetUi()
     ui->coinAmountLabel_6->clear();
     ui->coinAmountLabel_7->clear();
     ui->coinAmountLabel_8->clear();
+    ui->coinAmountLabel_9->clear();
+    ui->coinAmountLabel_10->clear();
+    ui->coinAmountLabel_11->clear();
+    ui->coinAmountLabel_12->clear();
 
     ui->coinLabel_1->clear();
     ui->coinLabel_2->clear();
@@ -111,6 +127,10 @@ void GamePage::ResetUi()
     ui->coinLabel_6->clear();
     ui->coinLabel_7->clear();
     ui->coinLabel_8->clear();
+    ui->coinLabel_9->clear();
+    ui->coinLabel_10->clear();
+    ui->coinLabel_11->clear();
+    ui->coinLabel_12->clear();
 
     ui->timeLabel_1->setStyleSheet("background-color: rgb(255, 255, 255);");
     ui->timeLabel_2->setStyleSheet("background-color: rgb(255, 255, 255);");
@@ -120,6 +140,10 @@ void GamePage::ResetUi()
     ui->timeLabel_6->setStyleSheet("background-color: rgb(255, 255, 255);");
     ui->timeLabel_7->setStyleSheet("background-color: rgb(255, 255, 255);");
     ui->timeLabel_8->setStyleSheet("background-color: rgb(255, 255, 255);");
+    ui->timeLabel_9->setStyleSheet("background-color: rgb(255, 255, 255);");
+    ui->timeLabel_10->setStyleSheet("background-color: rgb(255, 255, 255);");
+    ui->timeLabel_11->setStyleSheet("background-color: rgb(255, 255, 255);");
+    ui->timeLabel_12->setStyleSheet("background-color: rgb(255, 255, 255);");
 
     ui->productBTN_1->setIcon(QIcon(""));
     ui->productBTN_2->setIcon(QIcon(""));
@@ -129,6 +153,10 @@ void GamePage::ResetUi()
     ui->productBTN_6->setIcon(QIcon(""));
     ui->productBTN_7->setIcon(QIcon(""));
     ui->productBTN_8->setIcon(QIcon(""));
+    ui->productBTN_9->setIcon(QIcon(""));
+    ui->productBTN_10->setIcon(QIcon(""));
+    ui->productBTN_11->setIcon(QIcon(""));
+    ui->productBTN_12->setIcon(QIcon(""));
 
     ui->productBTN_1->setStyleSheet("background-color: rgb(255, 255, 255);");
     ui->productBTN_2->setStyleSheet("background-color: rgb(255, 255, 255);");
@@ -138,9 +166,12 @@ void GamePage::ResetUi()
     ui->productBTN_6->setStyleSheet("background-color: rgb(255, 255, 255);");
     ui->productBTN_7->setStyleSheet("background-color: rgb(255, 255, 255);");
     ui->productBTN_8->setStyleSheet("background-color: rgb(255, 255, 255);");
+    ui->productBTN_9->setStyleSheet("background-color: rgb(255, 255, 255);");
+    ui->productBTN_10->setStyleSheet("background-color: rgb(255, 255, 255);");
+    ui->productBTN_11->setStyleSheet("background-color: rgb(255, 255, 255);");
+    ui->productBTN_12->setStyleSheet("background-color: rgb(255, 255, 255);");
 
     SetWorkerNumber();
-
 }
 
 
@@ -638,9 +669,9 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
         switch (questionMsgResult)
         {
         case 0:
-
             breedWheat(farm, product, coinLogo, coinAmount, time, breedTime, penaltyTime, isPenalTimerActive);
             break;
+
         case 1:
             return;
         }
@@ -671,6 +702,7 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
         case 0:
             breedBralay(farm, product, coinLogo, coinAmount, time, breedTime, penaltyTime, isPenalTimerActive);
             break;
+
         case 1:
             return;
 
@@ -681,7 +713,7 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
     {
         QMessageBox::warning(this, "Error!", "Something went wrong!");
     }
-   }
+}
 
 
 void GamePage::ShakeTotalCoinsLabel()
@@ -729,6 +761,7 @@ int GamePage::checkFarmStatus(QPushButton* farm, QPushButton* product, QLabel* t
         //this farm hasn't been purchased.
         return 1;
     }
+
     else if (farm->styleSheet() == "background-color: rgb(0, 170, 0);" &&
             time->styleSheet() == "background-color: rgb(255, 255, 255);"
             && product->styleSheet() == "background-color: rgb(255, 255, 255);")
@@ -736,6 +769,7 @@ int GamePage::checkFarmStatus(QPushButton* farm, QPushButton* product, QLabel* t
         //this farm has nothing.
         return 2;
     }
+
     else if(farm->styleSheet() == "background-color: rgb(0, 170, 0);" &&
             time->styleSheet() == "background-color: rgb(255, 255, 254);"
             && product->styleSheet() == "background-color: rgb(255, 255, 255);")
@@ -743,6 +777,7 @@ int GamePage::checkFarmStatus(QPushButton* farm, QPushButton* product, QLabel* t
         //this farm has hen.
         return 3;
     }
+
     else if(farm->styleSheet() == "background-color: rgb(0, 170, 0);" &&
             time->styleSheet() == "background-color: rgb(255, 255, 253);"
             && product->styleSheet() == "background-color: rgb(255, 255, 255);")
@@ -750,6 +785,7 @@ int GamePage::checkFarmStatus(QPushButton* farm, QPushButton* product, QLabel* t
         //this farm has sheep.
         return 4;
     }
+
     else if(farm->styleSheet() == "background-color: rgb(0, 170, 0);" &&
             time->styleSheet() == "background-color: rgb(255, 255, 252);"
             && product->styleSheet() == "background-color: rgb(255, 255, 255);")
@@ -757,6 +793,7 @@ int GamePage::checkFarmStatus(QPushButton* farm, QPushButton* product, QLabel* t
         //this farm has cow.
         return 5;
     }
+
     else if(farm->styleSheet() == "background-color: rgb(0, 170, 0);" &&
             time->styleSheet() == "background-color: rgb(255, 255, 251);"
             && product->styleSheet() == "background-color: rgb(255, 255, 255);")
@@ -764,6 +801,7 @@ int GamePage::checkFarmStatus(QPushButton* farm, QPushButton* product, QLabel* t
         //this farm has wheat.
         return 6;
     }
+
     else if(farm->styleSheet() == "background-color: rgb(0, 170, 0);" &&
             time->styleSheet() == "background-color: rgb(255, 255, 250);"
             && product->styleSheet() == "background-color: rgb(255, 255, 255);")
@@ -792,7 +830,9 @@ int GamePage::showStoreMessage()
 
     return result;
 }
+
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 void GamePage::buyHen(QPushButton *farm, QLabel *time, QLabel *totalCoins)
 {
     hen* Hen = new hen;
@@ -1611,6 +1651,8 @@ void GamePage::breedBralay(QPushButton *farm, QPushButton *product, QLabel *coin
                                                  farm->setEnabled(true);
 
                                                  product->setStyleSheet("background-color: rgb(255, 255, 255);");
+                                                 time->setStyleSheet("background-color: rgb(255, 255, 255);");
+                                                 farm->setIcon(QIcon(""));
                                               }
                                         }
                                     }
