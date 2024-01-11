@@ -42,6 +42,7 @@ GamePage::GamePage(QWidget *parent) :
     ui->userIconLabel->setPixmap(user);
 
     ResetUi();
+
     startProcessing();
 
     makeTimersNull();
@@ -49,7 +50,6 @@ GamePage::GamePage(QWidget *parent) :
     makePenaltyTimerBooliansFalse();
 
     isUserActive = true;
-
 }
 
 
@@ -215,6 +215,18 @@ void GamePage::makeTimersNull()
 
     breedingTimer8 = nullptr;
     penaltyTimer8 = nullptr;
+
+    breedingTimer9 = nullptr;
+    penaltyTimer9 = nullptr;
+
+    breedingTimer10 = nullptr;
+    penaltyTimer10 = nullptr;
+
+    breedingTimer11 = nullptr;
+    penaltyTimer11 = nullptr;
+
+    breedingTimer12 = nullptr;
+    penaltyTimer12 = nullptr;
 }
 
 void GamePage::makePenaltyTimerBooliansFalse()
@@ -227,6 +239,10 @@ void GamePage::makePenaltyTimerBooliansFalse()
     isPenaltyTimerActive6 = false;
     isPenaltyTimerActive7 = false;
     isPenaltyTimerActive8 = false;
+    isPenaltyTimerActive9 = false;
+    isPenaltyTimerActive10 = false;
+    isPenaltyTimerActive11 = false;
+    isPenaltyTimerActive12 = false;
 }
 
 
@@ -242,7 +258,6 @@ void GamePage::processNextRecord()
 
         remainingSeconds = 180;
         QTimer::singleShot(1000, this, &GamePage::updateTime);
-
     }
 
     else
@@ -422,6 +437,66 @@ void GamePage::on_Farm8btn_clicked()
 void GamePage::on_productBTN_8_clicked()
 {
     isPenaltyTimerActive8 = false;
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+
+void GamePage::on_Farm9btn_clicked()
+{
+    isUserActive = true;
+    managingFarm(ui->Farm9btn, ui->productBTN_9, ui->coinLabel_9, ui->coinAmountLabel_9, ui->coinsLabel, ui->timeLabel_9, breedingTimer9,  penaltyTimer9, &isPenaltyTimerActive9);
+
+}
+
+
+void GamePage::on_productBTN_9_clicked()
+{
+    isPenaltyTimerActive9 = false;
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+
+void GamePage::on_Farm10btn_clicked()
+{
+    isUserActive = true;
+    managingFarm(ui->Farm10btn, ui->productBTN_10, ui->coinLabel_10, ui->coinAmountLabel_10, ui->coinsLabel, ui->timeLabel_10, breedingTimer10,  penaltyTimer10, &isPenaltyTimerActive10);
+
+}
+
+
+void GamePage::on_productBTN_10_clicked()
+{
+    isPenaltyTimerActive10 = false;
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+
+void GamePage::on_Farm11btn_clicked()
+{
+    isUserActive = true;
+    managingFarm(ui->Farm11btn, ui->productBTN_11, ui->coinLabel_11, ui->coinAmountLabel_11, ui->coinsLabel, ui->timeLabel_11, breedingTimer11,  penaltyTimer11, &isPenaltyTimerActive11);
+
+}
+
+
+void GamePage::on_productBTN_11_clicked()
+{
+    isPenaltyTimerActive11 = false;
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+
+void GamePage::on_Farm12btn_clicked()
+{
+    isUserActive = true;
+    managingFarm(ui->Farm12btn, ui->productBTN_12, ui->coinLabel_12, ui->coinAmountLabel_12, ui->coinsLabel, ui->timeLabel_12, breedingTimer12,  penaltyTimer12, &isPenaltyTimerActive12);
+
+}
+
+
+void GamePage::on_productBTN_12_clicked()
+{
+    isPenaltyTimerActive12 = false;
 }
 
 //---------------------------------------------------------------------------------------------------------------------

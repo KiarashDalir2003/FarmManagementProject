@@ -207,7 +207,10 @@ color: rgb(0, 0, 0);</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">#GameBoardGroupBox{
+background-image: 
+url(:/GameBoard/images/gameboard_background.jpg);
+}</string>
     </property>
     <property name="title">
      <string/>
@@ -1059,6 +1062,9 @@ color: rgb(0, 0, 0);</string>
      <property name="text">
       <string/>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
     <widget class="QLabel" name="coinAmountLabel_11">
      <property name="geometry">
@@ -1074,6 +1080,9 @@ color: rgb(0, 0, 0);</string>
      </property>
      <property name="text">
       <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="coinAmountLabel_10">
@@ -1091,6 +1100,9 @@ color: rgb(0, 0, 0);</string>
      <property name="text">
       <string/>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
     <widget class="QLabel" name="coinAmountLabel_9">
      <property name="geometry">
@@ -1106,6 +1118,9 @@ color: rgb(0, 0, 0);</string>
      </property>
      <property name="text">
       <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="timeLabel_12">
@@ -1123,6 +1138,9 @@ color: rgb(0, 0, 0);</string>
      <property name="text">
       <string/>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
     <widget class="QLabel" name="timeLabel_11">
      <property name="geometry">
@@ -1138,6 +1156,9 @@ color: rgb(0, 0, 0);</string>
      </property>
      <property name="text">
       <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="timeLabel_10">
@@ -1155,6 +1176,9 @@ color: rgb(0, 0, 0);</string>
      <property name="text">
       <string/>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
     <widget class="QLabel" name="timeLabel_9">
      <property name="geometry">
@@ -1170,6 +1194,9 @@ color: rgb(0, 0, 0);</string>
      </property>
      <property name="text">
       <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </widget>

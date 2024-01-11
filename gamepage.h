@@ -99,9 +99,6 @@ private slots:
 
     void startProcessing();
 
-
-
-
     void on_Farm1btn_clicked();
 
     void on_Farm2btn_clicked();
@@ -117,6 +114,14 @@ private slots:
     void on_Farm4btn_clicked();
 
     void on_Farm8btn_clicked();
+
+    void on_Farm9btn_clicked();
+
+    void on_Farm10btn_clicked();
+
+    void on_Farm11btn_clicked();
+
+    void on_Farm12btn_clicked();
 
     void on_addWorkerbtn_clicked();
 
@@ -138,6 +143,13 @@ private slots:
 
     void on_productBTN_8_clicked();
 
+    void on_productBTN_9_clicked();
+
+    void on_productBTN_10_clicked();
+
+    void on_productBTN_11_clicked();
+
+    void on_productBTN_12_clicked();
 
 
 private:
@@ -153,8 +165,6 @@ private:
     int coins;
 
     QSqlQuery q;
-
-
 
     QMediaPlayer *PositiveSound = new QMediaPlayer;
     QMediaPlayer *NegetiveSound = new QMediaPlayer;
@@ -189,6 +199,18 @@ private:
     QTimer* breedingTimer8 ;
     QTimer* penaltyTimer8 ;
 
+    QTimer* breedingTimer9 ;
+    QTimer* penaltyTimer9 ;
+
+    QTimer* breedingTimer10 ;
+    QTimer* penaltyTimer10 ;
+
+    QTimer* breedingTimer11 ;
+    QTimer* penaltyTimer11 ;
+
+    QTimer* breedingTimer12 ;
+    QTimer* penaltyTimer12 ;
+
     bool isPenaltyTimerActive1;
     bool isPenaltyTimerActive2;
     bool isPenaltyTimerActive3;
@@ -197,6 +219,10 @@ private:
     bool isPenaltyTimerActive6;
     bool isPenaltyTimerActive7;
     bool isPenaltyTimerActive8;
+    bool isPenaltyTimerActive9;
+    bool isPenaltyTimerActive10;
+    bool isPenaltyTimerActive11;
+    bool isPenaltyTimerActive12;
 
     bool isUserActive;
 
