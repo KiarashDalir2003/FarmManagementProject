@@ -70,27 +70,27 @@ void GamePage::ResetUi()
 {
     ui->Farm1btn->setStyleSheet("background-color: rgb(0, 170, 0);");
     ui->Farm1btn->setIcon(QIcon(""));
-    ui->Farm2btn->setStyleSheet("background-color: rgb(157, 157, 157);");
+    ui->Farm2btn->setStyleSheet("background-color: rgb(170, 136, 14);");
     ui->Farm2btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
-    ui->Farm3btn->setStyleSheet("background-color: rgb(157, 157, 157);");
+    ui->Farm3btn->setStyleSheet("background-color: rgb(170, 136, 14);");
     ui->Farm3btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
-    ui->Farm4btn->setStyleSheet("background-color: rgb(157, 157, 157);");
+    ui->Farm4btn->setStyleSheet("background-color: rgb(170, 136, 14);");
     ui->Farm4btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
-    ui->Farm5btn->setStyleSheet("background-color: rgb(157, 157, 157);");
+    ui->Farm5btn->setStyleSheet("background-color: rgb(170, 136, 14);");
     ui->Farm5btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
-    ui->Farm6btn->setStyleSheet("background-color: rgb(157, 157, 157);");
+    ui->Farm6btn->setStyleSheet("background-color: rgb(170, 136, 14);");
     ui->Farm6btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
-    ui->Farm7btn->setStyleSheet("background-color: rgb(157, 157, 157);");
+    ui->Farm7btn->setStyleSheet("background-color: rgb(170, 136, 14);");
     ui->Farm7btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
-    ui->Farm8btn->setStyleSheet("background-color: rgb(157, 157, 157);");
+    ui->Farm8btn->setStyleSheet("background-color: rgb(170, 136, 14);");
     ui->Farm8btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
-    ui->Farm9btn->setStyleSheet("background-color: rgb(157, 157, 157);");
+    ui->Farm9btn->setStyleSheet("background-color: rgb(170, 136, 14);");
     ui->Farm9btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
-    ui->Farm10btn->setStyleSheet("background-color: rgb(157, 157, 157);");
+    ui->Farm10btn->setStyleSheet("background-color: rgb(170, 136, 14);");
     ui->Farm10btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
-    ui->Farm11btn->setStyleSheet("background-color: rgb(157, 157, 157);");
+    ui->Farm11btn->setStyleSheet("background-color: rgb(170, 136, 14);");
     ui->Farm11btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
-    ui->Farm12btn->setStyleSheet("background-color: rgb(157, 157, 157);");
+    ui->Farm12btn->setStyleSheet("background-color: rgb(170, 136, 14);");
     ui->Farm12btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
 
     ui->Farm1btn->setEnabled(true);
@@ -831,7 +831,7 @@ void GamePage::KillingActionAndShakeTotalCoinsLabel()
 
 int GamePage::checkFarmStatus(QPushButton* farm, QPushButton* product, QLabel* time)
 {
-    if(farm->styleSheet() == "background-color: rgb(157, 157, 157);")
+    if(farm->styleSheet() == "background-color: rgb(170, 136, 14);")
     {
         //this farm hasn't been purchased.
         return 1;

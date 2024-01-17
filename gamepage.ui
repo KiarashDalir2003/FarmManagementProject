@@ -208,8 +208,7 @@ color: rgb(0, 0, 0);</string>
     </property>
     <property name="styleSheet">
      <string notr="true">#GameBoardGroupBox{
-background-image: 
-url(:/GameBoard/images/gameboard_background.jpg);
+	background-image: url(:/Farm/images/desert.JPEG);
 }</string>
     </property>
     <property name="title">
@@ -1207,7 +1206,7 @@ url(:/GameBoard/images/gameboard_background.jpg);
      <x>0</x>
      <y>0</y>
      <width>775</width>
-     <height>26</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>
