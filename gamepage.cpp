@@ -30,15 +30,15 @@ GamePage::GamePage(QWidget *parent) :
     ui(new Ui::GamePage)
 {
     ui->setupUi(this);
-    QPixmap worker("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\worker.png");
-    QPixmap clock("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\clock.png");
-    QPixmap coin ("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\coin.png");
-    QPixmap user("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\user.png");
+    QPixmap worker("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\worker.png");
+    QPixmap clock("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\clock.png");
+    QPixmap coin ("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\coin.png");
+    QPixmap user("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\user.png");
 
     ui->worketIconLabel->setPixmap(worker);
     ui->clockIconLabel->setPixmap(clock);
     ui->coinIconLabel->setPixmap(coin);
-    ui->addWorkerbtn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\plus.png"));
+    ui->addWorkerbtn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\plus.png"));
     ui->userIconLabel->setPixmap(user);
 
     ResetUi();
@@ -71,27 +71,27 @@ void GamePage::ResetUi()
     ui->Farm1btn->setStyleSheet("background-color: rgb(0, 170, 0);");
     ui->Farm1btn->setIcon(QIcon(""));
     ui->Farm2btn->setStyleSheet("background-color: rgb(170, 136, 14);");
-    ui->Farm2btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
+    ui->Farm2btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
     ui->Farm3btn->setStyleSheet("background-color: rgb(170, 136, 14);");
-    ui->Farm3btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
+    ui->Farm3btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
     ui->Farm4btn->setStyleSheet("background-color: rgb(170, 136, 14);");
-    ui->Farm4btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
+    ui->Farm4btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
     ui->Farm5btn->setStyleSheet("background-color: rgb(170, 136, 14);");
-    ui->Farm5btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
+    ui->Farm5btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
     ui->Farm6btn->setStyleSheet("background-color: rgb(170, 136, 14);");
-    ui->Farm6btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
+    ui->Farm6btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
     ui->Farm7btn->setStyleSheet("background-color: rgb(170, 136, 14);");
-    ui->Farm7btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
+    ui->Farm7btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
     ui->Farm8btn->setStyleSheet("background-color: rgb(170, 136, 14);");
-    ui->Farm8btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
+    ui->Farm8btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
     ui->Farm9btn->setStyleSheet("background-color: rgb(170, 136, 14);");
-    ui->Farm9btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
+    ui->Farm9btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
     ui->Farm10btn->setStyleSheet("background-color: rgb(170, 136, 14);");
-    ui->Farm10btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
+    ui->Farm10btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
     ui->Farm11btn->setStyleSheet("background-color: rgb(170, 136, 14);");
-    ui->Farm11btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
+    ui->Farm11btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
     ui->Farm12btn->setStyleSheet("background-color: rgb(170, 136, 14);");
-    ui->Farm12btn->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
+    ui->Farm12btn->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\padlock.png"));
 
     ui->Farm1btn->setEnabled(true);
     ui->Farm2btn->setEnabled(true);
@@ -282,7 +282,7 @@ void GamePage::updateTime()
 
     else
     {
-        TimeOverSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\timeoverSound.mp3"));
+        TimeOverSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\timeoverSound.mp3"));
         TimeOverSound->play();
         QMessageBox::information(this, "Next turn", "Your time is over!");
         Resetdata();
@@ -296,7 +296,7 @@ void GamePage::startProcessing()
 {
     QSqlDatabase coinsDB;
     coinsDB = QSqlDatabase::addDatabase("QSQLITE");
-    coinsDB.setDatabaseName("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\ProjectDatabase.db");
+    coinsDB.setDatabaseName("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\ProjectDatabase.db");
 
     if (!coinsDB.open())
     {
@@ -511,7 +511,7 @@ void GamePage::on_addWorkerbtn_clicked()
     {
         if(coins < 5)
         {
-            NegetiveSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
+            NegetiveSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
             NegetiveSound->play();
             QMessageBox::warning(this, "Error", "You don't have enough coin");
             return;
@@ -568,7 +568,7 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
         {
             if(coins < 3)  // farm buy price = 3
             {
-                NegetiveSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
+                NegetiveSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
                 NegetiveSound->play();
                 QMessageBox::warning(this, "Sorry!", "You don't have enough coin!");
                 return;
@@ -625,7 +625,7 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
     {
         //this farm has hen
 
-        HenSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\henSound.mp3"));
+        HenSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\henSound.mp3"));
         HenSound->play();
 
         QMessageBox questionMsg;
@@ -659,7 +659,7 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
     {
         //this farm has sheep
 
-        SheepSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\sheepSound.mp3"));
+        SheepSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\sheepSound.mp3"));
         SheepSound->play();
 
         QMessageBox questionMsg;
@@ -693,7 +693,7 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
         //this farm has cow
 
 
-        CowSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\cowSound.mp3"));
+        CowSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\cowSound.mp3"));
         CowSound->play();
 
         QMessageBox questionMsg;
@@ -727,7 +727,7 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
     {
         //this farm has wheat
 
-        PlantSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\plantSound.mp3"));
+        PlantSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\plantSound.mp3"));
         PlantSound->play();
 
         QMessageBox questionMsg;
@@ -758,7 +758,7 @@ void GamePage::managingFarm(QPushButton* farm, QPushButton* product, QLabel* coi
     {
         //this farm has barlay
 
-        PlantSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\plantSound.mp3"));
+        PlantSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\plantSound.mp3"));
         PlantSound->play();
 
         QMessageBox questionMsg;
@@ -806,7 +806,7 @@ void GamePage::ShakeTotalCoinsLabel()
     animation->start();
 
     PositiveSound->setMedia(
-                QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\PositiveSound.mp3"));
+                QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\PositiveSound.mp3"));
 
     PositiveSound->play();
 }
@@ -825,7 +825,7 @@ void GamePage::KillingActionAndShakeTotalCoinsLabel()
 
         animation->start();
 
-        KillingSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\killingSound.mp3"));
+        KillingSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\killingSound.mp3"));
         KillingSound->play();
 }
 
@@ -920,7 +920,7 @@ void GamePage::buyHen(QPushButton *farm, QLabel *time, QLabel *totalCoins)
     {
         if(coins < Hen->getBuyPrice())
         {
-            NegetiveSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
+            NegetiveSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
             NegetiveSound->play();
             QMessageBox::warning(this, "Sorry!", "You don't have enough coin!");
             return;
@@ -933,7 +933,7 @@ void GamePage::buyHen(QPushButton *farm, QLabel *time, QLabel *totalCoins)
             totalCoins->setText(QString::number(coins));
             time->setStyleSheet("background-color: rgb(255, 255, 254);");
             //rgb(255, 255, 254) means that this farm has hen.
-            farm->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\hen.png"));
+            farm->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\hen.png"));
         }
     }
     delete Hen;
@@ -951,7 +951,7 @@ void GamePage::buySheep(QPushButton *farm, QLabel *time, QLabel *totalCoins)
     {
         if(coins < Sheep->getBuyPrice())
         {
-            NegetiveSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
+            NegetiveSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
             NegetiveSound->play();
             QMessageBox::warning(this, "Sorry!", "You don't have enough coin!");
             return;
@@ -964,7 +964,7 @@ void GamePage::buySheep(QPushButton *farm, QLabel *time, QLabel *totalCoins)
             totalCoins->setText(QString::number(coins));
             time->setStyleSheet("background-color: rgb(255, 255, 253);");
             //rgb(255, 255, 253) means that this farm has sheep
-            farm->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\sheep.png"));
+            farm->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\sheep.png"));
         }
     }
     delete Sheep;
@@ -982,7 +982,7 @@ void GamePage::buyCow(QPushButton *farm, QLabel *time, QLabel *totalCoins)
     {
         if(coins < Cow->getBuyPrice())
         {
-            NegetiveSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
+            NegetiveSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
             NegetiveSound->play();
             QMessageBox::warning(this, "Sorry!", "You don't have enough coin!");
             return;
@@ -994,7 +994,7 @@ void GamePage::buyCow(QPushButton *farm, QLabel *time, QLabel *totalCoins)
             totalCoins->setText(QString::number(coins));
             time->setStyleSheet("background-color: rgb(255, 255, 252);");
             //rgb(255, 255, 252) means that this farm has cow.
-            farm->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\cow.png"));
+            farm->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\cow.png"));
         }
     }
     delete Cow;
@@ -1012,7 +1012,7 @@ void GamePage::buyWheat(QPushButton *farm, QLabel *time, QLabel *totalCoins)
     {
         if(coins < Wheat->getBuyPrice())
         {
-            NegetiveSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
+            NegetiveSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
             NegetiveSound->play();
             QMessageBox::warning(this, "Sorry!", "You don't have enough coin!");
             return;
@@ -1024,7 +1024,7 @@ void GamePage::buyWheat(QPushButton *farm, QLabel *time, QLabel *totalCoins)
             totalCoins->setText(QString::number(coins));
             time->setStyleSheet("background-color: rgb(255, 255, 251);");
             //rgb(255, 255, 251) means that this farm has wheat.
-            farm->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
+            farm->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
         }
     }
     delete Wheat;
@@ -1042,7 +1042,7 @@ void GamePage::buyBarlay(QPushButton *farm, QLabel *time, QLabel *totalCoins)
     {
         if(coins < Barlay->getBuyPrice())
         {
-            NegetiveSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
+            NegetiveSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
             NegetiveSound->play();
             QMessageBox::warning(this, "Sorry!", "You don't have enough coin!");
             return;
@@ -1053,7 +1053,7 @@ void GamePage::buyBarlay(QPushButton *farm, QLabel *time, QLabel *totalCoins)
         {
             totalCoins->setText(QString::number(coins));
             time->setStyleSheet("background-color: rgb(255, 255, 250);");
-            farm->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\barlay.png"));
+            farm->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\barlay.png"));
         }
     }
     delete Barlay;
@@ -1103,10 +1103,10 @@ void GamePage::breedHen(QPushButton *farm, QPushButton *product, QLabel *coinLog
                     breedTime = nullptr;
                     *isPenalTimerActive = true;
                     //farm->setEnabled(true);
-                    product->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\egg.png"));
+                    product->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\egg.png"));
                     product->setStyleSheet("background-color: rgb(255, 255, 254);");
                     time->clear();
-                    QPixmap coinsPix ("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\coin.png");
+                    QPixmap coinsPix ("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\coin.png");
                     coinLogo->setPixmap(coinsPix);
                     coinAmount->setText(QString::number(Hen->getEggPrice()));
 
@@ -1221,7 +1221,7 @@ void GamePage::breedHen(QPushButton *farm, QPushButton *product, QLabel *coinLog
 
     else
     {
-        NegetiveSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
+        NegetiveSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
         NegetiveSound->play();
         QMessageBox::warning(this, "", "You don't have a worker available.");
         return;
@@ -1269,10 +1269,10 @@ void GamePage::breedSheep(QPushButton *farm, QPushButton *product, QLabel *coinL
                     breedTime = nullptr;
                     *isPenalTimerActive = true;
                     //farm->setEnabled(true);
-                    product->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\milk.png"));
+                    product->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\milk.png"));
                     product->setStyleSheet("background-color: rgb(255, 255, 254);");
                     time->clear();
-                    QPixmap coinsPix ("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\coin.png");
+                    QPixmap coinsPix ("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\coin.png");
                     coinLogo->setPixmap(coinsPix);
                     coinAmount->setText(QString::number(Sheep->getMilkPrice()));
 
@@ -1386,7 +1386,7 @@ void GamePage::breedSheep(QPushButton *farm, QPushButton *product, QLabel *coinL
 
     else
     {
-        NegetiveSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
+        NegetiveSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
         NegetiveSound->play();
         QMessageBox::warning(this, "", "You don't have a worker available.");
         return;
@@ -1433,10 +1433,10 @@ void GamePage::breedCow(QPushButton *farm, QPushButton *product, QLabel *coinLog
                     breedTime = nullptr;
                     *isPenalTimerActive = true;
                     //farm->setEnabled(true);
-                    product->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\milk.png"));
+                    product->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\milk.png"));
                     product->setStyleSheet("background-color: rgb(255, 255, 254);");
                     time->clear();
-                    QPixmap coinsPix ("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\coin.png");
+                    QPixmap coinsPix ("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\coin.png");
                     coinLogo->setPixmap(coinsPix);
                     coinAmount->setText(QString::number(Cow->getMilkPrice()));
 
@@ -1549,7 +1549,7 @@ void GamePage::breedCow(QPushButton *farm, QPushButton *product, QLabel *coinLog
 
     else
     {
-        NegetiveSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
+        NegetiveSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
         NegetiveSound->play();
         QMessageBox::warning(this, "", "You don't have a worker available.");
         return;
@@ -1597,10 +1597,10 @@ void GamePage::breedWheat(QPushButton *farm, QPushButton *product, QLabel *coinL
                     breedTime = nullptr;
                     *isPenalTimerActive = true;
                     //farm->setEnabled(true);
-                    product->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
+                    product->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\wheat.png"));
                     product->setStyleSheet("background-color: rgb(255, 255, 254);");
                     time->clear();
-                    QPixmap coinsPix ("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\coin.png");
+                    QPixmap coinsPix ("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\coin.png");
                     coinLogo->setPixmap(coinsPix);
                     coinAmount->setText(QString::number(Wheat->getWheatPrice()));
 
@@ -1717,7 +1717,7 @@ void GamePage::breedWheat(QPushButton *farm, QPushButton *product, QLabel *coinL
 
     else
     {
-        NegetiveSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
+        NegetiveSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
         NegetiveSound->play();
         QMessageBox::warning(this, "", "You don't have a worker available.");
         return;
@@ -1764,10 +1764,10 @@ void GamePage::breedBralay(QPushButton *farm, QPushButton *product, QLabel *coin
                     breedTime = nullptr;
                     *isPenalTimerActive = true;
                     //farm->setEnabled(true);
-                    product->setIcon(QIcon("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\barlay.png"));
+                    product->setIcon(QIcon("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\barlay.png"));
                     product->setStyleSheet("background-color: rgb(255, 255, 254);");
                     time->clear();
-                    QPixmap coinsPix ("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\images\\coin.png");
+                    QPixmap coinsPix ("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\images\\coin.png");
                     coinLogo->setPixmap(coinsPix);
                     coinAmount->setText(QString::number(Barlay->getBarlayPrice()));
 
@@ -1882,7 +1882,7 @@ void GamePage::breedBralay(QPushButton *farm, QPushButton *product, QLabel *coin
 
     else
     {
-        NegetiveSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
+        NegetiveSound->setMedia(QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\NegativeSound.mp3"));
         NegetiveSound->play();
         QMessageBox::warning(this, "", "You don't have a worker available.");
         return;
