@@ -1,3 +1,4 @@
+## Farm management game
 This project was written by Kiarash Dalir and Sajjad Rahimi Shandiz
 in Qt C++
 
