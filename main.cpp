@@ -14,13 +14,13 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    LoginPage w;
-    GamePage G;
+LoginPage w ;
+
 
     QMediaPlayer *StartSound = new QMediaPlayer;
 
     StartSound->setMedia(
-             QUrl::fromLocalFile("C:\\Users\\Sajjad\\Documents\\GitHub\\FarmManegementProject\\sounds\\StartSound.mp3"));
+             QUrl::fromLocalFile("C:\\Users\\Microsoft\\Documents\\GitHub\\FarmManegementProject\\sounds\\StartSound.mp3"));
 
 
     QSqlQuery que;
@@ -31,11 +31,13 @@ int main(int argc, char *argv[])
 
         if (recordCount == 0)
         {
-           StartSound->play();
+
+            StartSound->play();
             w.show();
         }
         else
         {
+            GamePage G ;
             StartSound->play();
             G.show();
         }
